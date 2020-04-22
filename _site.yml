@@ -1,0 +1,12 @@
+name: "Health Access Metric Tookit - JCOIN Network"
+output_dir: "docs"
+navbar:
+  title: "Health Access Metrics Toolkit"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Access Calculation Tutorial"
+      href: centroid-access-tutorial.html
+output:
+  html_document:
+    theme: flatly

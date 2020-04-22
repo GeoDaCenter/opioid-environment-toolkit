@@ -1,4 +1,3 @@
 # jcoin-tutorials
-To store final tutorials for JCOIN network
 
-- Calculating Zip-Level Access Metrics: Minimum Distance from Zip Centroid to Resource: [online tutorial](https://geodacenter.github.io/jcoin-tutorials/centroid-access-tutorial.html), [PDF](https://github.com/GeoDaCenter/jcoin-tutorials/blob/master/centroid-access-tutorial/centroid-access-tutorial.pdf), [data](https://github.com/GeoDaCenter/jcoin-tutorials/blob/master/centroid-access-tutorial/centroid-access-data.zip)
+This is a RMarkdown website. To add tutorials, open the .Rproj file in RStudio, add Rmd files to the repository, and click the "Build Website" button under the "Build" tab. HTML files will be generated in the `docs` folder, which will build as a website on Github when pushed up.
