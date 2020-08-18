@@ -27,7 +27,7 @@ We use the following datasets for examples in tutorials:
 | 6 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
 | 7 | Census Data Wrangling (R) |  Moksha |  Qinyun | Planning  |
 | 8 | Geocoding Address Data (R) | Moksha  | Marynia | In Progress  |
-| 9 | [Basic Access Metrics (*buffer, min dist)] (https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | In Review  |
+| 9 | [Min Dist Access Metrics] (https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | In Review  |
 | 10 | Advanced Access Metrics (python) | Moksha  | Marynia |  Planning |
 | 11 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 
