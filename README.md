@@ -7,7 +7,7 @@ This bookdown project will provide an overview of basic spatial analytics for th
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data (R) |   |   |   |
+| 1 | Enabling Spatial Data - from lat/long to pnt (R) |   |   |   |
 | 2 | Basic Spatial Data Visualization: Points (R) |   |   | Planning  |
 | 3 | Basic Spatial Data Visualization: Areas (R)  |   |   | Planning  |
 | 4 | Linking Community Contextual Data (R)  |   |   |  Planning |
@@ -16,7 +16,7 @@ This bookdown project will provide an overview of basic spatial analytics for th
 | 7 | Census Data Wrangling (R) |   |   | Planning  |
 | 8 | Geocoding Address Data (R) | Moksha  | Marynia | In Progress  |
 | 9 | Basic Access Metrics (buffer, min dist) (R) | Angela  | Marynia  | In Review  |
-| 10 | Advanced Access Metrics (python) (R) |   |   |   |
+| 10 | Advanced Access Metrics (python) |   |   |   |
 | 11 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 
 ## Technical Review: How To Update (for Author Team)
