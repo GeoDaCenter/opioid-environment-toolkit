@@ -7,16 +7,16 @@ This bookdown project will provide an overview of basic spatial analytics for th
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data: lat/long to pnt (R) |   |   | Planning  |
-| 2 | Basic Spatial Data Visualization: Points (R) |   |   | Planning  |
-| 3 | Basic Spatial Data Visualization: Areas (R)  |   |   | Planning  |
-| 4 | Linking Community Contextual Data (R)  |   |   |  Planning |
-| 5 | Spatial Joins (R) |   |   | Planning  |
-| 6 | Spatial Aggregations (R) |   |   |  Planning |
-| 7 | Census Data Wrangling (R) |  Moksha |   | Planning  |
+| 1 | Enabling Spatial Data: lat/long to pnt (R) | Moksha | Marynia  | Planning  |
+| 2 | Basic Spatial Data Visualization: Points (R) | Marynia  | Moksha  | Planning  |
+| 3 | Basic Spatial Data Visualization: Areas (R)  | Marynia  | Moksha  | Planning  |
+| 4 | Linking Community Contextual Data (R)  | Marynia  | Qinyun  |  Planning |
+| 5 | Spatial Joins (R) | Marynia  | Qinyun  | Planning  |
+| 6 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
+| 7 | Census Data Wrangling (R) |  Moksha |  Qinyun | Planning  |
 | 8 | Geocoding Address Data (R) | Moksha  | Marynia | In Progress  |
 | 9 | Basic Access Metrics (buffer, min dist) (R) | Angela  | Marynia  | In Review  |
-| 10 | Advanced Access Metrics (python) |   |   |   |
+| 10 | Advanced Access Metrics (python) | Moksha  |   |  Planning |
 | 11 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 
 ## Technical Review: How To Update (for Author Team)
