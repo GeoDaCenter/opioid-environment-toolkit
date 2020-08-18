@@ -21,7 +21,7 @@ We use the following datasets for examples in tutorials:
 |---|---|---|---|---|
 | 1 | Enabling Spatial Data (R) | Marynia | Moksha  | Planning  |
 | 2 | Geocoding and Visualizing Point Data (R) | Moksha  | Marynia  | Planning  |
-| 3 | Linking Community Contextual Data (R)  | Marynia  | Qinyun  | Planning |
+| 3 | Linking Community Contextual Data (R)  | Moksha  | Qinyun  | Planning |
 | 4 | Buffer Analysis (R) |  Marynia |  Moksha | Planning |
 | 5 | Spatial Joins (R) | Marynia  | Qinyun  | Planning  |
 | 6 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
