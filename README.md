@@ -1,7 +1,7 @@
 # opioid-environment-toolkit
 
 ## Overview
-This bookdown project will provide an overview of basic spatial analytics for the JCOIN team. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment. 
+This bookdown project will provide an overview of basic spatial analytics for the JCOIN network. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment. 
 
 ### Schedule of Topics
 
