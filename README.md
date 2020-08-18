@@ -11,7 +11,7 @@ We use the following datasets for examples in tutorials:
 - Cenus tract boundary data for Chicago (Census 2010)
 - Cenus tract boundary data for Illinois (Census 2010)
 - County boundary data for Illinois (Census 2010)
-- Social vulnerability index and related socioeconomic indicators (Census 2018 5-year average, CDC)
+- Social vulnerability index and related socioeconomic indicators @tract scale (Census 2018 5-year average, CDC)
 
 
 ### Schedule of Topics
