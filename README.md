@@ -5,15 +5,16 @@ This is a R Markdown website, published at [https://geodacenter.github.io/opioid
 To learn more about R Markdown websites, take a look at the [R Markdown documentation](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
 
 
-| No. | Topic | Description | Author | Status  |
+| No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 |   |   |   |   |
-| 2 |   |   |   |   |
-| 3 |   |   |   |   |
-| 4 |   |   |   |   |
-| 5 |   |   |   |   |
-| 6 |   |   |   |   |
-| 7 |   |   |   |   |
-| 8 |   |   |   |   |
-| 9 |   |   |   |   |
-| 10 |   |   |   |   |
+| 1 | Enabling Spatial Data (R) |   |   |   |
+| 2 | Basic Spatial Data Visualization: Points (R) |   |   |   |
+| 3 | Basic Spatial Data Visualization: Areas (R)  |   |   |   |
+| 4 | Linking Community Contextual Data (R)  |   |   |   |
+| 5 | Spatial Joins (R) |   |   |   |
+| 6 | Spatial Aggregations (R) |   |   |   |
+| 7 | Census Data Wrangling (R) |   |   |   |
+| 8 | Geocoding Address Data (R) | Moksha  | Marynia | In Progress  |
+| 9 | Basic Access Metrics (buffer, min dist) (R) | Angela  | Marynia  | In Review  |
+| 10 | Advanced Access Metrics (python) (R) |   |   |   |
+| 11 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
