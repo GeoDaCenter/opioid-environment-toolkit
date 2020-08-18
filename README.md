@@ -19,17 +19,16 @@ We use the following datasets for examples in tutorials:
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data (R) | Moksha | Marynia  | Planning  |
-| 2 | Basic Spatial Data Visualization: Points (R) | Marynia  | Moksha  | Planning  |
-| 3 | Basic Spatial Data Visualization: Areas (R)  | Marynia  | Moksha  | Planning  |
-| 4 | Linking Community Contextual Data (R)  | Marynia  | Qinyun  |  Planning |
+| 1 | Enabling Spatial Data (R) | Marynia | Moksha  | Planning  |
+| 2 | Geocoding and Visualizing Point Data (R) | Moksha  | Marynia  | Planning  |
+| 3 | Linking Community Contextual Data (R)  | Marynia  | Qinyun  | Planning |
+| 4 | Buffer Analysis (R) |  Marynia |  Moksha | Planning |
 | 5 | Spatial Joins (R) | Marynia  | Qinyun  | Planning  |
 | 6 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
-| 7 | Census Data Wrangling (R) |  Moksha |  Qinyun | Planning  |
-| 8 | Geocoding Address Data (R) | Moksha  | Marynia | In Progress  |
-| 9 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | In Review  |
-| 10 | Advanced Access Metrics (python) | Moksha  | Marynia |  Planning |
-| 11 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
+| 7 | Census Data Wrangling (R) |  Moksha |  Qinyun | Planning |
+| 8 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | In Review  |
+| 9 | Advanced Access Metrics (python) | Moksha  | Marynia |  Planning |
+| 10 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 
 ## Technical Review: How To Update (for Author Team)
 This is a R Markdown website, published at [https://geodacenter.github.io/opioid-environment-toolkit/](https://geodacenter.github.io/opioid-environment-toolkit/). To add tutorials, open the .Rproj file in RStudio, add Rmd files to the repository, and click the "Build Website" button under the "Build" tab. HTML files will be generated in the `docs` folder, which will build as a website on Github when pushed up.
