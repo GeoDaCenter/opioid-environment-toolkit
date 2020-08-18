@@ -7,7 +7,7 @@ This bookdown project will provide an overview of basic spatial analytics for th
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data - from lat/long to pnt (R) |   |   |   |
+| 1 | Enabling Spatial Data: lat/long to pnt (R) |   |   |   |
 | 2 | Basic Spatial Data Visualization: Points (R) |   |   | Planning  |
 | 3 | Basic Spatial Data Visualization: Areas (R)  |   |   | Planning  |
 | 4 | Linking Community Contextual Data (R)  |   |   |  Planning |
