@@ -19,7 +19,7 @@ We use the following datasets for examples in tutorials:
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data: lat/long to pnt (R) | Moksha | Marynia  | Planning  |
+| 1 | Enabling Spatial Data (R) | Moksha | Marynia  | Planning  |
 | 2 | Basic Spatial Data Visualization: Points (R) | Marynia  | Moksha  | Planning  |
 | 3 | Basic Spatial Data Visualization: Areas (R)  | Marynia  | Moksha  | Planning  |
 | 4 | Linking Community Contextual Data (R)  | Marynia  | Qinyun  |  Planning |
