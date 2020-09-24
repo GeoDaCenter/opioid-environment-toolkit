@@ -31,6 +31,6 @@ We use the following datasets for examples in tutorials:
 | 10 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 
 ## Technical Review: How To Update (for Author Team)
-This is a R Markdown website, published at [https://geodacenter.github.io/opioid-environment-toolkit/](https://geodacenter.github.io/opioid-environment-toolkit/). To add tutorials, open the .Rproj file in RStudio, add Rmd files to the repository, and click the "Build Website" button under the "Build" tab. HTML files will be generated in the `docs` folder, which will build as a website on Github when pushed up.
+This is a Bookdown website, published at [https://geodacenter.github.io/opioid-environment-toolkit/](https://geodacenter.github.io/opioid-environment-toolkit/). To add tutorials, add the new markdown file to the repository, open the bookdown yaml and set the order by updating _rmd.files_ variable, and render the website using instructions under runBookInstructions. HTML files will be generated in the `docs` folder, which will build as a website on Github when pushed up.
 
 To learn more about R Markdown websites, take a look at the [R Markdown documentation](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
