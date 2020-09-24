@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Downloading Community Contextual Data | Opioid Environment Toolkit</title>
+  <meta name="description" content="Downloading Community Contextual Data | Opioid Environment Toolkit" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Downloading Community Contextual Data | Opioid Environment Toolkit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Downloading Community Contextual Data | Opioid Environment Toolkit" />
+  
+  
+  
+
+<meta name="author" content="Created by : Center for Spatial Data Science team" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="geocodingAddress-tutorial.html"/>
+<link rel="next" href="visualize-Areal-Data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html"><i class="fa fa-check"></i>Calculate Minimum Distance Access Metric</a><ul>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-read-resources"><i class="fa fa-check"></i>Read in resource data</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-read-zips"><i class="fa fa-check"></i>Read in zip code data</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-calculate-centroids"><i class="fa fa-check"></i>Calculate centroids of zip code boundaries</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-correct-projection"><i class="fa fa-check"></i>Ensure that centroid and resource projections match</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-distance"><i class="fa fa-check"></i>Calculate distance from centroid to nearest resource</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-save"><i class="fa fa-check"></i>Save as zip-code level dataset</a></li>
+<li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i>Geocoding and Visualizing Point Data</a><ul>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-read-resources"><i class="fa fa-check"></i>Read in resource data</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-geocode-addresses"><i class="fa fa-check"></i>Geocode addresses</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-spatial-dataframe"><i class="fa fa-check"></i>Convert to Spatial DataFrame</a><ul>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html"><i class="fa fa-check"></i>Downloading Community Contextual Data</a><ul>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-research-question"><i class="fa fa-check"></i>Research Question</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-api-key"><i class="fa fa-check"></i>Get your Census API Key</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-get-data"><i class="fa fa-check"></i>Download variables of interest</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-get-geometry"><i class="fa fa-check"></i>Get Geometry</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-explore-variables"><i class="fa fa-check"></i>Explore variables available</a></li>
+<li class="chapter" data-level="" data-path="get-ACS-Data.html"><a href="get-ACS-Data.html#CD-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html"><i class="fa fa-check"></i>Visualize Areal Data - Choropleth Mapping (a.k.a Thematic Maps)</a><ul>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-research-question"><i class="fa fa-check"></i>Research Question</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-load-variables"><i class="fa fa-check"></i>Load data</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-mapping"><i class="fa fa-check"></i>Thematic Plotting</a><ul>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-quantile-plot"><i class="fa fa-check"></i>Quantile</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-jenks-plot"><i class="fa fa-check"></i>Natural Breaks</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-stdev-plot"><i class="fa fa-check"></i>Standard Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-appendix"><i class="fa fa-check"></i>Appendix</a><ul>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-set-palette"><i class="fa fa-check"></i>Set Color Palette</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-colorbrewer"><i class="fa fa-check"></i>Use ColorBrewer</a></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#example---using-colorbrewer-for-us-wide-datasets"><i class="fa fa-check"></i>Example - using ColorBrewer for US wide datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualize-Areal-Data.html"><a href="visualize-Areal-Data.html#TM-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Opioid Environment Toolkit</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="contextual-data" class="section level1 unnumbered">
+<h1>Downloading Community Contextual Data</h1>
+<div id="CD-research-question" class="section level2 unnumbered">
+<h2>Research Question</h2>
+<p>Once we identify the appropriate access metric to use, we can now add contextual data to understand the drivers and identify any disparities in access. Such datasets are often sourced from the <a href="https://data.census.gov">US Census Bureau</a>. In this tutorial we demonstrate how to explore and download most commonly used population datasets from the same, with and without spatial components. Please note this tutorial focuses <strong>only</strong> on the American Community Survey datasets available via the Census Bureau API.</p>
+</div>
+<div id="CD-setup" class="section level2 unnumbered">
+<h2>Environment Setup</h2>
+<p>To replicate the codes &amp; functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.</p>
+<div id="CD-packages1" class="section level4 unnumbered">
+<h4>Packages used</h4>
+<p>We will use the following packages:</p>
+<ul>
+<li><code>sf</code>: to read/write sf (spatial) objects</li>
+<li><code>tidycensus</code>: to download census variables using ACS API</li>
+<li><code>tidyverse</code>: to manipulate and clean data</li>
+<li><code>tigris</code> : to download census tiger shapefiles</li>
+</ul>
+</div>
+<div id="CD-i-o" class="section level4 unnumbered">
+<h4>Required Inputs and Expected Outputs</h4>
+<p>We will not be using an external input for this exercise.</p>
+<p>Our output will be a .csv file and shapefile (.shp suite) with race data at the census tract level.</p>
+</div>
+<div id="CD-packages2" class="section level4 unnumbered">
+<h4>Install and load the packages</h4>
+<p>First, install and load the relevant R packages with the following commands:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="get-ACS-Data.html#cb79-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb79-2"><a href="get-ACS-Data.html#cb79-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidycensus&quot;</span>)</span>
+<span id="cb79-3"><a href="get-ACS-Data.html#cb79-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb79-4"><a href="get-ACS-Data.html#cb79-4"></a><span class="kw">install.packages</span>(<span class="st">&quot;tigris&quot;</span>)</span>
+<span id="cb79-5"><a href="get-ACS-Data.html#cb79-5"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidycensus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="get-ACS-Data.html#cb80-1"></a><span class="kw">library</span>(sf)</span>
+<span id="cb80-2"><a href="get-ACS-Data.html#cb80-2"></a><span class="kw">library</span>(tidycensus)</span>
+<span id="cb80-3"><a href="get-ACS-Data.html#cb80-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb80-4"><a href="get-ACS-Data.html#cb80-4"></a><span class="kw">library</span>(tigris)</span></code></pre></div>
+</div>
+</div>
+<div id="CD-api-key" class="section level2 unnumbered">
+<h2>Get your Census API Key</h2>
+<p>To be able to use the Census API, we need to signup for an API key. This key effectively is a string identifier for the server to communicate with your machine. A key can be obtained using an email from <a href="http://api.census.gov/data/key_signup.html">here</a>. Once we get the key, we can install it by running the code below.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="get-ACS-Data.html#cb81-1"></a><span class="kw">census_api_key</span>(<span class="st">&quot;yourkeyhere&quot;</span>, <span class="dt">install =</span> <span class="ot">TRUE</span>) <span class="co"># installs the key for future sessions. </span></span></code></pre></div>
+<p>In instances where we might not want to save our key in the .Renviron - for example, when using a shared computer, we can always reinstall the same key using the code above but with <code>install = FALSE</code>.</p>
+<p>To check an already installed census API key, run</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="get-ACS-Data.html#cb82-1"></a><span class="kw">Sys.getenv</span>(<span class="st">&quot;CENSUS_API_KEY&quot;</span>)</span></code></pre></div>
+</div>
+<div id="CD-get-data" class="section level2 unnumbered">
+<h2>Download variables of interest</h2>
+<p>We can now start using the <em>tidycensus</em> package to download population based datasets from the US Census Bureau. In this tutorial, we will be covering methods to download data at the state, county, zip and census tract levels. We will also be covering methods to download the data with and without the geometry feature of the geographic entities.</p>
+<p>To download a particular variable or table using tidycensus, we need the relevant variable ID, which one can check by reviewing the variables available via <code>load_variables()</code> function. For details on exploring the variables available via the <em>tidycensus</em> &amp; to get their identifiers, check the <a href="get-ACS-Data.html#CD-explore-variables">Explore variables available</a> section in Appendix.</p>
+<p>We can now download the variables using <code>get_acs()</code> function. Given ACS data is based of an annual sample, the datapoints are available as an estimate with a margin or error (moe). The package provides both values for any requested variable in the <strong>tidy</strong> format.</p>
+<p>For the examples covered in this tutorial, the 4 main inputs for <code>get_acs()</code> function are:</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>geography</code> - for what scale to source the data for <em>(state / county / tract / zcta)</em></li>
+<li><code>variables</code> - character string or a vector of character strings of variable IDs to source</li>
+<li><code>year</code> - the year to source the data for</li>
+<li><code>geometry</code> - whether or not to include the geometry feature in the tibble. <em>(TRUE / FALSE)</em></li>
+</ol>
+<div id="state-level" class="section level4 unnumbered">
+<h4>State Level</h4>
+<p>To get data for only a specific state, we can add <code>state = sampleStateName</code>.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="get-ACS-Data.html#cb83-1"></a>stateDf &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;state&#39;</span>, <span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">totPop18 =</span> <span class="st">&quot;B01001_001&quot;</span>, </span>
+<span id="cb83-2"><a href="get-ACS-Data.html#cb83-2"></a>                                                      <span class="dt">hispanic =</span><span class="st">&quot;B03003_003&quot;</span>, </span>
+<span id="cb83-3"><a href="get-ACS-Data.html#cb83-3"></a>                                                      <span class="dt">notHispanic =</span> <span class="st">&quot;B03003_002&quot;</span>,</span>
+<span id="cb83-4"><a href="get-ACS-Data.html#cb83-4"></a>                                                      <span class="dt">white =</span> <span class="st">&quot;B02001_002&quot;</span>, </span>
+<span id="cb83-5"><a href="get-ACS-Data.html#cb83-5"></a>                                                      <span class="dt">afrAm =</span> <span class="st">&quot;B02001_003&quot;</span>, </span>
+<span id="cb83-6"><a href="get-ACS-Data.html#cb83-6"></a>                                                      <span class="dt">asian =</span> <span class="st">&quot;B02001_005&quot;</span>),</span>
+<span id="cb83-7"><a href="get-ACS-Data.html#cb83-7"></a>                   <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">geometry =</span> <span class="ot">FALSE</span>) </span>
+<span id="cb83-8"><a href="get-ACS-Data.html#cb83-8"></a><span class="kw">head</span>(stateDf)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   GEOID NAME    variable    estimate   moe
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+## 1 01    Alabama totPop18     4864680    NA
+## 2 01    Alabama white        3317453  3345
+## 3 01    Alabama afrAm        1293186  2745
+## 4 01    Alabama asian          64609  1251
+## 5 01    Alabama notHispanic  4661534   393
+## 6 01    Alabama hispanic      203146   393</code></pre>
+<p>As we can see the data is available in the <em>tidy</em> format. We can use other tools in the <code>tidyverse</code> universe to clean and manipulate it.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="get-ACS-Data.html#cb85-1"></a>stateDf &lt;-<span class="st"> </span>stateDf <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb85-2"><a href="get-ACS-Data.html#cb85-2"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb85-3"><a href="get-ACS-Data.html#cb85-3"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb85-4"><a href="get-ACS-Data.html#cb85-4"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">hispPr18  =</span> hispanic<span class="op">/</span>totPop18, <span class="dt">WhitePr18 =</span> white<span class="op">/</span>totPop18,</span>
+<span id="cb85-5"><a href="get-ACS-Data.html#cb85-5"></a>                   <span class="dt">AfrAmPr18 =</span> afrAm<span class="op">/</span>totPop18, <span class="dt">AsianPr18 =</span> asian<span class="op">/</span>totPop18) <span class="op">%&gt;%</span></span>
+<span id="cb85-6"><a href="get-ACS-Data.html#cb85-6"></a><span class="st">            </span><span class="kw">select</span>(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb85-7"><a href="get-ACS-Data.html#cb85-7"></a></span>
+<span id="cb85-8"><a href="get-ACS-Data.html#cb85-8"></a><span class="kw">head</span>(stateDf)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   GEOID totPop18 hispPr18 WhitePr18 AfrAmPr18
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 01     4864680   0.0418     0.682    0.266 
+## 2 02      738516   0.0693     0.648    0.0327
+## 3 04     6946685   0.311      0.772    0.0439
+## 4 05     2990671   0.0732     0.770    0.154 
+## 5 06    39148760   0.389      0.601    0.0579
+## 6 08     5531141   0.214      0.842    0.0412
+## # … with 1 more variable: AsianPr18 &lt;dbl&gt;</code></pre>
+</div>
+<div id="county-level" class="section level4 unnumbered">
+<h4>County Level</h4>
+<p>Similarly, for county level</p>
+<ul>
+<li>use <code>geometry = county</code> to download for all counties in the U.S.</li>
+<li>use <code>geometry = county, state = sampleStateName</code> for all counties within a state</li>
+<li>use <code>geometry = county, state = sampleStateName, county = sampleCountyName</code> for a specific county</li>
+</ul>
+<p>We can also use the FIPS codes for the relevant state &amp; counties. Finally, we can also write the tibble to a .csv file.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="get-ACS-Data.html#cb87-1"></a>countyDf &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;county&#39;</span>, <span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">totPop18 =</span> <span class="st">&quot;B01001_001&quot;</span>, </span>
+<span id="cb87-2"><a href="get-ACS-Data.html#cb87-2"></a>                                                        <span class="dt">hispanic =</span><span class="st">&quot;B03003_003&quot;</span>, </span>
+<span id="cb87-3"><a href="get-ACS-Data.html#cb87-3"></a>                                                        <span class="dt">notHispanic =</span> <span class="st">&quot;B03003_002&quot;</span>,</span>
+<span id="cb87-4"><a href="get-ACS-Data.html#cb87-4"></a>                                                        <span class="dt">white =</span> <span class="st">&quot;B02001_002&quot;</span>, </span>
+<span id="cb87-5"><a href="get-ACS-Data.html#cb87-5"></a>                                                        <span class="dt">afrAm =</span> <span class="st">&quot;B02001_003&quot;</span>, </span>
+<span id="cb87-6"><a href="get-ACS-Data.html#cb87-6"></a>                                                        <span class="dt">asian =</span> <span class="st">&quot;B02001_005&quot;</span>), </span>
+<span id="cb87-7"><a href="get-ACS-Data.html#cb87-7"></a>                    <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">state =</span> <span class="st">&#39;IL&#39;</span>, <span class="dt">geometry =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-8"><a href="get-ACS-Data.html#cb87-8"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-9"><a href="get-ACS-Data.html#cb87-9"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-10"><a href="get-ACS-Data.html#cb87-10"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">hispPr18  =</span> hispanic<span class="op">/</span>totPop18, <span class="dt">WhitePr18 =</span> white<span class="op">/</span>totPop18,</span>
+<span id="cb87-11"><a href="get-ACS-Data.html#cb87-11"></a>                   <span class="dt">AfrAmPr18 =</span> afrAm<span class="op">/</span>totPop18, <span class="dt">AsianPr18 =</span> asian<span class="op">/</span>totPop18) <span class="op">%&gt;%</span></span>
+<span id="cb87-12"><a href="get-ACS-Data.html#cb87-12"></a><span class="st">            </span><span class="kw">select</span>(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb87-13"><a href="get-ACS-Data.html#cb87-13"></a></span>
+<span id="cb87-14"><a href="get-ACS-Data.html#cb87-14"></a><span class="kw">head</span>(countyDf)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   GEOID totPop18 hispPr18 WhitePr18 AfrAmPr18
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 17001    66427   0.0154     0.931   0.0408 
+## 2 17003     6532   0.0112     0.624   0.332  
+## 3 17005    16712   0.0346     0.909   0.0624 
+## 4 17007    53606   0.214      0.874   0.0222 
+## 5 17009     6675   0.0428     0.774   0.204  
+## 6 17011    33381   0.0897     0.936   0.00932
+## # … with 1 more variable: AsianPr18 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="get-ACS-Data.html#cb89-1"></a><span class="kw">write.csv</span>(countyDf , <span class="dt">file =</span> <span class="st">&quot;IL_County_18.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="zipcode-level" class="section level4 unnumbered">
+<h4>Zipcode Level</h4>
+<p>For zipcode level, use <code>geometry = zcta</code>. Given zips cross state lines, zcta data is only available for the entire U.S.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="get-ACS-Data.html#cb90-1"></a>zctaDf &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;zcta&#39;</span>,<span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">totPop18 =</span> <span class="st">&quot;B01001_001&quot;</span>, </span>
+<span id="cb90-2"><a href="get-ACS-Data.html#cb90-2"></a>                                                   <span class="dt">hispanic =</span><span class="st">&quot;B03003_003&quot;</span>, </span>
+<span id="cb90-3"><a href="get-ACS-Data.html#cb90-3"></a>                                                   <span class="dt">notHispanic =</span> <span class="st">&quot;B03003_002&quot;</span>,</span>
+<span id="cb90-4"><a href="get-ACS-Data.html#cb90-4"></a>                                                   <span class="dt">white =</span> <span class="st">&quot;B02001_002&quot;</span>, </span>
+<span id="cb90-5"><a href="get-ACS-Data.html#cb90-5"></a>                                                   <span class="dt">afrAm =</span> <span class="st">&quot;B02001_003&quot;</span>, </span>
+<span id="cb90-6"><a href="get-ACS-Data.html#cb90-6"></a>                                                   <span class="dt">asian =</span> <span class="st">&quot;B02001_005&quot;</span>), </span>
+<span id="cb90-7"><a href="get-ACS-Data.html#cb90-7"></a>                    <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">geometry =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb90-8"><a href="get-ACS-Data.html#cb90-8"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb90-9"><a href="get-ACS-Data.html#cb90-9"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb90-10"><a href="get-ACS-Data.html#cb90-10"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">hispPr18  =</span> hispanic<span class="op">/</span>totPop18, <span class="dt">WhitePr18 =</span> white<span class="op">/</span>totPop18, </span>
+<span id="cb90-11"><a href="get-ACS-Data.html#cb90-11"></a>                   <span class="dt">AfrAmPr18 =</span> afrAm<span class="op">/</span>totPop18, <span class="dt">AsianPr18 =</span> asian<span class="op">/</span>totPop18) <span class="op">%&gt;%</span></span>
+<span id="cb90-12"><a href="get-ACS-Data.html#cb90-12"></a><span class="st">            </span><span class="kw">select</span>(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb90-13"><a href="get-ACS-Data.html#cb90-13"></a></span>
+<span id="cb90-14"><a href="get-ACS-Data.html#cb90-14"></a><span class="kw">head</span>(zctaDf)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   GEOID totPop18 hispPr18 WhitePr18 AfrAmPr18
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 00601    17242    0.997     0.755   0.00841
+## 2 00602    38442    0.935     0.794   0.0278 
+## 3 00603    48814    0.974     0.765   0.0395 
+## 4 00606     6437    0.998     0.408   0.0231 
+## 5 00610    27073    0.962     0.755   0.0257 
+## 6 00612    60303    0.993     0.807   0.0456 
+## # … with 1 more variable: AsianPr18 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="get-ACS-Data.html#cb92-1"></a><span class="kw">dim</span>(zctaDf)</span></code></pre></div>
+<pre><code>## [1] 33120     6</code></pre>
+</div>
+<div id="census-tract-level" class="section level4 unnumbered">
+<h4>Census Tract Level</h4>
+<p>For census tract level, at the minimum <em>stateName</em> needs to be provided.</p>
+<ul>
+<li>use <code>geometry = tract, state = sampleStateName</code> to download all tracts within a state</li>
+<li>use <code>geometry = tract, state = sampleStateName, county = sampleCountyName</code> to download all tracts within a specific county</li>
+</ul>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="get-ACS-Data.html#cb94-1"></a>tractDf &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;tract&#39;</span>,<span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">totPop18 =</span> <span class="st">&quot;B01001_001&quot;</span>, </span>
+<span id="cb94-2"><a href="get-ACS-Data.html#cb94-2"></a>                                                   <span class="dt">hispanic =</span><span class="st">&quot;B03003_003&quot;</span>, </span>
+<span id="cb94-3"><a href="get-ACS-Data.html#cb94-3"></a>                                                   <span class="dt">notHispanic =</span> <span class="st">&quot;B03003_002&quot;</span>,</span>
+<span id="cb94-4"><a href="get-ACS-Data.html#cb94-4"></a>                                                   <span class="dt">white =</span> <span class="st">&quot;B02001_002&quot;</span>, </span>
+<span id="cb94-5"><a href="get-ACS-Data.html#cb94-5"></a>                                                   <span class="dt">afrAm =</span> <span class="st">&quot;B02001_003&quot;</span>, </span>
+<span id="cb94-6"><a href="get-ACS-Data.html#cb94-6"></a>                                                   <span class="dt">asian =</span> <span class="st">&quot;B02001_005&quot;</span>), </span>
+<span id="cb94-7"><a href="get-ACS-Data.html#cb94-7"></a>                    <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">state =</span> <span class="st">&#39;IL&#39;</span>, <span class="dt">geometry =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-8"><a href="get-ACS-Data.html#cb94-8"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-9"><a href="get-ACS-Data.html#cb94-9"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-10"><a href="get-ACS-Data.html#cb94-10"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">hispPr18  =</span> hispanic<span class="op">/</span>totPop18, <span class="dt">WhitePr18 =</span> white<span class="op">/</span>totPop18, </span>
+<span id="cb94-11"><a href="get-ACS-Data.html#cb94-11"></a>                   <span class="dt">AfrAmPr18 =</span> afrAm<span class="op">/</span>totPop18, <span class="dt">AsianPr18 =</span> asian<span class="op">/</span>totPop18) <span class="op">%&gt;%</span></span>
+<span id="cb94-12"><a href="get-ACS-Data.html#cb94-12"></a><span class="st">            </span><span class="kw">select</span>(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb94-13"><a href="get-ACS-Data.html#cb94-13"></a></span>
+<span id="cb94-14"><a href="get-ACS-Data.html#cb94-14"></a><span class="kw">head</span>(tractDf)</span></code></pre></div>
+<p>For more details on the other geographies available via the <em>tidycensus package</em>, check <a href="https://walker-data.com/tidycensus/articles/basic-usage.html#geography-in-tidycensus-1">here</a></p>
+</div>
+</div>
+<div id="CD-get-geometry" class="section level2 unnumbered">
+<h2>Get Geometry</h2>
+<p>The datasets downloaded so far did not have a spatial geometry feature attached to them. To run any spatial analysis on the race data above, we would need to join these dataframes to another spatially-enabled <code>sf</code> object. We can do so by joining on the ‘GEOID’ or any other identifier. We can download the geometry information using two methods :</p>
+<ol style="list-style-type: decimal">
+<li>using <code>tigris</code></li>
+<li>using <code>tidycensus</code></li>
+</ol>
+<div id="using-tigris" class="section level4 unnumbered">
+<h4>Using tigris</h4>
+<p>To download and use the Tiger Shapefiles shared by the <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">US Census Bureau</a> we will use the <code>tigris</code> package. Set <code>cb = TRUE</code> to get generalized files, these don’t have high resolution details and hence are smaller in size.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="get-ACS-Data.html#cb95-1"></a>yeartoFetch &lt;-<span class="st"> </span><span class="dv">2018</span></span>
+<span id="cb95-2"><a href="get-ACS-Data.html#cb95-2"></a></span>
+<span id="cb95-3"><a href="get-ACS-Data.html#cb95-3"></a>stateShp &lt;-<span class="st"> </span><span class="kw">states</span>(<span class="dt">year =</span> yeartoFetch, <span class="dt">cb =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-4"><a href="get-ACS-Data.html#cb95-4"></a>countyShp &lt;-<span class="st"> </span><span class="kw">counties</span>(<span class="dt">year =</span> yeartoFetch, <span class="dt">state =</span> <span class="st">&#39;IL&#39;</span>, <span class="dt">cb =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-5"><a href="get-ACS-Data.html#cb95-5"></a>zctaShp &lt;-<span class="st"> </span><span class="kw">zctas</span>(<span class="dt">year =</span> yeartoFetch, <span class="dt">cb =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb95-6"><a href="get-ACS-Data.html#cb95-6"></a>tractShp &lt;-<span class="st"> </span><span class="kw">tracts</span>(<span class="dt">state =</span> <span class="st">&#39;IL&#39;</span>,<span class="dt">year =</span> yeartoFetch, <span class="dt">cb =</span> <span class="ot">TRUE</span>) </span></code></pre></div>
+<p>Now we can merge these geometry files with the race data downloaded in previous section.</p>
+<p>For states:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="get-ACS-Data.html#cb96-1"></a><span class="co"># check object types &amp; identifier variable type</span></span>
+<span id="cb96-2"><a href="get-ACS-Data.html#cb96-2"></a><span class="co"># str(stateShp)</span></span>
+<span id="cb96-3"><a href="get-ACS-Data.html#cb96-3"></a><span class="co"># str(stateDf) </span></span>
+<span id="cb96-4"><a href="get-ACS-Data.html#cb96-4"></a>stateShp &lt;-<span class="st"> </span><span class="kw">merge</span>(stateShp, stateDf, <span class="dt">by.x  =</span> <span class="st">&#39;STATEFP&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb96-5"><a href="get-ACS-Data.html#cb96-5"></a><span class="kw">head</span>(stateShp)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 14 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -179.1489 ymin: 30.22333 xmax: 179.7785 ymax: 71.36516
+## geographic CRS: NAD83
+##   STATEFP  STATENS    AFFGEOID GEOID STUSPS
+## 1      01 01779775 0400000US01    01     AL
+## 2      02 01785533 0400000US02    02     AK
+## 3      04 01779777 0400000US04    04     AZ
+## 4      05 00068085 0400000US05    05     AR
+## 5      06 01779778 0400000US06    06     CA
+## 6      08 01779779 0400000US08    08     CO
+##         NAME LSAD        ALAND       AWATER totPop18
+## 1    Alabama   00 1.311740e+11   4593327154  4864680
+## 2     Alaska   00 1.478840e+12 245481577452   738516
+## 3    Arizona   00 2.941986e+11   1027337603  6946685
+## 4   Arkansas   00 1.347689e+11   2962859592  2990671
+## 5 California   00 4.035039e+11  20463871877 39148760
+## 6   Colorado   00 2.684229e+11   1181621593  5531141
+##     hispPr18 WhitePr18  AfrAmPr18  AsianPr18
+## 1 0.04175938 0.6819468 0.26583167 0.01328124
+## 2 0.06930926 0.6483732 0.03267228 0.06303993
+## 3 0.31141645 0.7721872 0.04394312 0.03294910
+## 4 0.07324510 0.7700192 0.15413598 0.01470840
+## 5 0.38881377 0.6010169 0.05792968 0.14315496
+## 6 0.21420427 0.8417041 0.04120994 0.03122231
+##                         geometry
+## 1 MULTIPOLYGON (((-88.05338 3...
+## 2 MULTIPOLYGON (((179.4825 51...
+## 3 MULTIPOLYGON (((-114.8163 3...
+## 4 MULTIPOLYGON (((-94.61783 3...
+## 5 MULTIPOLYGON (((-118.6044 3...
+## 6 MULTIPOLYGON (((-109.0603 3...</code></pre>
+<p>Similarly for counties, zctas &amp; census tracts we can use the code below and then finally save the census tract results with geometry in a shapefile using <code>write_sf</code>.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="get-ACS-Data.html#cb98-1"></a>countyShp &lt;-<span class="st"> </span><span class="kw">merge</span>(countyShp, countyDf, <span class="dt">by.x  =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)<span class="op">%&gt;%</span></span>
+<span id="cb98-2"><a href="get-ACS-Data.html#cb98-2"></a><span class="st">            </span><span class="kw">select</span>(GEOID, STATEFP, COUNTYFP, totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb98-3"><a href="get-ACS-Data.html#cb98-3"></a></span>
+<span id="cb98-4"><a href="get-ACS-Data.html#cb98-4"></a>zctaShp &lt;-<span class="st"> </span><span class="kw">merge</span>(zctaShp, zctaDf, <span class="dt">by.x  =</span> <span class="st">&#39;GEOID10&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb98-5"><a href="get-ACS-Data.html#cb98-5"></a>tractShp &lt;-<span class="st"> </span><span class="kw">merge</span>(tractShp, tractDf, <span class="dt">by.x  =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb98-6"><a href="get-ACS-Data.html#cb98-6"></a></span>
+<span id="cb98-7"><a href="get-ACS-Data.html#cb98-7"></a><span class="kw">write_sf</span>(countyShp, <span class="st">&quot;IL_County_18.shp&quot;</span>)</span></code></pre></div>
+</div>
+<div id="using-tidycensus" class="section level4 unnumbered">
+<h4>Using tidycensus</h4>
+<p>The previous method adds an additional step of using <code>tigris</code> package to download the shapefile.
+The tidycensus package already has the wrapper for invoking tigris within the <code>get_acs()</code> function, and we can simply download the dataset with geometry feature by using <code>geometry = TRUE</code>.</p>
+<p>The wrapper adds the geometry information to each variable sourced, so the file size can become large in the intermediary steps and slow down the performance, even though the data is in tidy format. In case of large API requests, we recommend downloading the dataset without geometry information and then downloading a nominal variable like total population or percapita income with get geometry using <code>get_acs()</code> or simply using the <code>tigris</code> method, as covered in previous section &amp; then implementing a merge.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="get-ACS-Data.html#cb99-1"></a>tractDf &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;tract&#39;</span>, <span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">totPop18 =</span> <span class="st">&quot;B01001_001&quot;</span>, </span>
+<span id="cb99-2"><a href="get-ACS-Data.html#cb99-2"></a>                                                      <span class="dt">hispanic =</span><span class="st">&quot;B03003_003&quot;</span>, </span>
+<span id="cb99-3"><a href="get-ACS-Data.html#cb99-3"></a>                                                      <span class="dt">notHispanic =</span> <span class="st">&quot;B03003_002&quot;</span>,</span>
+<span id="cb99-4"><a href="get-ACS-Data.html#cb99-4"></a>                                                      <span class="dt">white =</span> <span class="st">&quot;B02001_002&quot;</span>, </span>
+<span id="cb99-5"><a href="get-ACS-Data.html#cb99-5"></a>                                                      <span class="dt">afrAm =</span> <span class="st">&quot;B02001_003&quot;</span>, </span>
+<span id="cb99-6"><a href="get-ACS-Data.html#cb99-6"></a>                                                      <span class="dt">asian =</span> <span class="st">&quot;B02001_005&quot;</span>), </span>
+<span id="cb99-7"><a href="get-ACS-Data.html#cb99-7"></a>                   <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">state  =</span> <span class="st">&#39;IL&#39;</span>, <span class="dt">geometry =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb99-8"><a href="get-ACS-Data.html#cb99-8"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb99-9"><a href="get-ACS-Data.html#cb99-9"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb99-10"><a href="get-ACS-Data.html#cb99-10"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">hispPr18  =</span> hispanic<span class="op">/</span>totPop18, <span class="dt">WhitePr18 =</span> white<span class="op">/</span>totPop18,</span>
+<span id="cb99-11"><a href="get-ACS-Data.html#cb99-11"></a>                   <span class="dt">AfrAmPr18 =</span> afrAm<span class="op">/</span>totPop18, <span class="dt">AsianPr18 =</span> asian<span class="op">/</span>totPop18) <span class="op">%&gt;%</span></span>
+<span id="cb99-12"><a href="get-ACS-Data.html#cb99-12"></a><span class="st">            </span><span class="kw">select</span>(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)</span>
+<span id="cb99-13"><a href="get-ACS-Data.html#cb99-13"></a></span>
+<span id="cb99-14"><a href="get-ACS-Data.html#cb99-14"></a>tractShp &lt;-<span class="st"> </span><span class="kw">get_acs</span>(<span class="dt">geography =</span> <span class="st">&#39;tract&#39;</span>, <span class="dt">variables =</span> <span class="kw">c</span>(<span class="dt">perCapitaIncome =</span> <span class="st">&quot;DP03_0088&quot;</span>),</span>
+<span id="cb99-15"><a href="get-ACS-Data.html#cb99-15"></a>                    <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">state  =</span> <span class="st">&#39;IL&#39;</span>, <span class="dt">geometry =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb99-16"><a href="get-ACS-Data.html#cb99-16"></a><span class="st">            </span><span class="kw">select</span>(GEOID, NAME, variable, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb99-17"><a href="get-ACS-Data.html#cb99-17"></a><span class="st">            </span><span class="kw">spread</span>(variable, estimate)</span>
+<span id="cb99-18"><a href="get-ACS-Data.html#cb99-18"></a>                </span>
+<span id="cb99-19"><a href="get-ACS-Data.html#cb99-19"></a></span>
+<span id="cb99-20"><a href="get-ACS-Data.html#cb99-20"></a>tractsShp &lt;-<span class="st"> </span><span class="kw">merge</span>(tractShp, tractDf, <span class="dt">by.x =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">by.y =</span> <span class="st">&#39;GEOID&#39;</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb99-21"><a href="get-ACS-Data.html#cb99-21"></a><span class="kw">head</span>(tractShp)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 3 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -88.79336 ymin: 41.7943 xmax: -87.63536 ymax: 41.95088
+## geographic CRS: NAD83
+##         GEOID
+## 1 17031843800
+## 2 17037001002
+## 3 17031243000
+## 4 17031250600
+## 5 17031251700
+## 6 17031260400
+##                                          NAME
+## 1    Census Tract 8438, Cook County, Illinois
+## 2 Census Tract 10.02, DeKalb County, Illinois
+## 3    Census Tract 2430, Cook County, Illinois
+## 4    Census Tract 2506, Cook County, Illinois
+## 5    Census Tract 2517, Cook County, Illinois
+## 6    Census Tract 2604, Cook County, Illinois
+##   perCapitaIncome                       geometry
+## 1           19331 MULTIPOLYGON (((-87.64554 4...
+## 2           11308 MULTIPOLYGON (((-88.79317 4...
+## 3           48843 MULTIPOLYGON (((-87.68195 4...
+## 4           22905 MULTIPOLYGON (((-87.7756 41...
+## 5           14739 MULTIPOLYGON (((-87.74826 4...
+## 6           12610 MULTIPOLYGON (((-87.74061 4...</code></pre>
+</div>
+</div>
+<div id="CD-appendix" class="section level2 unnumbered">
+<h2>Appendix</h2>
+<div id="CD-explore-variables" class="section level3 unnumbered">
+<h3>Explore variables available</h3>
+<p>Using <code>tidycensus</code> we can download datasets from various types of tables. Most commonly used are:</p>
+<ol style="list-style-type: decimal">
+<li><em>Data Profiles</em> - These are the most commonly used collection of variables grouped by category, e.g. Social (DP02), Economic (DP03), Housing (DP04), Demographic (DP05)</li>
+<li><em>Subject Profiles</em> - These generally have more detailed information variables (than DP) grouped by category, e.g. Age &amp; Sex (S0101), Disability Characteristics (S1810)</li>
+<li>The package also allows access to a suite of B &amp; C tables.</li>
+</ol>
+<p>We can explore all the variables for our year of interest by running the code below. Please note as the Profiles evolve, variable IDs might change from year to year.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="get-ACS-Data.html#cb101-1"></a>sVarnames &lt;-<span class="st"> </span><span class="kw">load_variables</span>(<span class="dv">2018</span>, <span class="st">&quot;acs5/subject&quot;</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb101-2"><a href="get-ACS-Data.html#cb101-2"></a>pVarnames &lt;-<span class="st"> </span><span class="kw">load_variables</span>(<span class="dv">2018</span>, <span class="st">&quot;acs5/profile&quot;</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb101-3"><a href="get-ACS-Data.html#cb101-3"></a>otherVarnames &lt;-<span class="st"> </span><span class="kw">load_variables</span>(<span class="dv">2018</span>, <span class="st">&quot;acs5&quot;</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb101-4"><a href="get-ACS-Data.html#cb101-4"></a></span>
+<span id="cb101-5"><a href="get-ACS-Data.html#cb101-5"></a><span class="kw">head</span>(pVarnames)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   name    label                 concept              
+##   &lt;chr&gt;   &lt;chr&gt;                 &lt;chr&gt;                
+## 1 DP02_0… Estimate!!HOUSEHOLDS… SELECTED SOCIAL CHAR…
+## 2 DP02_0… Percent Estimate!!HO… SELECTED SOCIAL CHAR…
+## 3 DP02_0… Estimate!!HOUSEHOLDS… SELECTED SOCIAL CHAR…
+## 4 DP02_0… Percent Estimate!!HO… SELECTED SOCIAL CHAR…
+## 5 DP02_0… Estimate!!HOUSEHOLDS… SELECTED SOCIAL CHAR…
+## 6 DP02_0… Percent Estimate!!HO… SELECTED SOCIAL CHAR…</code></pre>
+<p>A tibble with table &amp; variable information has three columns : <em>name, label, concept</em>.</p>
+<p>Name is a combination of table id and variable id within that table. Concept generally identifies the table name or grouping used to arrange variables. Label provides textual details about the variable.</p>
+<p>We can explore these tibbles to identify the correct variable ID <code>name</code> to use with the <code>get_acs()</code> function by using <code>View(sVarnames)</code> or other filters e.g. for age</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="get-ACS-Data.html#cb103-1"></a>sVarnames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(concept, <span class="st">&quot;AGE AND SEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for this concept</span></span>
+<span id="cb103-2"><a href="get-ACS-Data.html#cb103-2"></a><span class="st">              </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(label, <span class="st">&quot;Under 5 years&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for variables</span></span>
+<span id="cb103-3"><a href="get-ACS-Data.html#cb103-3"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">label =</span> <span class="kw">sub</span>(<span class="st">&#39;^Estimate!!&#39;</span>, <span class="st">&#39;&#39;</span>, label)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary text</span></span>
+<span id="cb103-4"><a href="get-ACS-Data.html#cb103-4"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">variableId =</span> name, label) <span class="co"># drop unnecessary columns and rename</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   variableId    label                                
+##   &lt;chr&gt;         &lt;chr&gt;                                
+## 1 S0101_C01_002 Total!!Total population!!AGE!!Under …
+## 2 S0101_C02_002 Percent!!Total population!!AGE!!Unde…
+## 3 S0101_C03_002 Male!!Total population!!AGE!!Under 5…
+## 4 S0101_C04_002 Percent Male!!Total population!!AGE!…
+## 5 S0101_C05_002 Female!!Total population!!AGE!!Under…
+## 6 S0101_C06_002 Percent Female!!Total population!!AG…</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="get-ACS-Data.html#cb105-1"></a>sVarnames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_sub</span>(name, <span class="dv">1</span>, <span class="dv">5</span>) <span class="op">==</span><span class="st"> &quot;S0101&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for these tables</span></span>
+<span id="cb105-2"><a href="get-ACS-Data.html#cb105-2"></a><span class="st">              </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(label, <span class="st">&quot;Under 5 years&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for variables</span></span>
+<span id="cb105-3"><a href="get-ACS-Data.html#cb105-3"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">label =</span> <span class="kw">sub</span>(<span class="st">&#39;^Estimate!!&#39;</span>, <span class="st">&#39;&#39;</span>, label)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary text</span></span>
+<span id="cb105-4"><a href="get-ACS-Data.html#cb105-4"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">variableId =</span> name, label) <span class="co"># drop unnecessary columns and rename</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   variableId    label                                
+##   &lt;chr&gt;         &lt;chr&gt;                                
+## 1 S0101_C01_002 Total!!Total population!!AGE!!Under …
+## 2 S0101_C02_002 Percent!!Total population!!AGE!!Unde…
+## 3 S0101_C03_002 Male!!Total population!!AGE!!Under 5…
+## 4 S0101_C04_002 Percent Male!!Total population!!AGE!…
+## 5 S0101_C05_002 Female!!Total population!!AGE!!Under…
+## 6 S0101_C06_002 Percent Female!!Total population!!AG…</code></pre>
+<p>e.g per capita income, we can check on DP table variables.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="get-ACS-Data.html#cb107-1"></a>pVarnames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(label, <span class="st">&quot;Per capita&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for variables</span></span>
+<span id="cb107-2"><a href="get-ACS-Data.html#cb107-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">label =</span> <span class="kw">sub</span>(<span class="st">&#39;^Estimate!!&#39;</span>, <span class="st">&#39;&#39;</span>, label)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary text</span></span>
+<span id="cb107-3"><a href="get-ACS-Data.html#cb107-3"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">variable =</span> name, label) <span class="co"># drop unnecessary columns and rename</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   variable   label                                   
+##   &lt;chr&gt;      &lt;chr&gt;                                   
+## 1 DP03_0088  INCOME AND BENEFITS (IN 2018 INFLATION-…
+## 2 DP03_0088P Percent Estimate!!INCOME AND BENEFITS (…</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="get-ACS-Data.html#cb109-1"></a>pVarnames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(label, <span class="st">&quot;Under 5 years&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for variables</span></span>
+<span id="cb109-2"><a href="get-ACS-Data.html#cb109-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">label =</span> <span class="kw">sub</span>(<span class="st">&#39;^Estimate!!&#39;</span>, <span class="st">&#39;&#39;</span>, label)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary text</span></span>
+<span id="cb109-3"><a href="get-ACS-Data.html#cb109-3"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">variable =</span> name, label) <span class="co"># drop unnecessary columns and rename</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   variable   label                                   
+##   &lt;chr&gt;      &lt;chr&gt;                                   
+## 1 DP05_0005  SEX AND AGE!!Total population!!Under 5 …
+## 2 DP05_0005P Percent Estimate!!SEX AND AGE!!Total po…</code></pre>
+<p>The order and structure of profile tables can change from year to year, hence the variable Id or label, so when downloading same dataset over different years we recommend using the standard B &amp; C tables.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="get-ACS-Data.html#cb111-1"></a>otherVarnames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(label, <span class="st">&quot;Per capita&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># search for variables</span></span>
+<span id="cb111-2"><a href="get-ACS-Data.html#cb111-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">label =</span> <span class="kw">sub</span>(<span class="st">&#39;^Estimate!!&#39;</span>, <span class="st">&#39;&#39;</span>, label)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary text</span></span>
+<span id="cb111-3"><a href="get-ACS-Data.html#cb111-3"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">variable =</span> name, label) <span class="co"># drop unnecessary columns and rename</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##    variable    label                                 
+##    &lt;chr&gt;       &lt;chr&gt;                                 
+##  1 B19301_001  Per capita income in the past 12 mont…
+##  2 B19301A_001 Per capita income in the past 12 mont…
+##  3 B19301B_001 Per capita income in the past 12 mont…
+##  4 B19301C_001 Per capita income in the past 12 mont…
+##  5 B19301D_001 Per capita income in the past 12 mont…
+##  6 B19301E_001 Per capita income in the past 12 mont…
+##  7 B19301F_001 Per capita income in the past 12 mont…
+##  8 B19301G_001 Per capita income in the past 12 mont…
+##  9 B19301H_001 Per capita income in the past 12 mont…
+## 10 B19301I_001 Per capita income in the past 12 mont…</code></pre>
+</div>
+<div id="CD-contributors" class="section level3 unnumbered">
+<h3>Contributors and Further Resources</h3>
+<div id="contributors" class="section level5 unnumbered">
+<h5>Contributors</h5>
+<p>Moksha Menghaney, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Marynia Kolak.</p>
+<p>Email: <a href="mailto:mmenghaney@uchicago.edu" class="email">mmenghaney@uchicago.edu</a> for any issues/comments.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="geocodingAddress-tutorial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualize-Areal-Data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

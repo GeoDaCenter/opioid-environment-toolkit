@@ -1,0 +1,19 @@
+---
+title: "Opioid Environment Toolkit"
+author : "Created by : Center for Spatial Data Science"
+date: "`Last Updated : `r Sys.Date()`"
+output: bookdown::gitbook
+documentclass: book
+---
+
+# Preface {-}
+
+This bookdown project provides an overview of the basic spatial analytics for the JCOIN network developed by the team at the [Center for Spatial Data Science](https://spatial.uchicago.edu/) at the University of Chicago. Our team is a part of the Policy and Practice Observational and Survey Research Core of the [JCOIN network](https://heal.nih.gov/research/research-to-practice/jcoin), within the Methodology and Advanced Analytic Resource Center (MAARC). Our goal is to develop a comprehensive toolkit that will allow practitioners to support their communities with better data analytics and visualization services. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment.
+
+Please reach out to Marynia Kolak at mkolak@uchicago.edu to learn more about the Opioid Environment program at the Center for Spatial Data Science, or with any questions about the resources on this site.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tigris_use_cache = TRUE)
+```

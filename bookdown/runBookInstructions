@@ -1,0 +1,11 @@
+
+#setwd()
+
+options(knitr.duplicate.label = "allow")
+bookdown::render_book("index.Rmd", "bookdown::gitbook")
+
+
+Update bookdown to add markdowns to website.
+Update output to change website style.
+
+Check docs/Index.html for the book.

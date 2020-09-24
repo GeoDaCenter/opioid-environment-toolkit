@@ -1,0 +1,5 @@
+
+book_filename: "Opioid-Environment-Toolkit"
+output_dir: "docs"
+rmd_files: ["index.Rmd", "spatial-data-introduction.Rmd", "geocodingAddress-tutorial.Rmd", "centroid-access-tutorial.Rmd", "getACSData-tutorial.Rmd", "link-contextual-data.Rmd", "visualizeArealData-tutorial.Rmd" ]
+delete_merged_file: true
