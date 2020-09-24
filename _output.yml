@@ -1,9 +1,0 @@
-bookdown::gitbook:
-  css: style.css
-  highlight : tango
-  split_by: rmd
-  config :
-      toc:
-        collapse : section
-
-  
