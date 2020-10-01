@@ -7,8 +7,9 @@ This bookdown project will provide an overview of basic spatial analytics for th
 We use the following datasets for examples in tutorials:
 - MOUD locations administering Methadone (SAMSHA 2019)
 - 5-digit Zip Code boundary data for Chicago (Census 2010)
+- Race Data for Illinois at County level (Census 2018)
 
-You can download data files from https://uchicago.app.box.com/folder/123662619823
+You can download data files from [here](https://uchicago.app.box.com/folder/123662619823)
 
 ### Schedule of Topics
 
