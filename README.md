@@ -5,15 +5,10 @@ This bookdown project will provide an overview of basic spatial analytics for th
 
 ### Sample Data
 We use the following datasets for examples in tutorials:
-- MOUD locations by type (Buprenorphine, Methadone, Naltrexone) (SAMSHA 2019)
+- MOUD locations administering Methadone (SAMSHA 2019)
 - 5-digit Zip Code boundary data for Chicago (Census 2010)
-- 5-digit Zip Code boundary data for Illinois (Census 2010)
-- Cenus tract boundary data for Chicago (Census 2010)
-- Cenus tract boundary data for Illinois (Census 2010)
-- County boundary data for Illinois (Census 2010)
-- Community contextual varaibles at tract scale for Illinois (ACS 2018 5-year ave)
-- Community contextual varaibles at zip scale for Illinois (ACS 2018 5-year ave)
 
+You can download data files from https://uchicago.app.box.com/folder/123662619823
 
 ### Schedule of Topics
 
