@@ -44,7 +44,7 @@ We will read in the shapefile with percentage hispanic population at the county 
 pctHispanic <- st_read("IL_County_18.shp")
 ```
 
-Alternatively, if you have not saved the dataset from [get-ACS-Data tutorial](link), you can download it using the code below.
+Alternatively, if you have not saved the dataset from [get-ACS-Data tutorial](link), you can download it using the code below or from the box folder [here](https://uchicago.app.box.com/folder/123662619823).
 ```{r alternate data, message=FALSE}
 require(tidycensus)
 pctHispanic <- tidycensus::get_acs(geography = 'county', state = 'IL', 
