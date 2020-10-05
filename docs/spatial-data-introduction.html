@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Spatial Data Introduction | Opioid Environment Toolkit</title>
   <meta name="description" content="Spatial Data Introduction | Opioid Environment Toolkit" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Spatial Data Introduction | Opioid Environment Toolkit" />
   <meta property="og:type" content="book" />
@@ -49,7 +49,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -63,9 +62,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,16 +73,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +89,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,7 +137,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i>Spatial Data Introduction</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i>Spatial Data Introduction</a><ul>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-spatial-data"><i class="fa fa-check"></i>What is spatial data?</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-vector-data"><i class="fa fa-check"></i>Vector data and shapefile</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-crs"><i class="fa fa-check"></i>Coordiante Reference System</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i>Geocoding and Visualizing Point Data</a><ul>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
@@ -207,7 +209,37 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="spatial-data-introduction" class="section level1 unnumbered">
 <h1>Spatial Data Introduction</h1>
+<p>UNDER CONSTRUCTION</p>
+<div id="SD-spatial-data" class="section level2 unnumbered">
+<h2>What is spatial data?</h2>
+<p>Spatial data refers to data that contain information about specific locations, and the information content of the data may change with location. In other words, “information” and “location” are two important elements in spatial data. In some occassions, spatial data may only include “location.” But without “location,” the data is no longer spatial anymore. For example, a spatial data that describes the resource distribution of Medications for Opioid Overuse Disorder (MOUDs) must contain location information of these MOUD resources, otherwise the data becomes a non-spatial list of those resources.</p>
+<p>For the purpose of this tutorial, we will only briefly introduce some important concept in spatial data. See Further Resources if you would like to learn more about these concepts.</p>
+</div>
+<div id="SD-vector-data" class="section level2 unnumbered">
+<h2>Vector data and shapefile</h2>
+<p>Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. Vector data can come in a variety of different formats, among which the most commonly known is shapefile. The shapefile format consists of a collection of files with a common prefix, stored in the same directory. Three mandary files have filename extensions <code>.shp</code>, <code>.shx</code>, and <code>.dbf</code>. In many scenarios, these files are compressed into one file (such as <code>.zip</code> and <code>.tar.gz</code>).</p>
+</div>
+<div id="SD-crs" class="section level2 unnumbered">
+<h2>Coordiante Reference System</h2>
+<p>As noted before, the most fundamental element of a spatial data is “location.” Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth’s surface onto a 2-dimensional map. Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices. In <code>sf</code>, you can use the function <code>st_crs</code> to check the CRS used in one data, and the function <code>st_transform</code> to project the data to a particular CRS. See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that demonstrates these functions.</p>
+</div>
+<div id="SD-contributors" class="section level2 unnumbered">
+<h2>Contributors and Further Resources</h2>
+<div id="SD-appendix" class="section level4 unnumbered">
+<h4>Further resources</h4>
+<ul>
+<li>See <a href="https://geocompr.robinlovelace.net/spatial-class.html">Chapter 2 Geographic data in R in Geocomputation with R</a> for more info about <a href="https://geocompr.robinlovelace.net/spatial-class.html#vector-data">Vector data</a>, <a href="https://geocompr.robinlovelace.net/spatial-class.html#raster-data">Raster data</a>, and <a href="https://geocompr.robinlovelace.net/spatial-class.html#raster-data">Coordiante Reference Systems</a>.</li>
+<li>See this <a href="https://datacarpentry.org/organization-geospatial/03-crs/index.html">Software Carpentry workshop</a> for more explanations to better understand coordinate reference systems.</li>
+<li>See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that uses <code>sf</code> package to project spatial data in R.</li>
+</ul>
+<div id="contributors" class="section level5 unnumbered">
+<h5>Contributors</h5>
+<p>Qinyun Lin, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Marynia Kolak and Moksha Menghaney.</p>
+<p>Email: <a href="mailto:qinyunlin@uchicago" class="email">qinyunlin@uchicago</a> for any issues/comments.</p>
 
+</div>
+</div>
+</div>
 </div>
             </section>
 

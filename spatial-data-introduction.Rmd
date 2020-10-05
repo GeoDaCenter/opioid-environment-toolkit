@@ -1,1 +1,29 @@
-# Spatial Data Introduction {-}
+# Spatial Data Introduction{-}
+UNDER CONSTRUCTION
+
+## What is spatial data?  {-#SD-spatial-data}
+Spatial data refers to data that contain information about specific locations, and the information content of the data may change with location. In other words, "information" and "location" are two important elements in spatial data. In some occassions, spatial data may only include "location." But without "location," the data is no longer spatial anymore. For example, a spatial data that describes the resource distribution of Medications for Opioid Overuse Disorder (MOUDs) must contain location information of these MOUD resources, otherwise the data becomes a non-spatial list of those resources. 
+
+For the purpose of this tutorial, we will only briefly introduce some important concept in spatial data. See Further Resources if you would like to learn more about these concepts. 
+
+## Vector data and shapefile {-#SD-vector-data}
+Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. Vector data can come in a variety of different formats, among which the most commonly known is shapefile. The shapefile format consists of a collection of files with a common prefix, stored in the same directory. Three mandary files have filename extensions `.shp`, `.shx`, and `.dbf`. In many scenarios, these files are compressed into one file (such as `.zip` and `.tar.gz`). 
+
+## Coordiante Reference System {-#SD-crs}
+As noted before, the most fundamental element of a spatial data is "location." Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth's surface onto a 2-dimensional map. Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices. In `sf`, you can use the function `st_crs` to check the CRS used in one data, and the function `st_transform` to project the data to a particular CRS. See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that demonstrates these functions.  
+
+## Contributors and Further Resources {-#SD-contributors}
+
+#### Further resources {-#SD-appendix}
+* See [Chapter 2 Geographic data in R in Geocomputation with R](https://geocompr.robinlovelace.net/spatial-class.html) for more info about [Vector data](https://geocompr.robinlovelace.net/spatial-class.html#vector-data), [Raster data](https://geocompr.robinlovelace.net/spatial-class.html#raster-data), and [Coordiante Reference Systems](https://geocompr.robinlovelace.net/spatial-class.html#raster-data). 
+* See this [Software Carpentry workshop](https://datacarpentry.org/organization-geospatial/03-crs/index.html) for more explanations to better understand coordinate reference systems. 
+* See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that uses `sf` package to project spatial data in R.  
+
+##### Contributors {-}
+Qinyun Lin, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Marynia Kolak and Moksha Menghaney. 
+
+Email: qinyunlin@uchicago for any issues/comments.
+
+
+
+

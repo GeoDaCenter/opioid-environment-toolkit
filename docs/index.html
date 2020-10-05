@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Opioid Environment Toolkit</title>
   <meta name="description" content="Opioid Environment Toolkit" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Opioid Environment Toolkit" />
   <meta property="og:type" content="book" />
@@ -49,7 +49,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -63,9 +62,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,16 +73,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +89,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,7 +137,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i>Spatial Data Introduction</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i>Spatial Data Introduction</a><ul>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-spatial-data"><i class="fa fa-check"></i>What is spatial data?</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-vector-data"><i class="fa fa-check"></i>Vector data and shapefile</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-crs"><i class="fa fa-check"></i>Coordiante Reference System</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i>Geocoding and Visualizing Point Data</a><ul>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
 <li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
@@ -208,11 +210,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Opioid Environment Toolkit</h1>
 <p class="author"><em>Created by : Center for Spatial Data Science</em></p>
-<p class="date"><em>`Last Updated : 2020-10-01</em></p>
+<p class="date"><em>`Last Updated : 2020-10-04</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
 <p>This bookdown project provides an overview of the basic spatial analytics for the JCOIN network developed by the team at the <a href="https://spatial.uchicago.edu/">Center for Spatial Data Science</a> at the University of Chicago. Our team is a part of the Policy and Practice Observational and Survey Research Core of the <a href="https://heal.nih.gov/research/research-to-practice/jcoin">JCOIN network</a>, within the Methodology and Advanced Analytic Resource Center (MAARC). Our goal is to develop a comprehensive toolkit that will allow practitioners to support their communities with better data analytics and visualization services. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment.</p>
+<p>For this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. You should be able to install packages, and have very basic familiarity with R following <a href="https://learn.datacamp.com/courses/free-introduction-to-r">intro-level tutorials</a> provided through <a href="https://rspatial.org/intr/1-introduction.html">installation guides</a>. You can also refer to this <a href="https://datacarpentry.org/r-socialsci/">R for Social Scientists</a> tutorial developed by Data Carpentry for a refresher. You should also know how to find the address to a folder on your computer system.</p>
+<p>We will work with following libraries, so please be sure to install:
+* sf
+* tmap
+* tidyverse
+* tidycensus
+Note: You may find another library called “sp” if you google search spatial analysis in R. Note that <code>sp</code> and <code>sf</code> are two different packages. If you are familiar with <code>sp</code>, see <a href="https://github.com/r-spatial/sf/wiki/Migrating">this guide</a> for a translation of <code>sp</code> to <code>sf</code> commands.</p>
 <p>Please reach out to Marynia Kolak at <a href="mailto:mkolak@uchicago.edu" class="email">mkolak@uchicago.edu</a> to learn more about the Opioid Environment program at the Center for Spatial Data Science, or with any questions about the resources on this site.</p>
 
 </div>
