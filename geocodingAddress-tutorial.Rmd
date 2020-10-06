@@ -1,8 +1,16 @@
-# Geocoding and Visualizing Point Data {-#geocode-points}
+# Geocoding Resource Locations {-#geocode-points}
 
-## Research Question {-#GA-research-question}
+## Overview{-#GA-research-question}
 
-One of the major goals for our research group is to calculate and compare access to different Medications for Opioid Overuse Disorder (MOUDs). But before one can run any analytics on the resource location data, we need to convert resource addresses to spatial data points, which can be then used to calculate access metrics. Geocoding is the formal process of converting addresses (like a street address) into geographic coordinates (latitude and longitude). In this tutorial we demonstrate how to geocode a bunch of addresses to spatial data points that can be then used for mapping and other geospatial analysis.
+A common goal in opioid environment research is to calculate and compare access metrics to different providers of Medications for Opioid Overuse Disorder (MOUDs). Before we can run any analytics on the resource location data, we need to convert resource addresses to spatial data points, which can be then used to calculate access metrics. 
+
+**Geocoding** is the process of converting addresses (like a street address) into geographic coordinates using a known coordinate reference system. We can then use these coordinates (latitude, longitude) to spatially enable our data. This means we convert to a spatial data frame (sf) within R for spatial analysis within our R session, and then save as a shapefile (a spatial data format) for future use. In this tutorial we demonstrate how to geocode resource location addresses and convert to spatial data points that can be used for future mapping and geospatial analysis. 
+
+Our objectives are thus to:
+
+* Geocode addresses to get geographic coordinates
+* Visualize the resource locations as points on a map in R
+* Transform a flat file (.CSV) to a spatially enabled shapefile (.SHP)
 
 ## Environment Setup {-#GA-setup}
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
@@ -12,16 +20,14 @@ We will use the following packages in this tutorial:
   
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
-- `tidygeocoder`: to convert addresses to geographic coordinates.
+- `tidygeocoder`: to convert addresses to geographic coordinates
 
-#### Required Inputs and Expected Outputs {-#GA-i-o}
-Our inputs will be:
-  
-- a CSV file with the addresses of our resources ("chicago_methadone.csv") 
+#### Input/Output {-#GA-i-o}
+Our inputs will be a **CSV** file that include addresses of our resources ("chicago_methadone.csv"). To access the test dataset for this tutorial, please download [here]().
 
-We will convert these addresses to their appropriate geographic coordinates and project them with the relevant crs (coordinate reference system) as spatial data points. Our final result will be a shapefile with the geographic coordinates for each address.
+We will convert these addresses to geographic coordinates using an appropriate coordinate reference system (CRS), and then spatially enable the data for mapping. We will then export the spatial dataframe as a **shapefile**.
 
-#### Install and load the packages {-#GA-packages2}
+### Install and load the packages {-#GA-packages2}
 First, let's install the relevant R packages:
   
 ```{r install, eval=FALSE}
@@ -31,7 +37,7 @@ install.packages("tidygeocoder")
 ```
 
 
-Then load the libraries for use. (The message you see about GEOS, GDAL, and PROJ refer to the software libraries that allow you to work with spatial data.)
+Then load the libraries for use. *Note:* The messages you see about GEOS, GDAL, and PROJ refer to software libraries that allow you to work with spatial data.
 
 ```{r load}
 library(sf)
@@ -39,9 +45,11 @@ library(tidygeocoder)
 library(tmap)
 ```
 
-## Read in resource data {-#GA-read-resources}
+### Read in CSV File 
 
-We will use a .csv of methadone clinic addresses in Chicago as an example. Let's take a look at the first few rows of the dataset. As we can see, our data has only addresses but no geographic coordinates.
+We will use a CSV that includes methadone clinic addresses in Chicago as an example. We start with a small dataset to test our geocoding workflow, as best practice.
+
+Let's take a look at the first few rows of the dataset. Our data includes addresses but not geographic coordinates. 
 
 ```{r read}
 methadoneClinics <- read.csv("data/chicago_methadone_nogeometry.csv")
@@ -50,27 +58,38 @@ head(methadoneClinics)
 
 ## Geocode addresses {-#GA-geocode-addresses} 
 
-To do any geospatial analysis like mapping and other advanced analysis like spatial joins, we need the latitude and longitude for each location. To get those, there are a number of options in R, we recommend the `tidygeocoder` package. It uses mutliple geocoding services, providing user with an option to choose. It also provides the option to use `cascade` method which queries other geocoding services incase the default method fails to provide coordinates. 
+### Quality Control
 
-Default method uses the [US Census geocoder](https://geocoding.geo.census.gov/) and this caps you at around 10,000 addresses at once. This process may require some data manipulation, so for your ease you may wish to use a proprietary software instead (i.e. Esri Geocoder, which is included in Esri software like ArcGIS).
+Before geocoding, perform an initial quality check on the data. Note that the address, city, state, and zip code are all separated as different columns. This will make it easier to stitch together for a coherent, standard address for geocoding. Furthermore, there do not appear to be any major errors. The city name "Chicago" is spelled consistently, without missing addresses or zip codes. This will not always be the case, unfortunately. Data must be cleaned prior to loading into a geocoding service.
 
-Here's an example of geocoding a single address:
+### Selecting Geocoding Service
+
+To get a geographic coordinate for each site, we'll need to geocode. There are a number of geocoding options in R; here we use we the `tidygeocoder` package. It uses mutliple geocoding services, providing the user with an option to choose. It also provides the option to use a `cascade` method which queries other geocoding services incase the default method fails to provide coordinates. 
+
+When considering which geocoding service to use, consider scale and potential geocoding errors. Some geocoding services are more accurate than others, so if your coordinates were not coded precisely, try a different service. If you have thousands of addresses to geocode, you may require more complex data pipelines. The default method used here is via [US Census geocoder](https://geocoding.geo.census.gov/), which  allows around 10,000 addresses to be geocoded at once. Others have varying daily limits. The Google Maps API and ESRI Geocoding service are additional high-quality geocoding services with varying cost associated.
+
+### Test Geocoding Service
+
+Before geocoding your entire dataset, first review the documentation for the geocoding service you'll be using. In our example we use `tidygeocoder`, with documentation found [here](). Let's test the service by starting with one address:
 
 ```{r}
-geo("4545 North Broadway St. Chicago, IL", lat = latitude, long = longitude, 
-    method = 'cascade')
+sample <- geo("4545 North Broadway St. Chicago, IL", lat = latitude, long = longitude, method = 'cascade')
+sample
 ```
 
-To apply the function to multiple addresses, follow the next few steps.
+What did the output look like? Get familiar with the input parameters, expected output, and review the documentation further if needed.
 
-First we need ensure that we have a *character vector* of full addresses.
+### Prepare input parameter
+
+To apply the function to multiple addresses, we first we need ensure that we have a *character vector* of full addresses.
 
 ```{r}
 str(methadoneClinics)
 ```
 
+Next we convert all fields to character first to avoid issues with factors (a common peril of R!).
+
 ```{r}
-# convert all fields to character first to avoid issues with factors
 methadoneClinics$fullAdd <- paste(as.character(methadoneClinics$Address), 
                                   as.character(methadoneClinics$City),
                                   as.character(methadoneClinics$State), 
@@ -78,7 +97,9 @@ methadoneClinics$fullAdd <- paste(as.character(methadoneClinics$Address),
 head(methadoneClinics)
 ```
 
-Then geocode the addresses. Tibble below includes the address, latitude, longitude and also the geocoding service used to get the coordinates. Please note geocoding takes a bit of time.
+### Batch Geocoding
+
+Now we are ready to geocode the addresses. The "tibble" data structure below shows us the address, latitude, longitude and also the geocoding service used to get the coordinates. Note that geocoding takes a bit of time, so patience is required.
 
 ```{r geocode}
 geoCodedClinics <- methadoneClinics %>% 
@@ -87,23 +108,36 @@ geoCodedClinics <- methadoneClinics %>%
 geoCodedClinics
 ```
 
-The code worked for all addresses except the first two. We already resolved the `4545 North Broadway St.`address above but here in the dataframe we get NAs. It is pointing to some issue with the string input. Unfortunately, such quirks are common across geocoding services in R and we just have to handle them. We manually update the full address strings to get apprpriate coordinates.
+The code worked for all addresses except the first two. We already resolved the `4545 North Broadway St.`address above but here in the dataframe we get NAs. It is pointing to some issue with the string input. These were missed in the previous quality check, but give us a clue to the types of errors we could see if geocoding more addresses. Unfortunately, such quirks are common across geocoding services in R and we just have to handle them. We manually update the full address strings to get apprpriate coordinates. 
 
 ```{r}
 
 methadoneClinics[1,'fullAdd'] <- '4453 North Broadway St.,Chicago IL 60640'
 methadoneClinics[2,'fullAdd'] <- '4545 North Broadway St.,Chicago IL 60640'
-geoCodedClinics <- methadoneClinics %>% 
-                            geocode(methadoneClinics, address = 'fullAdd', 
-                                    lat = latitude, long = longitude, method = 'cascade')
+```
+
+Now we can geocode the full suite of addresses with success:
+
+```{r}
+#geoCodedClinics <- methadoneClinics %>% 
+#                            geocode(methadoneClinics, address = 'fullAdd', 
+#                                    lat = latitude, long = longitude, method = 'cascade')
 geoCodedClinics
 ```
 
-## Convert to Spatial DataFrame {-#GA-spatial-dataframe} 
+## Convert to Spatial Data {-#GA-spatial-dataframe} 
 
-Next we convert our dataframe to a spatial data frame using the `st_as_sf()` function. The coords argument specifies which two columns are the X and Y for your data. We set the crs argument equal to 4326 because this data is in latitude and longitude (otherwise known as “unprojected”, which means it is not in feet or meters).
+While we have geographic coordinates loaded in our data, it is still not spatially enabled. To convert to a spatial data format, we have to enable to coordinate reference system that connects the latitude and longitude recorded to actual points on Earth. 
 
-*Please note longitude is entered as first column rather than the latitude. It is a very common mistake.*
+### Spatial Reference Systems
+
+There are thousands of ways to model the Earth, and each requires a different spatial reference system. This is a very complicated domain of spatial applications (for a primer [see here](https://developers.arcgis.com/documentation/core-concepts/spatial-references)), but for our purposes, we simplify by using a geodetic CRS that uses coordinates longitude and latitude. Not all coordinates will appear as a latitude/longitude, however, so it's important to at least check for the CRS used when working with geographic data. The lat/long coordinates provided by the geocoding service we used report data using the CRS coded as **4326**, a World Geodetic System (WGS84) model also used by Google Earth and many other applications. In this system, distance is measured as degrees and distorted. So while useful for visualizing points, we will need to convert to another CRS for other types of spatial analysis.
+
+### Enable Points
+
+Next we convert our dataframe to a spatial data frame using the `st_as_sf()` function. The `coords` argument specifies which two columns are the X and Y for your data. We set the crs argument equal to 4326.
+
+*Please note longitude is entered as first column rather than the latitude. It is a very common mistake.* The X, Y field actually refers to longitude, latitude. 
 
 ```{r spatialdf}
 methadoneSf <- st_as_sf(geoCodedClinics, 
@@ -113,21 +147,24 @@ head(data.frame(methadoneSf))
 ```
 
 Note that this is a data frame, but that it has a final column called “geometry” that stores the spatial information.
-We can now plot the location of the methadone clinics with base R.
 
-```{r plot}
+### Visualize Points
+We can now plot the location of the methadone clinics with base R. This is a recommended step to confirm that you translated your coordinates correctly. A common mistake is switching the lat/long values, so your points could plot across the globe. If that happens, repeat the step above with flipped long/lat values.
+
+First we switch the `tmap` mode to view so we can look at the points with a live basemap layer.
+```{r view}
 tmap_mode("view")
+```
+
+Next, we plot our points as dots, and add the basemap.
+```{r plot}
 tm_shape(methadoneSf) + tm_dots() + tm_basemap("OpenStreetMap")
 ```
 
+### Convert to Shapefile
 Finally, we save this spatial dataframe as a shapefile which can be used for further spatial analysis.
 ```{r write shp,eval= FALSE}
 write_sf(methadoneSf, "methadoneClinics.shp")
 ```
 
 
-## Contributors and Further Resources {-#GA-contributors}
-##### Contributors {-}
-Moksha Menghaney, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Marynia Kolak.
-
-Email: mmenghaney@uchicago.edu for any issues/comments.

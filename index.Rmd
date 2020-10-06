@@ -6,21 +6,37 @@ output: bookdown::gitbook
 documentclass: book
 ---
 
-# Preface {-}
+# Introduction {-}
 
-This bookdown project provides an overview of the basic spatial analytics for the JCOIN network developed by the team at the [Center for Spatial Data Science](https://spatial.uchicago.edu/) at the University of Chicago. Our team is a part of the Policy and Practice Observational and Survey Research Core of the [JCOIN network](https://heal.nih.gov/research/research-to-practice/jcoin), within the Methodology and Advanced Analytic Resource Center (MAARC). Our goal is to develop a comprehensive toolkit that will allow practitioners to support their communities with better data analytics and visualization services. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment.
+This toolkit provides an introduction to GIS and spatial analysis for opioid environment applications that will allow practitioners to support their communities with better data analytics and visualization services. We introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment. This toolkit was developed for the JCOIN network  by the team at the <a href="https://spatial.uchicago.edu/">Center for Spatial Data Science</a> at the University of Chicago.
 
-For this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. You should be able to install packages, and have very basic familiarity with R following [intro-level tutorials](https://learn.datacamp.com/courses/free-introduction-to-r) provided through [installation guides](https://rspatial.org/intr/1-introduction.html). You can also refer to this [R for Social Scientists](https://datacarpentry.org/r-socialsci/) tutorial developed by Data Carpentry for a refresher. You should also know how to find the address to a folder on your computer system. 
+## Software Basics
+
+We assume a basic knowledge of R and coding languages for these toolkits. However, beginners can check out *these resources* for access to the basics.
+
+For most of the tutorials in this toolkit, you’ll need to have R and RStudio downloaded and installed on your system. You should be able to install packages, and have very basic familiarity with R following <a href="https://learn.datacamp.com/courses/free-introduction-to-r">intro-level tutorials</a> provided through <a href="https://rspatial.org/intr/1-introduction.html">installation guides</a>. You can also refer to this <a href="https://datacarpentry.org/r-socialsci/">R for Social Scientists</a> tutorial developed by Data Carpentry for a refresher. You should also know how to find the address to a folder on your computer system.
 
 We will work with following libraries, so please be sure to install: 
+
 * sf 
 * tmap
 * tidyverse
 * tidycensus
-Note: You may find another library called "sp" if you google search spatial analysis in R. Note that `sp` and `sf` are two different packages. If you are familiar with `sp`, see [this guide](https://github.com/r-spatial/sf/wiki/Migrating) for a translation of `sp` to `sf` commands.    
 
-Please reach out to Marynia Kolak at mkolak@uchicago.edu to learn more about the Opioid Environment program at the Center for Spatial Data Science, or with any questions about the resources on this site.
+Note: You may find another library called `sp` if you google search spatial analysis in R. Note that `sp` and `sf` are two different packages. If you need to work between these two R spatial ecosystems, see [this guide](https://github.com/r-spatial/sf/wiki/Migrating) for a translation of `sp` to `sf` commands.    
 
+## Author Team 
+
+The tutorials in this toolkit were co-authored by Marynia Kolak, Moksha Menghaney, Qinyun Lin, and Angela Li. Our group is a part of the Policy and Practice Observational and Survey Research Core of the (JCOIN network)[https://heal.nih.gov/research/research-to-practice/jcoin], within the Methodology and Adsvanced Analytic Resource Center (MAARC).
+
+
+
+# Next Chapter 
+
+
+## Author Team 
+
+The tutorials in this toolkit were co-authored by Marynia Kolak, Moksha Menghaney, Qinyun Lin, and Angela Li. Our group is a part of the Policy and Practice Observational and Survey Research Core of the (JCOIN network)[https://heal.nih.gov/research/research-to-practice/jcoin], within the Methodology and Adsvanced Analytic Resource Center (MAARC).
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
