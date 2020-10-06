@@ -1,0 +1,14 @@
+software-basics
+author-team
+next-chapter
+author-team-1
+read-in-csv-file
+quality-control
+selecting-geocoding-service
+test-geocoding-service
+prepare-input-parameter
+batch-geocoding
+spatial-reference-systems
+enable-points
+visualize-points
+convert-to-shapefile

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Spatial Data Introduction | Opioid Environment Toolkit</title>
   <meta name="description" content="Spatial Data Introduction | Opioid Environment Toolkit" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Spatial Data Introduction | Opioid Environment Toolkit" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -62,9 +63,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -73,14 +74,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -89,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,20 +139,38 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#software-basics"><i class="fa fa-check"></i><b>0.1</b> Software Basics</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#author-team"><i class="fa fa-check"></i><b>0.2</b> Author Team</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html#next-chapter"><i class="fa fa-check"></i><b>1</b> Next Chapter</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#author-team-1"><i class="fa fa-check"></i><b>1.1</b> Author Team</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i>Spatial Data Introduction</a><ul>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-spatial-data"><i class="fa fa-check"></i>What is spatial data?</a></li>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-vector-data"><i class="fa fa-check"></i>Vector data and shapefile</a></li>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-crs"><i class="fa fa-check"></i>Coordiante Reference System</a></li>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i>Geocoding and Visualizing Point Data</a><ul>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i>Environment Setup</a></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-read-resources"><i class="fa fa-check"></i>Read in resource data</a></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-geocode-addresses"><i class="fa fa-check"></i>Geocode addresses</a></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-spatial-dataframe"><i class="fa fa-check"></i>Convert to Spatial DataFrame</a></li>
-<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-contributors"><i class="fa fa-check"></i>Contributors and Further Resources</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i>Geocoding Resource Locations</a><ul>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i>Environment Setup</a><ul>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-packages2"><i class="fa fa-check"></i>Install and load the packages</a></li>
+<li class="chapter" data-level="1.1.1" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#read-in-csv-file"><i class="fa fa-check"></i><b>1.1.1</b> Read in CSV File</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-geocode-addresses"><i class="fa fa-check"></i>Geocode addresses</a><ul>
+<li class="chapter" data-level="1.1.2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#quality-control"><i class="fa fa-check"></i><b>1.1.2</b> Quality Control</a></li>
+<li class="chapter" data-level="1.1.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#selecting-geocoding-service"><i class="fa fa-check"></i><b>1.1.3</b> Selecting Geocoding Service</a></li>
+<li class="chapter" data-level="1.1.4" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#test-geocoding-service"><i class="fa fa-check"></i><b>1.1.4</b> Test Geocoding Service</a></li>
+<li class="chapter" data-level="1.1.5" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#prepare-input-parameter"><i class="fa fa-check"></i><b>1.1.5</b> Prepare input parameter</a></li>
+<li class="chapter" data-level="1.1.6" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#batch-geocoding"><i class="fa fa-check"></i><b>1.1.6</b> Batch Geocoding</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-spatial-dataframe"><i class="fa fa-check"></i>Convert to Spatial Data</a><ul>
+<li class="chapter" data-level="1.1.7" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#spatial-reference-systems"><i class="fa fa-check"></i><b>1.1.7</b> Spatial Reference Systems</a></li>
+<li class="chapter" data-level="1.1.8" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#enable-points"><i class="fa fa-check"></i><b>1.1.8</b> Enable Points</a></li>
+<li class="chapter" data-level="1.1.9" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#visualize-points"><i class="fa fa-check"></i><b>1.1.9</b> Visualize Points</a></li>
+<li class="chapter" data-level="1.1.10" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#convert-to-shapefile"><i class="fa fa-check"></i><b>1.1.10</b> Convert to Shapefile</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html"><i class="fa fa-check"></i>Calculate Minimum Distance Access Metric</a><ul>
 <li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-research-question"><i class="fa fa-check"></i>Research Question</a></li>
