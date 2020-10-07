@@ -1,6 +1,6 @@
-# Geocoding Resource Locations {-#geocode-points}
+# Geocoding Resource Locations {#geocode-points}
 
-## Overview{-#GA-research-question}
+## Overview{#GA-research-question}
 
 A common goal in opioid environment research is to calculate and compare access metrics to different providers of Medications for Opioid Overuse Disorder (MOUDs). Before we can run any analytics on the resource location data, we need to convert resource addresses to spatial data points, which can be then used to calculate access metrics. 
 
@@ -12,22 +12,22 @@ Our objectives are thus to:
 * Visualize the resource locations as points on a map in R
 * Transform a flat file (.CSV) to a spatially enabled shapefile (.SHP)
 
-## Environment Setup {-#GA-setup}
+## Environment Setup {#GA-setup}
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {-#GA-packages1}
+#### Packages used {#GA-packages1}
 We will use the following packages in this tutorial:
   
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
 - `tidygeocoder`: to convert addresses to geographic coordinates
 
-#### Input/Output {-#GA-i-o}
+#### Input/Output {#GA-i-o}
 Our inputs will be a **CSV** file that include addresses of our resources ("chicago_methadone.csv"). To access the test dataset for this tutorial, please download [here]().
 
 We will convert these addresses to geographic coordinates using an appropriate coordinate reference system (CRS), and then spatially enable the data for mapping. We will then export the spatial dataframe as a **shapefile**.
 
-### Install and load the packages {-#GA-packages2}
+### Install and load the packages {#GA-packages2}
 First, let's install the relevant R packages:
   
 ```{r install, eval=FALSE}
@@ -56,7 +56,7 @@ methadoneClinics <- read.csv("data/chicago_methadone_nogeometry.csv")
 head(methadoneClinics)
 ```
 
-## Geocode addresses {-#GA-geocode-addresses} 
+## Geocode addresses {#GA-geocode-addresses} 
 
 ### Quality Control
 
@@ -125,7 +125,7 @@ geoCodedClinics <- methadoneClinics %>%
 geoCodedClinics
 ```
 
-## Convert to Spatial Data {-#GA-spatial-dataframe} 
+## Convert to Spatial Data {#GA-spatial-dataframe} 
 
 While we have geographic coordinates loaded in our data, it is still not spatially enabled. To convert to a spatial data format, we have to enable to coordinate reference system that connects the latitude and longitude recorded to actual points on Earth. 
 

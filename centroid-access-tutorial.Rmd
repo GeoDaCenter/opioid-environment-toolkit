@@ -1,20 +1,20 @@
-# Calculate Minimum Distance Access Metric {-#min-distance}
+# Min. Dist Access Analysis {#min-distance}
 
-## Research Question {-#CA-research-question}
+## Overview {#CA-research-question}
 
 Spatial Access to specific resource is often considered a multidimensional concept where accessibility can be measured on affordability, availability, accommodation & acceptability [**include reference**]. Distance to the nearest resource is a common metric used to capture the availability of a resource, and in this tutorial we demonstrate how to calculate a minimum distance value from a zip code centroid to a set of resources, such as locations of methadone clinics. Each zip code will be assigned a "minimum distance access metric" as a value that indicates access to resources from that zip code.
 
-## Environment Setup {-#CA-setup}
+## Environment Setup {#CA-setup}
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {-#CA-packages1}
+#### Packages used {#CA-packages1}
 We will use the following packages in this tutorial:
 
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
 - `units`: to convert units within spatial data
 
-#### Required Inputs and Expected Outputs {-#CA-i-o}
+#### Required Inputs and Expected Outputs {#CA-i-o}
 Our inputs will be:
 
 - a CSV file with the locations of our resources ("chicago_methadone.csv"), and 
@@ -22,7 +22,7 @@ Our inputs will be:
 
 We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
 
-#### Install and load the packages {-#CA-packages2}
+#### Install and load the packages {#CA-packages2}
 First, let's install the relevant R packages:
 
 ```{r install, eval=FALSE}
@@ -40,7 +40,7 @@ library(tmap)
 library(units)
 ```
 
-## Read in resource data {-#CA-read-resources}
+## Read in resource data {#CA-read-resources}
 
 We will use a CSV of methadone clinic addresses in Chicago as an example. This file represents point locations of clinics.
 
@@ -84,7 +84,7 @@ tm_shape(meth_sf) +
 ```
 
 
-## Read in zip code data {-#CA-read-zips}
+## Read in zip code data {#CA-read-zips}
 
 If you have zip code boundary data from the Census (or other relevant site), you can load them into R with the `read_sf` command. Boundary data is commonly stored in the **shapefile** format, which has both a spatial (.shp, .shx, .prj) and a flat-file (.dbf) component. Shapefiles are made of four files (.shp, .shx, .prj, .dbf), all which needed to be in the same folder for the file to be read.
 
@@ -138,7 +138,7 @@ tm_shape(meth_sf) +
 ```
 
 
-## Calculate centroids of zip code boundaries {-#CA-calculate-centroids}
+## Calculate centroids of zip code boundaries {#CA-calculate-centroids}
 
 Now, we will calculate the centroids of the zip code boundaries. We will first need to project our data, which means change it from latitude and longitude to meaningful units, like ft or meters, so we can calculate distance properly. We'll use the Illinois State Plane projection, with an EPSG code of 3435.
 
@@ -179,7 +179,7 @@ tm_shape(chicago_centroids) +
 ```
 
 
-## Ensure that centroid and resource projections match {-#CA-correct-projection}
+## Standardize CRS {#CA-correct-projection}
 
 If we immediately try to calculate the distance between the zip centroids and the locations of the resources using the `st_distance` function, we'll get an error:
 
@@ -223,7 +223,7 @@ plot(st_geometry(chicago_centroids), col = "red", add = TRUE)
 plot(st_geometry(meth_sf), col = "blue", add = TRUE)
 ```
 
-## Calculate distance from centroid to nearest resource {-#CA-distance}
+## Calculate min distance {-#CA-distance}
 
 First, we'll identify the resource that is the closest to a zip centroid using the `st_nearest_feature` function. (It will return the index of the object that is nearest, so we will subset the resources by the index to get the nearest object.)
 
@@ -285,7 +285,7 @@ tm_shape(min_dist_sf) +
 ```
 
 
-## Save as zip-code level dataset {-#CA-save}
+## Save Data {-#CA-save}
 
 To save our final result to a CSV, use the `layer_options = "GEOMETRY=AS_XY"` command. Note that this option only works when you are working with point data.
 
@@ -298,10 +298,3 @@ We can also write out this data to a shapefile format:
 ```{r, eval=FALSE, write-shp}
 write_sf(min_dist_sf, "min_dists_sf.shp")
 ```
-
-
-## Contributors and Further Resources {-#CA-contributors}
-#### Contributors {-}
-Angela Li, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Moksha Menghaney and Marynia Kolak. 
-
-Email: mmenghaney@uchicago.edu for any issues/comments.

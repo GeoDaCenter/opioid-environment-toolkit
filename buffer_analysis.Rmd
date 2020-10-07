@@ -3,10 +3,13 @@
 
 ## Overview
 
-Once we have 
+Once we have spatially referenced resource locations, it's helpful to plot the data in the community of interest for some preliminary analysis. In this tutorial we will plot Methadone Providers in Chicago and community areas to provide some context. We will also generate a simple 2-mile buffer around each provider as an approximate "service area" to highlight neighborhoods with more, and fewer, resources. In order to accomplish this task, we will need to standardize our spatial data (clinic points, and community areas) with an appropriate coordinate reference system. Finally, we'll make some maps!
+
 Our objectives are thus to:
 
-* 
+* Overlay clinical providers (points) and community areas (polygons)
+* Use a spatial transform operation to change coordinate reference systems
+* Conduct a simple buffer analysis
 
 ## Environment Setup 
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
@@ -16,13 +19,11 @@ We will use the following packages in this tutorial:
   
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
-- `tidygeocoder`: to convert addresses to geographic coordinates
 
 First, load the required libraries.
 
-```{r warning = FALSE}
+```{r warning = FALSE, messages=FALSE}
 library(sf)
-library(tidygeocoder)
 library(tmap)
 ```
 
