@@ -278,22 +278,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="CA-packages2" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Load the packages</h3>
 <p>Load the libraries for use.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="kw">library</span>(units)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="kw">library</span>(units)</a></code></pre></div>
+<pre><code>## Warning: package &#39;units&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## udunits system database from /Library/Frameworks/R.framework/Versions/3.6/Resources/library/units/share/udunits</code></pre>
 </div>
 </div>
 <div id="CA-read-resources" class="section level2">
 <h2><span class="header-section-number">6.3</span> Load data</h2>
 <p>First, load in the MOUD resources shapefile. Let’s take a look at the first few rows of the dataset.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;methadoneClinics.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;methadoneClinics.shp&quot;</span>)</a></code></pre></div>
 <pre><code>## Reading layer `methadoneClinics&#39; from data source `/Users/maryniakolak/code/opioid-environment-toolkit/methadoneClinics.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 27 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
 ## bbox:           xmin: -87.7349 ymin: 41.68698 xmax: -87.57673 ymax: 41.96475
 ## CRS:            4326</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">head</span>(meth_sf)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">head</span>(meth_sf)</a></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
@@ -315,22 +317,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 6     310 W. Chicago Ave. Chicago IL 60654     census POINT (-87.63636 41.89657)</code></pre>
 <p>If you don’t have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found <a href="link%20to%20end%20of%20the%20geocoding%20tutorial">here</a>.</p>
 <p>Next, we’ll load Chicago zip code boundaries.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/chicago_zips.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/chicago_zips.shp&quot;</span>)</a></code></pre></div>
 <p>We can quickly plot our data for to confirm they loaded correctly, here using an interactive map:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="CA-calculate-centroids" class="section level2">
 <h2><span class="header-section-number">6.4</span> Calculate centroids</h2>
 <p>Now, we will calculate the centroids of the zip code boundaries. We will first need to project our data, which means change it from latitude and longitude to meaningful units, like ft or meters, so we can calculate distance properly. We’ll use the Illinois State Plane projection, with an EPSG code of 3435.</p>
 <p><strong>Aside</strong>: To find the most appropriate projection for your data, do a Google Search for which projection works well - for state level data, each state has a State Plane projection with a specific code, known as the EPSG. I use epsg.io to check projections - here’s the <a href="https://epsg.io/2263">New York State Plane</a> page.</p>
 <p>Use the <code>st_transform</code> function to change the projection of the data. Notice how the values in <code>geometry</code> go from being relatively small (unprojected, lat/long) to very large (projected, in US feet).</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">st_transform</span>(chicago_zips, <span class="dv">3435</span>)</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb113-3" data-line-number="3">chicago_zips</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">st_transform</span>(chicago_zips, <span class="dv">3435</span>)</a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb127-3" data-line-number="3">chicago_zips</a></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 9 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -351,9 +353,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 10 60659     60659   B5        G6350   S          5251086  2818     +41.99148… -087.7039… (((1148555 1941516, 1148713 1941…
 ## # … with 75 more rows</code></pre>
 <p>Then, we will calculate the centroids:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">chicago_centroids &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(chicago_zips)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">chicago_centroids &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(chicago_zips)</a></code></pre></div>
 <pre><code>## Warning in st_centroid.sf(chicago_zips): st_centroid assumes attributes are constant over geometries of x</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">chicago_centroids</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">chicago_centroids</a></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 9 fields
 ## geometry type:  POINT
 ## dimension:      XY
@@ -375,27 +377,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## # … with 75 more rows</code></pre>
 <p>For each zip code, this will calculate the centroid, and the output will be a point dataset.</p>
 <p>Plot to double check that everything is ok. The <code>st_geometry()</code> function will once again just return the outline:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-zips-centroids-1.png" width="672" /></p>
 <div id="visualize-confirm" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Visualize &amp; Confirm</h3>
 <p>Once again, we can create an interactive map:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="kw">tm_shape</span>(chicago_centroids) <span class="op">+</span></a>
-<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="kw">tm_shape</span>(chicago_centroids) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>()</a></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-interactive-zips-centroids-1.png" width="672" /></p>
 </div>
 </div>
 <div id="CA-correct-projection" class="section level2">
 <h2><span class="header-section-number">6.5</span> Standardize CRS</h2>
 <p>If we immediately try to calculate the distance between the zip centroids and the locations of the resources using the <code>st_distance</code> function, we’ll get an error:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">st_distance</span>(chicago_centroids, meth_sf, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="kw">st_distance</span>(chicago_centroids, meth_sf, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>Error in st_distance(chicago_centroids, meth_sf, by_element = TRUE) : st_crs(x) == st_crs(y) is not TRUE</code></pre>
 <p>Why is there an error? Because the projection of the centroids and the resource locations don’t match up. Let’s project the resource locations so that they match the projection of the centroids.</p>
 <p>First, use the <code>st_crs</code> function to check that the coordinate reference system (or projection) is the same. They’re not, so we have to fix it.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
@@ -422,7 +424,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     AXIS[&quot;X&quot;,EAST],
 ##     AXIS[&quot;Y&quot;,NORTH],
 ##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: 4326 
 ##   wkt:
@@ -437,8 +439,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##         AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
 ##     AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</code></pre>
 <p>We’ll take the CRS from the zip code centroids data, and use it as input to <code>st_transform</code> applied to the methadone clinics data.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">new_crs &lt;-<span class="st"> </span><span class="kw">st_crs</span>(chicago_centroids)</a>
-<a class="sourceLine" id="cb127-2" data-line-number="2">new_crs</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">new_crs &lt;-<span class="st"> </span><span class="kw">st_crs</span>(chicago_centroids)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">new_crs</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
@@ -465,9 +467,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     AXIS[&quot;X&quot;,EAST],
 ##     AXIS[&quot;Y&quot;,NORTH],
 ##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(meth_sf, new_crs)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(meth_sf, new_crs)</a></code></pre></div>
 <p>If we check the CRS again, we now see that they match. <strong>Mismatched projections are a commonly made mistake in geospatial data processing.</strong></p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
@@ -494,7 +496,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     AXIS[&quot;X&quot;,EAST],
 ##     AXIS[&quot;Y&quot;,NORTH],
 ##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
@@ -522,19 +524,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     AXIS[&quot;Y&quot;,NORTH],
 ##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
 <p>Now we have the zip boundaries, the centroids of the zips, and the resource locations, as shown below. Next, we will calculate the distance to the nearest resource from each zip code centroid.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(meth_sf), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(meth_sf), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-zips-centroids-resources-1.png" width="672" /></p>
 </div>
 <div id="CA-distance" class="section level2 unnumbered">
 <h2>Calculate min distance</h2>
 <p>First, we’ll identify the resource that is the closest to a zip centroid using the <code>st_nearest_feature</code> function. (It will return the index of the object that is nearest, so we will subset the resources by the index to get the nearest object.)</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">nearest_clinic_indexes &lt;-<span class="st"> </span><span class="kw">st_nearest_feature</span>(chicago_centroids, meth_sf)</a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb135-3" data-line-number="3">nearest_clinic &lt;-<span class="st"> </span>meth_sf[nearest_clinic_indexes,]</a>
-<a class="sourceLine" id="cb135-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb135-5" data-line-number="5">nearest_clinic</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">nearest_clinic_indexes &lt;-<span class="st"> </span><span class="kw">st_nearest_feature</span>(chicago_centroids, meth_sf)</a>
+<a class="sourceLine" id="cb149-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb149-3" data-line-number="3">nearest_clinic &lt;-<span class="st"> </span>meth_sf[nearest_clinic_indexes,]</a>
+<a class="sourceLine" id="cb149-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb149-5" data-line-number="5">nearest_clinic</a></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
@@ -564,9 +566,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 1    4453 North Broadway st. Chicago IL 60640        osm POINT (1168556 1929911)
 ## 3       3934 N. Lincoln Ave. Chicago IL 60613     census POINT (1162460 1926257)</code></pre>
 <p>Then, we will calculate the distance between the nearest resource and the zip code centroid with the <code>st_distance</code> function. As shown above, make sure both of your datasets are projected, and in the same projection, before you run <code>st_distance</code>.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">min_dists &lt;-<span class="st"> </span><span class="kw">st_distance</span>(chicago_centroids, nearest_clinic, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3">min_dists</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">min_dists &lt;-<span class="st"> </span><span class="kw">st_distance</span>(chicago_centroids, nearest_clinic, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb151-3" data-line-number="3">min_dists</a></code></pre></div>
 <pre><code>## Units: [US_survey_foot]
 ##  [1] 36764.471 82821.757  5237.764  7419.050  7241.215   873.991 20515.835 38337.779  8516.342 15479.988  9823.172
 ## [12]  4447.705 33707.202 24111.173 24184.991 45224.230 31198.648 10113.372 10890.143 13779.075 49874.400 32463.844
@@ -577,9 +579,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## [67]  5301.820  8808.542 25363.914 18986.590 26456.564  7562.917  3496.941 11023.379  3128.000 16826.923  6172.874
 ## [78] 25276.556 17290.797 15198.524 25164.072 18438.696 19972.965 33211.229 22518.257</code></pre>
 <p>This is in US feet. To change to a more meaningful unit, such as miles, we can use the <code>set_units()</code> function:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">min_dists_mi &lt;-<span class="st"> </span><span class="kw">set_units</span>(min_dists, <span class="st">&quot;mi&quot;</span>)</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb139-3" data-line-number="3">min_dists_mi</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">min_dists_mi &lt;-<span class="st"> </span><span class="kw">set_units</span>(min_dists, <span class="st">&quot;mi&quot;</span>)</a>
+<a class="sourceLine" id="cb153-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3">min_dists_mi</a></code></pre></div>
 <pre><code>## Units: [mi]
 ##  [1]  6.96298198 15.68597011  0.99200275  1.40512596  1.37144503  0.16552893  3.88558262  7.26095754  1.61294677
 ## [10]  2.93182182  1.86045293  0.84236999  6.38395252  4.56651915  4.58049994  8.56521226  5.90884663  1.91541520
@@ -594,8 +596,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="merge-data-back-to-area-data" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Merge data back to Area Data</h3>
 <p>We then rejoin the minimum distances to the zip code data, by column binding <code>min_dists_mi</code> to the original <code>chicago_zips</code> data.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">min_dist_sf &lt;-<span class="st"> </span><span class="kw">cbind</span>(chicago_zips, min_dists_mi)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2">min_dist_sf</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">min_dist_sf &lt;-<span class="st"> </span><span class="kw">cbind</span>(chicago_zips, min_dists_mi)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">min_dist_sf</a></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 10 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -628,26 +630,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualize-confirm-1" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Visualize &amp; Confirm</h3>
 <p>We can now visualize the zip-level access to methadone clinics using our new access metric, using the <code>tmap</code> package.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, </a>
-<a class="sourceLine" id="cb145-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
-<a class="sourceLine" id="cb145-5" data-line-number="5">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
-<a class="sourceLine" id="cb145-6" data-line-number="6">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, </a>
+<a class="sourceLine" id="cb159-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
+<a class="sourceLine" id="cb159-5" data-line-number="5">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
+<a class="sourceLine" id="cb159-6" data-line-number="6">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Access by zip code can also be combined with locations of resources:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>,</a>
-<a class="sourceLine" id="cb146-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
-<a class="sourceLine" id="cb146-7" data-line-number="7">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
-<a class="sourceLine" id="cb146-8" data-line-number="8">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">head</span>(chicago_zips)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
+<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>,</a>
+<a class="sourceLine" id="cb160-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
+<a class="sourceLine" id="cb160-5" data-line-number="5"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
+<a class="sourceLine" id="cb160-7" data-line-number="7">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
+<a class="sourceLine" id="cb160-8" data-line-number="8">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">head</span>(chicago_zips)</a></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 9 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -667,9 +669,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="CA-save" class="section level2">
 <h2><span class="header-section-number">6.6</span> Save Data</h2>
 <p>To save our final result to a CSV:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.csv&quot;</span>)</a></code></pre></div>
 <p>We can also write out this data to a shapefile format:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.shp&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
