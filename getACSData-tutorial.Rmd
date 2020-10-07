@@ -310,9 +310,3 @@ otherVarnames %>% filter(str_detect(label, "Per capita")) %>%  # search for vari
               select(variable = name, label) # drop unnecessary columns and rename
 
 ```
-
-### Contributors and Further Resources {-#CD-contributors}
-##### Contributors {-}
-Moksha Menghaney, University of Chicago is the principal author of the initial version of this tutorial. Helpful improvements provided by Marynia Kolak.
-
-Email: mmenghaney@uchicago.edu for any issues/comments.

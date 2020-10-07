@@ -2,19 +2,23 @@
 
 ## Overview {#CA-research-question}
 
-Spatial Access to specific resource is often considered a multidimensional concept where accessibility can be measured on affordability, availability, accommodation & acceptability [**include reference**]. Distance to the nearest resource is a common metric used to capture the availability of a resource, and in this tutorial we demonstrate how to calculate a minimum distance value from a zip code centroid to a set of resources, such as locations of methadone clinics. Each zip code will be assigned a "minimum distance access metric" as a value that indicates access to resources from that zip code.
+Spatial Access to specific resource is often considered a multidimensional concept where accessibility can be measured on affordability, availability, accommodation & acceptability [**include reference**]. Distance to the nearest resource is a common metric used to capture the availability of a resource, and in this tutorial we demonstrate how to calculate a minimum distance value from a zip code centroid to a set of resources, such as locations of methadone clinics. Each zip code will be assigned a "minimum distance access metric" as a value that indicates access to resources from that zip code. Our objectives are thus to:
+
+* Generate centroids from areal data
+* Calculate minimum distance from resources to area centroids
+* Overlay resources and new minimum distance metric
 
 ## Environment Setup {#CA-setup}
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {#CA-packages1}
+### Packages used {#CA-packages1}
 We will use the following packages in this tutorial:
 
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
 - `units`: to convert units within spatial data
 
-#### Required Inputs and Expected Outputs {#CA-i-o}
+### Required Inputs and Expected Outputs {#CA-i-o}
 Our inputs will be:
 
 - a CSV file with the locations of our resources ("chicago_methadone.csv"), and 
@@ -22,17 +26,8 @@ Our inputs will be:
 
 We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
 
-#### Install and load the packages {#CA-packages2}
-First, let's install the relevant R packages:
-
-```{r install, eval=FALSE}
-install.packages("sf")
-install.packages("tmap")
-install.packages("units")
-```
-
-
-Then load the libraries for use. (The message you see about GEOS, GDAL, and PROJ refer to the software libraries that allow you to work with spatial data.)
+### Load the packages {#CA-packages2}
+Load the libraries for use.
 
 ```{r load}
 library(sf)
@@ -40,105 +35,31 @@ library(tmap)
 library(units)
 ```
 
-## Read in resource data {#CA-read-resources}
-
-We will use a CSV of methadone clinic addresses in Chicago as an example. This file represents point locations of clinics.
-
-```{r read}
-methadone_clinics <- read.csv("data/chicago_methadone.csv")
-```
-
-Let's take a look at the first few rows of the dataset.
-
-```{r glimpse}
-head(methadone_clinics)
-```
-
-Our data has been geocoded, which means that it has latitude and longitude as columns associated with the address in the data. If you do not have this information, check the [Geocoding and Visualizing Point Data](#geocode-points) to geocode your data.
-
-Next we convert the dataframe of addresses to a spatial data frame using the `st_as_sf()` function. The `coords` argument specifies which two columns are the X and Y for your data. We set the `crs` argument equal to 4326 because this data is in latitude and longitude (otherwise known as "unprojected", which means it is not in feet or meters).
-
-```{r convert}
-meth_sf <- st_as_sf(methadone_clinics, 
-                    coords = c("Longitude", "Latitude"),
-                    crs = 4326)
-
-meth_sf
-```
-
-Note that this is a data frame, but that it has a final column called "geometry" that stores the spatial information.
-
-We can now plot the location of the methadone clinics with base R. We use the `st_geometry()` function to just get a single point map from the geographies.
+## Load data {#CA-read-resources}
+First, load in the MOUD resources shapefile. Let's take a look at the first few rows of the dataset.
 
 ```{r}
-plot(st_geometry(meth_sf))
+meth_sf <- st_read("methadoneClinics.shp")
+head(meth_sf)
 ```
 
-To make a slightly more interesting map, you can add an interactive basemap with tmap, using the `tmap_mode` function to change to "view" mode:
+If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](link to end of the geocoding tutorial).
 
-```{r}
-tmap_mode("view")
-
-tm_shape(meth_sf) +
-  tm_dots()
-```
-
-
-## Read in zip code data {#CA-read-zips}
-
-If you have zip code boundary data from the Census (or other relevant site), you can load them into R with the `read_sf` command. Boundary data is commonly stored in the **shapefile** format, which has both a spatial (.shp, .shx, .prj) and a flat-file (.dbf) component. Shapefiles are made of four files (.shp, .shx, .prj, .dbf), all which needed to be in the same folder for the file to be read.
+Next, we'll load Chicago zip code boundaries.
 
 ```{r read zips}
 chicago_zips <- read_sf("data/chicago_zips.shp")
 ```
 
-
-**Note:** If you do not have the zip boundary data, please see the [Get Geometry](#CD-get-geometry) from [Downloading Community Contextual Data] (#contextual-data) for instructions on how to pull them directly from the Census website into R.
-
-If we take a look at the top of the data, we can see that the zip codes have data attached to them. The last column is the "geometry" column, which stores the spatial data. 
-
-Additionally, there is a header with some spatial metadata about the data frame, including the type of geometry ("MULTIPOLYGON"), the bounding box (the square that surrounds your data), and the geographic projection (4326 is the shortcode reference for the string that starts "+proj=longlat +datum=WGS84 +no_defs"). Otherwise, this is just like your normal R tabular data frame.
-
+We can quickly plot our data for to confirm they loaded correctly, here using an interactive map:
 ```{r}
-head(chicago_zips)
-```
-
-We can check that we pulled the zip code data properly by plotting it. Again, we use the `st_geometry()` function to just get the outline of the geometries.
-
-```{r plot-zips}
-plot(st_geometry(chicago_zips))
-```
-
-We can add a second layer in blue with the access locations:
-
-```{r plot-zips-resources}
-plot(st_geometry(chicago_zips))
-plot(st_geometry(meth_sf), col = "blue", add = TRUE)
-```
-
-With multiple layers, it can be easier to use tmap to plot:
-
-```{r}
-tmap_mode("plot")
-
 tm_shape(chicago_zips) +
   tm_borders() +
 tm_shape(meth_sf) +
   tm_dots(col = "blue", size = 0.2)
 ```
 
-Again, we can create an interactive map with tmap:
-
-```{r plot-interactive-zips-resources}
-tmap_mode("view")
-tm_shape(chicago_zips) +
-  tm_borders() +
-tm_shape(meth_sf) +
-  tm_dots()
-```
-
-
-## Calculate centroids of zip code boundaries {#CA-calculate-centroids}
+## Calculate centroids  {#CA-calculate-centroids}
 
 Now, we will calculate the centroids of the zip code boundaries. We will first need to project our data, which means change it from latitude and longitude to meaningful units, like ft or meters, so we can calculate distance properly. We'll use the Illinois State Plane projection, with an EPSG code of 3435.
 
@@ -168,6 +89,8 @@ Plot to double check that everything is ok. The `st_geometry()` function will on
 plot(st_geometry(chicago_zips))
 plot(st_geometry(chicago_centroids), add = TRUE, col = "red")
 ```
+
+### Visualize & Confirm 
 
 Once again, we can create an interactive map:
 
@@ -251,6 +174,7 @@ min_dists_mi <- set_units(min_dists, "mi")
 min_dists_mi
 ```
 
+### Merge data back to Area Data 
 We then rejoin the minimum distances to the zip code data, by column binding `min_dists_mi` to the original `chicago_zips` data.
 
 ```{r rejoin}
@@ -258,6 +182,7 @@ min_dist_sf <- cbind(chicago_zips, min_dists_mi)
 min_dist_sf
 ```
 
+### Visualize & Confirm
 We can now visualize the zip-level access to methadone clinics using our new access metric, using the `tmap` package.
 
 ```{r}
@@ -275,7 +200,7 @@ Access by zip code can also be combined with locations of resources:
 
 ```{r}
 tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", 
+  tm_polygons("min_dists_mi", style = 'jenks',
               title = "Minimum Distance (mi)") +
   tm_shape(meth_sf) +
   tm_dots(size = 0.2) +
@@ -285,7 +210,11 @@ tm_shape(min_dist_sf) +
 ```
 
 
-## Save Data {-#CA-save}
+```{r}
+head(chicago_zips)
+```
+
+## Save Data {#CA-save}
 
 To save our final result to a CSV, use the `layer_options = "GEOMETRY=AS_XY"` command. Note that this option only works when you are working with point data.
 
