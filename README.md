@@ -16,7 +16,7 @@ You can download data files from [here](https://uchicago.app.box.com/folder/1236
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
 | 1 | Enabling Spatial Data (R) | Qinyun | Marynia  | Revision  |
-| 2 | Geocoding Resources (R) | Moksha  | Marynia  | Complete  |
+| 2 | Geocoding Resources (R) | Moksha  | Marynia  | Needs Final Review  |
 | 3 | Buffer Analysis (R) |  Marynia |  - | Needs Review |
 | 4 | Link Community Data | Marynia  | -  | In Progress  |
 | 5 | Census Data Handling (R) |  Moksha |  Marynia | In Review  |
