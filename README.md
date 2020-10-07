@@ -15,14 +15,14 @@ You can download data files from [here](https://uchicago.app.box.com/folder/1236
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Enabling Spatial Data (R) | Marynia | Moksha  | Planning  |
-| 2 | Geocoding and Visualizing Point Data (R) | Moksha  | Marynia  | In Review  |
-| 3 | Linking Community Contextual Data (R)  | Moksha  | Qinyun  | Planning |
-| 4 | Buffer Analysis (R) |  Marynia |  Moksha | Planning |
-| 5 | Spatial Joins (R) | Marynia  | Qinyun  | Planning  |
-| 6 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
-| 7 | Census Data Wrangling (R) |  Moksha |  Qinyun | In Review  |
-| 8 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | In Review  |
+| 1 | Enabling Spatial Data (R) | Qinyun | Marynia  | Revision  |
+| 2 | Geocoding Resources (R) | Moksha  | Marynia  | Complete  |
+| 3 | Buffer Analysis (R) |  Marynia |  - | Needs Review |
+| 4 | Link Community Data | Marynia  | -  | In Progress  |
+| 5 | Census Data Handling (R) |  Moksha |  Marynia | In Review  |
+| 6 | Thematic Mapping (R) |  Moksha |  Marynia | Revision  |
+| 7 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | Revision  |
+| 8 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
 | 9 | Advanced Access Metrics (python) | Moksha  | Marynia |  Planning |
 | 10 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
 

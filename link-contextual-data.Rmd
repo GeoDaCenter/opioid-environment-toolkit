@@ -1,1 +1,94 @@
-# Link-contextual-data or Join {-}
+# Link Community Data {}
+
+## Overview 
+
+Stuff
+
+* items
+
+## Environment Setup 
+To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
+
+### Packages used 
+We will use the following packages in this tutorial:
+
+- `sf`: to manipulate spatial data
+- `tmap`: to visualize and create maps
+- `units`: to convert units within spatial data
+
+### Required Inputs and Expected Outputs  
+Our inputs will be:
+
+- a SHP zip code boundary file ("chicago_zips.shp"), a
+- a CSV file with COVID case data from the city data portal, and 
+- a SHP file with the locations of our resources ("methadoneClinics.shp"),  
+
+We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
+
+### Load the packages 
+Load the libraries for use.
+
+```{r load}
+library(sf)
+library(tmap)
+```
+
+## Load data 
+First we'll load the update zip code dataset from a previous labs.
+
+```{r}
+chicago_zips <- read_sf("data/chicago_zips.shp")
+str(chicago_zips)
+```
+```{r}
+meth_sf <- st_read("methadoneClinics.shp")
+```
+
+Next, we'll load some new data we're interested in joining in: Chicago COVID-19 Cases, Tests, and Deaths by ZIP Code, found on the city data portal [here](https://data.cityofchicago.org/Health-Human-Services/COVID-19-Cases-Tests-and-Deaths-by-ZIP-Code/yhhz-zm2v). We'll load in a CSV and inspect the data:
+
+```{r}
+COVID <- read.csv("data/COVID-19_Cases__Tests__and_Deaths_by_ZIP_Code.csv")
+str(COVID)
+```
+
+## Clean & Merge Data
+
+```{r}
+#COVID1 <- COVID[, c("`ZIP Code`", "`Percent Tested Positive - Cumulative`","Population")]
+#head(COVID1)
+head(chicago_zips)
+```
+
+```{r}
+COVID$GEOID10<- as.character(COVID$ZIP.Code)
+```
+
+Let's merge the data using the zip code geographic identifier, "ZIP Code" field, to bring in the the Percent Tested Positive - Cumalative dataset.
+
+```{r}
+new <- merge(chicago_zips, COVID, by = "GEOID10")
+head(new)
+
+```
+
+
+```{r}
+new$COVIDCaseRt <- new$Case.Rate...Cumulative 
+str(new)
+
+union.buffers<- st_read("data/mclinicarea.shp")
+
+```
+
+
+## Visualize Data
+
+```{r}
+tm_shape(new) +
+  tm_polygons("COVIDCaseRt", style="jenks", pal="BuPu",
+              title = "COVID Case Rate") +
+  tm_shape(union.buffers) + tm_borders(col = "blue") +
+  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.2) 
+```
+
+

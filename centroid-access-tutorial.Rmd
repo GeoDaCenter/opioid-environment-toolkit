@@ -216,14 +216,14 @@ head(chicago_zips)
 
 ## Save Data {#CA-save}
 
-To save our final result to a CSV, use the `layer_options = "GEOMETRY=AS_XY"` command. Note that this option only works when you are working with point data.
+To save our final result to a CSV:
 
 ```{r, eval=FALSE, write-csv}
-write_sf(min_dist_sf, "min_dist.csv", layer_options = "GEOMETRY=AS_XY")
+write_sf(min_dist_sf, "chizips_Access.csv")
 ```
 
 We can also write out this data to a shapefile format:
 
 ```{r, eval=FALSE, write-shp}
-write_sf(min_dist_sf, "min_dists_sf.shp")
+write_sf(min_dist_sf, "chizips_Access.shp")
 ```
