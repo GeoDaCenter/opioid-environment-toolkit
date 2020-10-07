@@ -140,3 +140,6 @@ tm_shape(Areas) +  tm_borders()+
   tm_shape(MetClinics.3435) + tm_dots(col = "red", size = 0.4) 
 ```
 
+```{r}
+#st_write(union.buffers, "data/mclinicarea.shp")
+```
