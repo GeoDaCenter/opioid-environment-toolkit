@@ -119,9 +119,9 @@ methadoneClinics[2,'fullAdd'] <- '4545 North Broadway St.,Chicago IL 60640'
 Now we can geocode the full suite of addresses with success:
 
 ```{r}
-#geoCodedClinics <- methadoneClinics %>% 
-#                            geocode(methadoneClinics, address = 'fullAdd', 
-#                                    lat = latitude, long = longitude, method = 'cascade')
+geoCodedClinics <- methadoneClinics %>% 
+                            geocode(methadoneClinics, address = 'fullAdd', 
+                                    lat = latitude, long = longitude, method = 'cascade')
 geoCodedClinics
 ```
 

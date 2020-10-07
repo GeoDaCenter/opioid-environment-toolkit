@@ -1,0 +1,141 @@
+
+# Buffer Analysis
+
+## Overview
+
+Once we have 
+Our objectives are thus to:
+
+* 
+
+## Environment Setup 
+To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
+
+### Load Libraries 
+We will use the following packages in this tutorial:
+  
+- `sf`: to manipulate spatial data
+- `tmap`: to visualize and create maps
+- `tidygeocoder`: to convert addresses to geographic coordinates
+
+First, load the required libraries.
+
+```{r warning = FALSE}
+library(sf)
+library(tidygeocoder)
+library(tmap)
+```
+
+### Load Data
+
+We will use the shapefile of spatially enabled resource data, `methadoneClinics.shp`, generated from our previous tutorial. A copy of the shapefile can also be found [here](), but note that all four files are required (.dbf, .prj, .shp, and .shx) to consitute a shapefile. As a reminder, this shapefile includes methadone clinics in Chicago as our working example. 
+
+If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](link to end of the geocoding tutorial).
+
+First, load in the MOUD resources shapefile. Let's take a look at the first few rows of the dataset.
+
+```{r}
+MetClinics <- st_read("methadoneClinics.shp")
+head(MetClinics)
+```
+
+Next, we load a shapefile of Chicago community areas. You can often find shapefiles (or spatial data formats like geojson) on city data portals for direct download. In our case, we used the data provided on the [City of Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6), though we will walk you through downloading zip code boundaries directly through the Census via R in a later tutorial.
+
+```{r}
+Areas <- st_read("data/geo_export_8027c825-e55a-4218-aac1-2d7676ad1b47.shp")
+head(Areas)
+```
+
+
+## Simple Overlay Map
+
+We can plot these quickly using the `tmap` library to ensure they are overlaying correctly. If they are, our coordinate systems are working correctly.  
+
+When using `tmap` the first parameter references the spatial file we'd like to map (`tm_shape`), and the next parameter(s) indicate how we want to style the data. For polygons, we can style `tm_borders` to have a slightly transparent boundary. For the point data, we will use red dots that are sized appropriately using the `tm_dots` parameter. When working with `tmap` or any other library for the first time, it's helpful to review the [documentation]() and related tutorials for more tips on usability. 
+
+```{r}
+## 1st layer (gets plotted first)
+tm_shape(Areas) + tm_borders(alpha = 0.4) + 
+  
+  ## 2nd layer (overlay)
+  tm_shape(MetClinics) + tm_dots(size = 0.4, col="red") 
+```
+
+## Spatial Transformation
+
+Next, we check the Coordinate Reference System for our data. Are the coordinate systems for clinic **points** and community **areas** the same? For R to treat both coordinate reference systems the same, the metadata has to be exact. 
+
+```{r}
+st_crs(MetClinics) 
+```
+```{r}
+st_crs(Areas)
+```
+
+We can see that while both have a code of 4326 and appear to both be WGS84 systems, they are not encoded in exactly the same why. Thus, R will treat them differently -- which will pose problems for spatial analysis that interacts these two layers. One way of resolving this challenge is to **transform the spatial reference system** so that they are exact.
+
+To complicate matters, we are also interested in generating a buffer to approximate a "service area" around each methadone provider. If we want to use a buffer of two miles, we will need to use a spatial data reference system that uses an appropriate distance metric, like feet or meters. As noted in the previous tutorial the WGS84 coordinate reference system uses degrees, and is not an appropriate CRS for the spatial analysis we require.
+
+Thus, our next goal is to transform both spatial data files into a new, standardized CRS.
+
+### Transform CRS 
+
+To calculate buffers, we will need to convert to a different CRS that preserves distance. Trying using a search engine like Google with search terms "CRS Illinois ft", for example, to look for a code that provides what we need. After searching, we found EPSG:3435 uses feet for a distance metric. We'll use that!
+
+First, set a new CRS.
+
+```{r}
+CRS.new <- st_crs("EPSG:3435")
+```
+
+Next, transform both datasets to your new CRS.
+
+```{r}
+MetClinics.3435 <- st_transform(MetClinics, CRS.new)
+Areas.3435 <- st_transform(Areas, CRS.new)
+```
+
+Check the CRS of both datasets again. If they are identical you're ready to move onto the next step!
+
+## Generate Buffers 
+
+```{r}
+# Create 2-mile buffers for each house point
+MetClinic_buffers <- st_buffer(MetClinics.3435, 10560)
+```
+
+Inspect the structure of the object you just created. Note that this is a *new* data object, represented as a polygon. Each buffer around each point is a separate entity.
+
+### Visualize buffers
+
+```{r}
+# Map in tmap
+tm_shape(Areas.3435) + tm_borders() +
+  tm_shape(MetClinics.3435) + tm_dots(col = "blue") +
+  tm_shape(MetClinic_buffers) + tm_borders(col = "red") 
+```
+
+```{r}
+# Map Housing Buffers
+tm_shape(Areas) + tm_borders() +
+  tm_shape(MetClinic_buffers) + tm_fill(col = "blue", alpha = .4) + tm_borders(col = "blue") +
+  tm_shape(MetClinics.3435) + tm_dots(col = "red") 
+```
+
+
+### Merge buffers
+
+```{r}
+union.buffers <- st_union(MetClinic_buffers)
+```
+
+
+### Visualize union of buffers
+
+```{r}
+# Map Housing Buffers
+tm_shape(Areas) +  tm_borders()+
+  tm_shape(union.buffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
+  tm_shape(MetClinics.3435) + tm_dots(col = "red", size = 0.4) 
+```
+
