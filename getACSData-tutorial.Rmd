@@ -240,14 +240,12 @@ zctaShp <- merge(zctaShp, zctaDf, by.x  = 'GEOID10', by.y = 'GEOID', all.x = TRU
 write_sf(countyShp, "data/Chicago_Zip_PCI_18.shp")
 ```
 
+Now we can finally filter the zipcodes for Chicago. and save the census tract results with geometry in a shapefile using `write_sf`. 
 
-Now we can finally filter the zipcodes for Chicago and save the census tract results with geometry in a shapefile using `write_sf`. 
 ```{r eval = TRUE}
 zipChicagoShp <- merge(zctaShp %>% filter(str_detect(GEOID10,"^606")), 
                        zipChicagoDf, by.x  = 'GEOID10', by.y = 'GEOID', all.x = TRUE) %>%
                   select(GEOID10,totPop18,perCapInc)
-
-write_sf(zipChicagoShp, "data/Chicago_Zip_PCI_18.shp")
 ```
 
 ### Using tidycensus {}
@@ -292,6 +290,15 @@ zipChicagoShp <- get_acs(geography = 'zcta', variables = c(totPop18 = "B01001_00
                   filter(str_detect(GEOID,"^606")) %>%
                   select(GEOID,totPop18,perCapitaInc)
 head(zipChicagoShp)
+```
+
+
+## Save Data
+
+Let's save the final shapefile of ZCTA scale data for future use, using `write_sf`. 
+
+```{r eval = TRUE}
+write_sf(zipChicagoShp, "data/chizips_ACS.shp")
 ```
 
 

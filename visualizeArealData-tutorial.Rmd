@@ -2,44 +2,44 @@
 
 ## Overview {#TM-research-question}
 
-Once we have downloaded the contextual data and generated the access metrics, we can start visualizing them to identify any spatial patterns. This can help identify whether a variable is homogeneously distributed across space or do we see clustering & spatial heterogeneity. In this tutorial we will cover methods to plot data variables spatially i.e. create thematic maps, technically known as choropleth maps. We will cover the most commonly used types of choropleth mapping techniques employed in R. Please note the methods covered here are mere an introduction to spatial plotting. Thus, in this tutorial our objectives are to:  
+Once we have downloaded the contextual data and generated the access metrics, we can start visualizing them to identify any spatial patterns. This can help identify whether a variable is homogeneously distributed across space or do we see clustering & spatial heterogeneity. In this tutorial we will cover methods to plot data variables spatially i.e. create thematic maps, technically known as **choropleth maps**. We will cover the most commonly used types of choropleth mapping techniques employed in R. Please note the methods covered here are an introduction to spatial plotting. In this tutorial our objectives are to:  
 
-* Plot basic thematic map
-* Visualize spatial distributions using thematic maps
+* Generate a choropleth map
+* Visualize spatial distributions of data
+* Test sensitivty of various thresholds
 
 ## Environment Setup {#TM-setup}
 
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {#TM-packages1}
+### Input/Output {#TM-i-o}
+We will using the per capita income data for the City of Chicago downloaded & saved as a shapefile in the [Census Data Wrangling](#contextual-data). These files can also be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data). Our input is:
+
+- Chicago Zip Codes with per capita income, `chizips_ACS.shp` 
+
+Our output will be three thematic maps highlighting the distribution of per capita income at a zip code level across the city of Chicago.
+
+### Load the packages {#TM-packages2}
 We will use the following packages in this tutorial:
   
 - `tidyverse`: to manipulate data
 - `tmap`: to visualize and create maps
 - `sf`: to read/write and manipulate spatial data
 
-#### Required Inputs and Expected Outputs {#TM-i-o}
-We will using the per capita income data for the City of Chicago downloaded & saved as a shapefile in the [Census Data Wrangling](#contextual-data). Our inputs will be :
+Load the libraries required.
 
-- a zip code boundary file with per capita income ("Chicago_Zip_PCI_18.shp"). 
-
-Our output will be three thematic maps highlighting the distribution of per capita income at a zip code level across the city of Chicago.
-
-#### Load libraries {#TM-packages2}
-First, load the libraries required.
-
-```{r load, message=FALSE}
+```{r load, warning = FALSE, messages=FALSE}
 library(tidyverse)
 library(tmap)
 library(sf)
 ```
 
-## Load data {#TM-load-variables}
+### Load data {#TM-load-variables}
 
 We will read in the shapefile with the per capita income at the zipcode level for the city of Chicago for year 2018.
 
 ``` {r}
-chicagoZips <- st_read("data/Chicago_Zip_PCI_18.shp")
+chicagoZips <- st_read("data/chizips_ACS.shp")
 head(chicagoZips)
 ```
 
@@ -82,7 +82,7 @@ We will be plotting the spatial distribution of variable perCapIncome for the ci
 2. Natural Breaks
 3. Standard Deviation  
 
-For detailed documentation on choropleth mapping and methods use check [GeoDa Center Documentation](https://geodacenter.github.io/workbook/3a_mapping/lab3a.html#thematic-maps-overview).
+For a more detailed overview of choropleth mapping and methods, check out the related [GeoDa Center Documentation](https://geodacenter.github.io/workbook/3a_mapping/lab3a.html#thematic-maps-overview).
 
 ### Quantile {#TM-quantile-plot} 
 
