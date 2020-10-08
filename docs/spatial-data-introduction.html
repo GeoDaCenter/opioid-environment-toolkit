@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8</title>
+  <title>1 Spatial Data Introduction | index.split</title>
   <meta name="description" content="<span style='color: #982568; font-size:42px'>Opioid Environment Toolkit
 </style>" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8" />
+  <meta property="og:title" content="1 Spatial Data Introduction | index.split" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8" />
+  <meta name="twitter:title" content="1 Spatial Data Introduction | index.split" />
   
   
   
@@ -190,13 +190,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="buffer_analysis.html"><a href="buffer_analysis.html#rinse-repeat"><i class="fa fa-check"></i><b>3.6</b> Rinse &amp; Repeat</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="link-contextual-data.html"><a href="link-contextual-data.html"><i class="fa fa-check"></i><b>4</b> Link Community Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
-<li class="chapter" data-level="4.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#environment-setup-1"><i class="fa fa-check"></i><b>4.2</b> Environment Setup</a><ul>
+<li class="chapter" data-level="4.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#environment-setup"><i class="fa fa-check"></i><b>4.2</b> Environment Setup</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#packages-used"><i class="fa fa-check"></i><b>4.2.1</b> Packages used</a></li>
 <li class="chapter" data-level="4.2.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#required-inputs-and-expected-outputs"><i class="fa fa-check"></i><b>4.2.2</b> Required Inputs and Expected Outputs</a></li>
 <li class="chapter" data-level="4.2.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-the-packages"><i class="fa fa-check"></i><b>4.2.3</b> Load the packages</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-data-1"><i class="fa fa-check"></i><b>4.3</b> Load data</a></li>
+<li class="chapter" data-level="4.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#load-data"><i class="fa fa-check"></i><b>4.3</b> Load data</a></li>
 <li class="chapter" data-level="4.4" data-path="link-contextual-data.html"><a href="link-contextual-data.html#clean-merge-data"><i class="fa fa-check"></i><b>4.4</b> Clean &amp; Merge Data</a></li>
 <li class="chapter" data-level="4.5" data-path="link-contextual-data.html"><a href="link-contextual-data.html#visualize-data"><i class="fa fa-check"></i><b>4.5</b> Visualize Data</a></li>
 </ul></li>
@@ -217,7 +217,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#using-tigris"><i class="fa fa-check"></i><b>5.5.1</b> Using tigris</a></li>
 <li class="chapter" data-level="5.5.2" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#using-tidycensus"><i class="fa fa-check"></i><b>5.5.2</b> Using tidycensus</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#save-data-1"><i class="fa fa-check"></i><b>5.6</b> Save Data</a></li>
+<li class="chapter" data-level="5.6" data-path="buffer_analysis.html"><a href="buffer_analysis.html#save-data"><i class="fa fa-check"></i><b>5.6</b> Save Data</a></li>
 <li class="chapter" data-level="5.7" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-appendix"><i class="fa fa-check"></i><b>5.7</b> Appendix</a><ul>
 <li class="chapter" data-level="5.7.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-explore-variables"><i class="fa fa-check"></i><b>5.7.1</b> Explore variables</a></li>
 </ul></li>
@@ -292,15 +292,57 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="spatial-data-types" class="section level2">
 <h2><span class="header-section-number">1.3</span> Spatial data types</h2>
-<p>Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. The figure below shows 7 commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.</p>
-<p><img src="img/geometryfeature.png" width="638" /></p>
+<p>Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. Below we use <code>sf</code> to plot some commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># create a XY point</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">point &lt;-<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># create a multipoint that includes five points</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">multipoint &lt;-<span class="st"> </span><span class="kw">st_multipoint</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>)))</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">plot</span>(point, <span class="dt">main =</span> <span class="st">&quot;point&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">plot</span>(multipoint, <span class="dt">main =</span> <span class="st">&quot;multipoint&quot;</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># create a linestring by combining three points</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">linestring &lt;-<span class="st"> </span><span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)))</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># create a multilinestring</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">multilinestring &lt;-<span class="st"> </span><span class="kw">st_multilinestring</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)),</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                                       <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))))</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">plot</span>(linestring, <span class="dt">main =</span> <span class="st">&quot;linestring&quot;</span>)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">plot</span>(multilinestring, <span class="dt">main =</span> <span class="st">&quot;multistring&quot;</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># create a polygon </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">polygon &lt;-<span class="st"> </span><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))))</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># create multipolygon</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">multipolygon &lt;-<span class="st"> </span><span class="kw">st_multipolygon</span>(<span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))), <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)))))</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">plot</span>(polygon, <span class="dt">main =</span> <span class="st">&quot;polygon&quot;</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">plot</span>(multipolygon, <span class="dt">main =</span> <span class="st">&quot;multipolygon&quot;</span>)</a></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
 <p>The figure above is from <a href="https://geocompr.robinlovelace.net/spatial-class.html#intro-sf">Chapter 2 Geographic data in R</a> of the Lovelace et al 2019 text, <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>. This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R &amp; spatial analysis skills.</p>
 </div>
 <div id="SD-crs" class="section level2">
 <h2><span class="header-section-number">1.4</span> Coordinate Reference System</h2>
 <p>As noted before, the most fundamental element of a spatial data is “location.” A <strong>Coordinate Reference System (CRS)</strong> communicates what method should be used to flatten or project the Earth’s surface onto a 2-dimensional map.</p>
 <p>Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out <a href="https://futuremaps.com/blogs/news/top-10-world-map-projections">here</a> for more different world map projections!)</p>
-<p><img src="img/world.png" width="1007" /></p>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="img/worldproject1.jpg" alt="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)" width="1024" />
+<p class="caption">
+Figure 1.1: <a href="https://www.flickr.com/photos/34197995@N02/9514590409">The whole wide world</a> by <a href="https://www.flickr.com/photos/34197995@N02">PeterFisken</a> is under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="img/worldproject2.jpg" alt="[Peters Projection World Map (35'x51')](https://www.flickr.com/photos/35468141938@N01/3714559813) by [inju](https://www.flickr.com/photos/35468141938@N01) is under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich)" width="500" />
+<p class="caption">
+Figure 1.2: <a href="https://www.flickr.com/photos/35468141938@N01/3714559813">Peters Projection World Map (35’x51’)</a> by <a href="https://www.flickr.com/photos/35468141938@N01">inju</a> is under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich">CC BY-NC-SA 2.0</a>
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="img/worldproject3.jpg" alt="[Hammond Cylindrical Projection World Map 1905](https://www.flickr.com/photos/14277117@N03/4775662240) by [perpetualplum](https://www.flickr.com/photos/14277117@N03) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)" width="1022" />
+<p class="caption">
+Figure 1.3: <a href="https://www.flickr.com/photos/14277117@N03/4775662240">Hammond Cylindrical Projection World Map 1905</a> by <a href="https://www.flickr.com/photos/14277117@N03">perpetualplum</a> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
+</p>
+</div>
 <p>Because different CRS imply different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any advanced spatial analysis or geometric processing. In <code>sf</code>, you can use the function <code>st_crs</code> to check the CRS used in one data, and the function <code>st_transform</code> to project the data to a particular CRS. See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that demonstrates these functions.</p>
 <p>The CRS concept can be tricky to comprehend and utilize in practice, so we will come back to this several times in our tutorials.</p>
 </div>
