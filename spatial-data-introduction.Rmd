@@ -6,7 +6,7 @@ Spatial data refers to data that contain information about specific locations, a
 For the purpose of this tutorial, we will only briefly introduce some important concepts in spatial data. See Further Resources if you would like to learn more about these concepts. 
 
 ## Spatial data formats {#SD-vector-data}
-Spatial data can be stored in a text file such as comma-sperated values file (CSV). However, the text file needs to have essential location columns with latitude and longitude to represent the coordinate location of a spatial object. Importantly, a CSV file with lat/long columns is only a flat file/non-spatial, unless the spatial location context is enabled.
+Spatial data can be stored in a text file such as comma-sperated values (CSV) files. However, the text file needs to have essential location columns with latitude and longitude to represent the coordinate location of a spatial object. Importantly, a CSV file with lat/long columns is only a flat/non-spatial file, unless the spatial location context is enabled.
 
 R's spatial ecosystem has been rapidly evolving. The package `sf` is well known for unifying interface to other important spatial data analysis packages, including `sp`, `rgdal`, and `rgeos`, so that one would not need to switch "context" in mind when calling functions from different packages.
 
@@ -18,27 +18,26 @@ There are other spatial data formats as well such as geojson and KML. We focus o
 
 ## Spatial data types
 
-Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. 
+Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. The figure below shows 7 commonly used geometry types based on points, lines, and polygons.   
 
-Include a picture of point, line, polygon... 
+```{r, echo=F}
+knitr::include_graphics('img/geometryfeature.png')
+```
 
-Link to more resources...
+The figure is from this [Chapter 2 Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf). This book [Geocomputation with R](https://geocompr.robinlovelace.net/) is also an incredible source for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling.
 
 ## Coordiante Reference System {#SD-crs}
 As noted before, the most fundamental element of a spatial data is "location." Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth's surface onto a 2-dimensional map.
 
 Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out [here](https://futuremaps.com/blogs/news/top-10-world-map-projections) for more different world map projections!)
 
+```{r, echo=F}
+knitr::include_graphics('img/world.png')
+```
 
+Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices. In `sf`, you can use the function `st_crs` to check the CRS used in one data, and the function `st_transform` to project the data to a particular CRS. See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that demonstrates these functions.  
 
-
-Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices.
-
-Add some pretty pictures for reference... 
-
-In `sf`, you can use the function `st_crs` to check the CRS used in one data, and the function `st_transform` to project the data to a particular CRS. See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that demonstrates these functions.  
-
-The CRS concept can be tricky to comprehend and utilize in practice, so we come back to this several times in our tutorials... 
+The CRS concept can be tricky to comprehend and utilize in practice, so we will come back to this several times in our tutorials. 
 
 ## Further resources {-#SD-appendix}
 * See [Chapter 2 Geographic data in R in Geocomputation with R](https://geocompr.robinlovelace.net/spatial-class.html) for more info about [Vector data](https://geocompr.robinlovelace.net/spatial-class.html#vector-data), [Raster data](https://geocompr.robinlovelace.net/spatial-class.html#raster-data), and [Coordiante Reference Systems](https://geocompr.robinlovelace.net/spatial-class.html#raster-data). 

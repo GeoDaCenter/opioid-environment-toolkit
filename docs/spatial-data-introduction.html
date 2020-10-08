@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Spatial Data Introduction | Opioid Environment Toolkit</title>
   <meta name="description" content="1 Spatial Data Introduction | Opioid Environment Toolkit" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Spatial Data Introduction | Opioid Environment Toolkit" />
   <meta property="og:type" content="book" />
@@ -166,8 +166,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="buffer_analysis.html"><a href="buffer_analysis.html#rinse-repeat"><i class="fa fa-check"></i><b>2.6</b> Rinse &amp; Repeat</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="link-contextual-data.html"><a href="link-contextual-data.html"><i class="fa fa-check"></i><b>3</b> Link Community Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
-<li class="chapter" data-level="3.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#environment-setup-1"><i class="fa fa-check"></i><b>3.2</b> Environment Setup</a><ul>
+<li class="chapter" data-level="3.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#environment-setup"><i class="fa fa-check"></i><b>3.2</b> Environment Setup</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#packages-used"><i class="fa fa-check"></i><b>3.2.1</b> Packages used</a></li>
 <li class="chapter" data-level="3.2.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#required-inputs-and-expected-outputs"><i class="fa fa-check"></i><b>3.2.2</b> Required Inputs and Expected Outputs</a></li>
 <li class="chapter" data-level="3.2.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-the-packages"><i class="fa fa-check"></i><b>3.2.3</b> Load the packages</a></li>
@@ -234,7 +234,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="SD-vector-data" class="section level2">
 <h2><span class="header-section-number">1.2</span> Spatial data formats</h2>
-<p>Spatial data can be stored in a text file such as comma-sperated values file (CSV). However, the text file needs to have essential location columns with latitude and longitude to represent the coordinate location of a spatial object. Importantly, a CSV file with lat/long columns is only a flat file/non-spatial, unless the spatial location context is enabled.</p>
+<p>Spatial data can be stored in a text file such as comma-sperated values (CSV) files. However, the text file needs to have essential location columns with latitude and longitude to represent the coordinate location of a spatial object. Importantly, a CSV file with lat/long columns is only a flat/non-spatial file, unless the spatial location context is enabled.</p>
 <p>R’s spatial ecosystem has been rapidly evolving. The package <code>sf</code> is well known for unifying interface to other important spatial data analysis packages, including <code>sp</code>, <code>rgdal</code>, and <code>rgeos</code>, so that one would not need to switch “context” in mind when calling functions from different packages.</p>
 <p>In R ecosystem, data frame is used to store data tables. A data frame represents data in a format of table where the columns are vectors with the same length and each vector/column contains a single type of data. When we use data frames for statistical anlayses, each column/vector usually represents one variable, such as age (numeric vector) or name (character vector). In <code>sf</code>, simple feature objects in spatial data are also stored in a data frame, with one vector/column containing geographic data, which is usually named as “geometry” or “geom”.</p>
 <p>The most common spatial data format is the shapefile, which comes from ESRI/ArcGIS proprietary software. The shapefile file format (.shp for short) includes a minimum of 4 files, with a common prefix and different filename extensions <code>.shp</code>, <code>.shx</code>, <code>.dbf</code>, and <code>.prj</code>. In order to work with the spatial data, we need all these four components of the shapefile stored in the same directory, so that the software (such as R) can know how to project spatial objects onto a geographic or coordinate space (i.e., spatial location context is enabled).</p>
@@ -242,18 +242,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="spatial-data-types" class="section level2">
 <h2><span class="header-section-number">1.3</span> Spatial data types</h2>
-<p>Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons.</p>
-<p>Include a picture of point, line, polygon…</p>
-<p>Link to more resources…</p>
+<p>Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. The figure below shows 7 commonly used geometry types based on points, lines, and polygons.</p>
+<p><img src="img/geometryfeature.png" width="638" /></p>
+<p>The figure is from this <a href="https://geocompr.robinlovelace.net/spatial-class.html#intro-sf">Chapter 2 Geographic data in R</a>. This book <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> is also an incredible source for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling.</p>
 </div>
 <div id="SD-crs" class="section level2">
 <h2><span class="header-section-number">1.4</span> Coordiante Reference System</h2>
 <p>As noted before, the most fundamental element of a spatial data is “location.” Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth’s surface onto a 2-dimensional map.</p>
 <p>Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out <a href="https://futuremaps.com/blogs/news/top-10-world-map-projections">here</a> for more different world map projections!)</p>
-<p>Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices.</p>
-<p>Add some pretty pictures for reference…</p>
-<p>In <code>sf</code>, you can use the function <code>st_crs</code> to check the CRS used in one data, and the function <code>st_transform</code> to project the data to a particular CRS. See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that demonstrates these functions.</p>
-<p>The CRS concept can be tricky to comprehend and utilize in practice, so we come back to this several times in our tutorials…</p>
+<p><img src="img/world.png" width="1007" /></p>
+<p>Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices. In <code>sf</code>, you can use the function <code>st_crs</code> to check the CRS used in one data, and the function <code>st_transform</code> to project the data to a particular CRS. See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that demonstrates these functions.</p>
+<p>The CRS concept can be tricky to comprehend and utilize in practice, so we will come back to this several times in our tutorials.</p>
 </div>
 <div id="SD-appendix" class="section level2 unnumbered">
 <h2>Further resources</h2>
