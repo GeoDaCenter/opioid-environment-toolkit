@@ -92,7 +92,7 @@ st_crs(Areas)
 
 We can see that while both have a code of 4326 and appear to both be WGS84 systems, they are not encoded in exactly the same why. Thus, R will treat them differently -- which will pose problems for spatial analysis that interacts these two layers. One way of resolving this challenge is to **transform the spatial reference system** so that they are exact.
 
-To complicate matters, we are also interested in generating a buffer to approximate a "service area" around each methadone provider. If we want to use a buffer of two miles, we will need to use a spatial data reference system that uses an appropriate distance metric, like feet or meters. As noted in the previous tutorial the WGS84 coordinate reference system uses degrees, and is not an appropriate CRS for the spatial analysis we require.
+To complicate matters, we are also interested in generating a buffer to approximate a "service area" around each methadone provider. If we want to use a buffer of a mile, we will need to use a spatial data reference system that uses an appropriate distance metric, like feet or meters. As noted in the previous tutorial the WGS84 coordinate reference system uses degrees, and is not an appropriate CRS for the spatial analysis we require.
 
 Thus, our next goal is to transform both spatial data files into a new, standardized CRS.
 
@@ -126,9 +126,12 @@ We use the `st_buffer` function to create a buffer, and use 5280 feet to equal o
 MetClinic_buffers <- st_buffer(MetClinics.3435, 5280)
 ```
 
-Inspect the structure of the object you just created. Note that this is a *new* data object, represented as a polygon. Each buffer around each point is a separate entity.
+Inspect the structure of the object you just created. Note that this is a *new* data object, represented as multiple polygons (rather than multiple points). Each buffer around each point is a separate entity.
 
 ### Visualize buffers
+Always visualize a spatial object when calculating one, to confirm it worked correctly. If your buffers are much larger or smaller than expected, it's often a case of mistaken CRS or projection. Retransform your data, and try again.
+
+We use `tmap` again, in the static plot mode. We layer our zip code areas, then providers, and then finally the buffers. We use red to color clinics, and blue to color buffers. 
 
 ```{r}
 tmap_mode("plot")
@@ -138,6 +141,7 @@ tm_shape(Areas.3435) + tm_borders() +
   tm_shape(MetClinic_buffers) + tm_borders(col = "blue") 
 ```
 
+While this map shows our buffers were calculated correctly, the default settings make it difficult to view. To improve aesthetics we change the transparency of zip code boundaries by adjusting the alpha level. We add a fill to the buffers, and make it transparent. We increase the size of the points. 
 
 ```{r}
 # Map Housing Buffers
@@ -146,16 +150,18 @@ tm_shape(Areas) + tm_borders(alpha = 0.6) +
   tm_shape(MetClinics.3435) + tm_dots(col = "red",  size = 0.2) 
 ```
 
-### Merge buffers
+### Buffer union
+While individual buffers are interesting and can be useful to consider overlapping service areas, we are also interested in getting a sense of which areas fall within a 1-mile service area in our study region -- or not. For this, we need to to use a **union** spatial operation. This will flatten all the individual buffers into one entity. 
 
 ```{r}
 union.buffers <- st_union(MetClinic_buffers)
 ```
 
+Inspect the data structures of `MetClinic_buffers` and `union.buffers` to see what happens to the data in this step.
 
+Finally, we map the buffer union. 
 
 ```{r}
-# Map Housing Buffers
 tm_shape(Areas) +  tm_borders()+
   tm_shape(union.buffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
   tm_shape(MetClinics.3435) + tm_dots(col = "red", size = 0.4) 
@@ -169,11 +175,11 @@ We will save the merged 1-mile buffers to bring into maps for future analysis. T
 ```
 
 
-
 ## Rinse & Repeat
 From here, we can generate additional buffers to compare access associations and generate multiple visuals.
 
 We generate a two-mile buffer to add:
+
 ```{r}
 MetClinic_2mbuffers <- st_buffer(MetClinics.3435, 10560)
 ```
