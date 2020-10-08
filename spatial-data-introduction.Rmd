@@ -3,18 +3,18 @@
 ## Defining spatial data  {#SD-spatial-data}
 Spatial data refers to data that contain information about specific locations, and the information content of the data may change with location. In other words, "information" and "location" are two important elements in spatial data. In some occassions, spatial data may only include "location." But without "location," the data is no longer spatial anymore. For example, a spatial data that describes the resource distribution of Medications for Opioid Overuse Disorder (MOUDs) must contain location information of these MOUD resources, otherwise the data becomes a non-spatial list of those resources. 
 
-For the purpose of this tutorial, we will only briefly introduce some important concept in spatial data. See Further Resources if you would like to learn more about these concepts. 
+For the purpose of this tutorial, we will only briefly introduce some important concepts in spatial data. See Further Resources if you would like to learn more about these concepts. 
 
 ## Spatial data formats {#SD-vector-data}
-Define how this is different from a CSV... 
+Spatial data can be stored in a text file such as comma-sperated values file (CSV). However, the text file needs to have essential location columns with latitude and longitude to represent the coordinate location of a spatial object. Importantly, a CSV file with lat/long columns is only a flat file/non-spatial, unless the spatial location context is enabled.
 
-Explain how sf is a spatial data format within R ecosystem...
+R's spatial ecosystem has been rapidly evolving. The package `sf` is well known for unifying interface to other important spatial data analysis packages, including `sp`, `rgdal`, and `rgeos`, so that one would not need to switch "context" in mind when calling functions from different packages.
 
-The most common spatial data format is the shapefile, from ESRI/ArcGIS proprietary software... 
+In R ecosystem, data frame is used to store data tables. A data frame represents data in a format of table where the columns are vectors with the same length and each vector/column contains a single type of data. When we use data frames for statistical anlayses, each column/vector usually represents one variable, such as age (numeric vector) or name (character vector). In `sf`, simple feature objects in spatial data are also stored in a data frame, with one vector/column containing geographic data, which is usually named as "geometry" or "geom". 
 
-The shapefile format consists of a collection of files with a common prefix, stored in the same directory. Three mandary files have filename extensions `.shp`, `.shx`, and `.dbf`. In many scenarios, these files are compressed into one file (such as `.zip` and `.tar.gz`). 
+The most common spatial data format is the shapefile, which comes from ESRI/ArcGIS proprietary software. The shapefile file format (.shp for short) includes a minimum of 4 files, with a common prefix and different filename extensions `.shp`, `.shx`, `.dbf`, and `.prj`. In order to work with the spatial data, we need all these four components of the shapefile stored in the same directory, so that the software (such as R) can know how to project spatial objects onto a geographic or coordinate space (i.e., spatial location context is enabled).     
 
-There are other formats as well like geojson, KML, etc but we focus on sf (within R) and shapefile (as file format) here.
+There are other spatial data formats as well such as geojson and KML. We focus on `sf` (within R) and shapefile (as file format) here.
 
 ## Spatial data types
 
@@ -25,7 +25,14 @@ Include a picture of point, line, polygon...
 Link to more resources...
 
 ## Coordiante Reference System {#SD-crs}
-As noted before, the most fundamental element of a spatial data is "location." Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth's surface onto a 2-dimensional map. Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices.
+As noted before, the most fundamental element of a spatial data is "location." Coordinate reference system (CRS) tells your mapping software (such as R) what method should be used to flatten or project the Earth's surface onto a 2-dimensional map.
+
+Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out [here](https://futuremaps.com/blogs/news/top-10-world-map-projections) for more different world map projections!)
+
+
+
+
+Because different CRS implies different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any spatial joining practices.
 
 Add some pretty pictures for reference... 
 
@@ -33,9 +40,7 @@ In `sf`, you can use the function `st_crs` to check the CRS used in one data, an
 
 The CRS concept can be tricky to comprehend and utilize in practice, so we come back to this several times in our tutorials... 
 
-## Contributors and Further Resources {-#SD-contributors}
-
-#### Further resources {-#SD-appendix}
+## Further resources {-#SD-appendix}
 * See [Chapter 2 Geographic data in R in Geocomputation with R](https://geocompr.robinlovelace.net/spatial-class.html) for more info about [Vector data](https://geocompr.robinlovelace.net/spatial-class.html#vector-data), [Raster data](https://geocompr.robinlovelace.net/spatial-class.html#raster-data), and [Coordiante Reference Systems](https://geocompr.robinlovelace.net/spatial-class.html#raster-data). 
 * See this [Software Carpentry workshop](https://datacarpentry.org/organization-geospatial/03-crs/index.html) for more explanations to better understand coordinate reference systems. 
 * See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that uses `sf` package to project spatial data in R.  
