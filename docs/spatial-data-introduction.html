@@ -140,6 +140,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-basics"><i class="fa fa-check"></i>Software Basics</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#author-team"><i class="fa fa-check"></i>Author Team</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i><b>1</b> Spatial Data Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-spatial-data"><i class="fa fa-check"></i><b>1.1</b> Defining spatial data</a></li>
@@ -299,26 +300,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="spatial-data-types" class="section level2">
 <h2><span class="header-section-number">1.3</span> Spatial data types</h2>
-<p>Two common formats of spatial data are vector and raster data. Vector data represents the world using <strong>point, line, and polygon</strong> objects whereas raster data can be satellite imagery or other pixelated surfaces. We focus on vector data in this toolkit. A group of clinics can be geocoded and converted to points, whereas zip code boundaries are represented as polygons. Note that spatial data types include the basic attributes <em>in addition to</em> their spatial information. So points on a map correspond to associated details for each clinic provider, and may also include fields like "name", "services", and more.</p>
+<p>Two common formats of spatial data are vector and raster data. Vector data represents the world surface using <strong>points, lines, and polygons</strong> whereas raster data can be satellite imagery or other pixelated surface. A group of clinics can be geocoded and converted to points, whereas zip code boundaries are represented as polygons. Note that spatial data types include the basic attributes <em>in addition to</em> their spatial information. So points on a map correspond to associated details for each clinic provider, and may also include fields like “name”, “services”, and more.</p>
 <p>Read more regarding vector and raster data from <a href="https://geocompr.robinlovelace.net/spatial-class.html#intro-sf">Chapter 2 Geographic data in R</a> of the Lovelace et al 2019 text, <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>. This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R &amp; spatial analysis skills.</p>
 </div>
 <div id="SD-crs" class="section level2">
 <h2><span class="header-section-number">1.4</span> Coordinate Reference System</h2>
 <p>As noted before, the most fundamental element of a spatial data is “location.” A <strong>Coordinate Reference System (CRS)</strong> communicates what method should be used to flatten or project the Earth’s surface onto a 2-dimensional map.</p>
 <p>Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are some world maps using different projections. (Check out <a href="https://futuremaps.com/blogs/news/top-10-world-map-projections">here</a> for more different world map projections.)</p>
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
 <img src="img/worldproject1.jpg" alt="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)"  />
 <p class="caption">
 Figure 1.1: <a href="https://www.flickr.com/photos/34197995@N02/9514590409">The whole wide world</a> by <a href="https://www.flickr.com/photos/34197995@N02">PeterFisken</a> is under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="img/worldproject2.jpg" alt="[Peters Projection World Map (35'x51')](https://www.flickr.com/photos/35468141938@N01/3714559813) by [inju](https://www.flickr.com/photos/35468141938@N01) is under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich)"  />
 <p class="caption">
 Figure 1.2: <a href="https://www.flickr.com/photos/35468141938@N01/3714559813">Peters Projection World Map (35’x51’)</a> by <a href="https://www.flickr.com/photos/35468141938@N01">inju</a> is under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich">CC BY-NC-SA 2.0</a>
 </p>
 </div>
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
 <img src="img/worldproject3.jpg" alt="[Hammond Cylindrical Projection World Map 1905](https://www.flickr.com/photos/14277117@N03/4775662240) by [perpetualplum](https://www.flickr.com/photos/14277117@N03) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)"  />
 <p class="caption">
 Figure 1.3: <a href="https://www.flickr.com/photos/14277117@N03/4775662240">Hammond Cylindrical Projection World Map 1905</a> by <a href="https://www.flickr.com/photos/14277117@N03">perpetualplum</a> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>

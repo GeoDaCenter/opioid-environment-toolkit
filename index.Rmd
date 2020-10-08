@@ -30,6 +30,10 @@ This toolkit was developed for the [JCOIN network](https://heal.nih.gov/research
 
 JCOIN is part of the of the NIH HEAL Initiative. The Helping to End Addiction Long-term Initiative<sup>SM</sup>, or NIH HEAL Initiative<sup>SM</sup>, supports a wide range of programs to develop new or improved prevention and treatment strategies for opioid addiction.
 
+## Acknowledgements {-}
+
+This research was supported by the National Institutes of Health through the NIH HEAL Initiative under award number U2CDA050098. The contents of this publication are solely the responsibility of the authors and do not necessarily represent the official views of the NIH, the NIH HEAL Initiative, or the participating sites.
+
 ***
 
 ```{r, echo=F}

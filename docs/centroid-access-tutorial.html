@@ -140,6 +140,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-basics"><i class="fa fa-check"></i>Software Basics</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#author-team"><i class="fa fa-check"></i>Author Team</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html"><i class="fa fa-check"></i><b>1</b> Spatial Data Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-spatial-data"><i class="fa fa-check"></i><b>1.1</b> Defining spatial data</a></li>
@@ -357,7 +358,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb151-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb151-3" data-line-number="3"><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
 <a class="sourceLine" id="cb151-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="CA-calculate-centroids" class="section level2">
 <h2><span class="header-section-number">7.4</span> Calculate centroids</h2>
@@ -676,7 +677,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb184-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
 <a class="sourceLine" id="cb184-5" data-line-number="5">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
 <a class="sourceLine" id="cb184-6" data-line-number="6">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Access by zip code can also be combined with locations of resources:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n=</span><span class="dv">5</span>,</a>
@@ -686,7 +687,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb185-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
 <a class="sourceLine" id="cb185-7" data-line-number="7">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
 <a class="sourceLine" id="cb185-8" data-line-number="8">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">head</span>(chicago_zips)</a></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 9 fields
 ## geometry type:  MULTIPOLYGON
