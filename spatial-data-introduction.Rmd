@@ -20,10 +20,32 @@ We recommend using the `str` function in R to familiarize yourself with data obj
 
 ## Spatial data types
 
-Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. The figure below shows 7 commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.  
+Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. Below we use `sf` to plot some commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.  
 
-```{r, echo=F}
-knitr::include_graphics('img/geometryfeature.png')
+```{r}
+library(sf)
+# create a XY point
+point <- st_point(c(2,4))
+# create a multipoint that includes five points
+multipoint <- st_multipoint(rbind(c(2,2), c(2, 4), c(4, 2), c(4, 4), c(3,3)))
+par(mfrow=c(1, 2))
+plot(point, main = "point")
+plot(multipoint, main = "multipoint")
+# create a linestring by combining three points
+linestring <- st_linestring(rbind(c(2,1), c(2,2), c(2,3)))
+# create a multilinestring
+multilinestring <- st_multilinestring(list(rbind(c(2,1), c(2,2), c(2,3)),
+                                       rbind(c(2,4), c(4,3))))
+par(mfrow=c(1,2))
+plot(linestring, main = "linestring")
+plot(multilinestring, main = "multistring")
+# create a polygon 
+polygon <- st_polygon(list(rbind(c(1,1), c(1, 4), c(4, 4), c(4, 1), c(1,1))))
+# create multipolygon
+multipolygon <- st_multipolygon(list(list(rbind(c(1, 5), c(2, 2), c(4, 1), c(4, 4), c(1, 5))), list(rbind(c(0, 2), c(1, 2), c(1, 2), c(0, 4), c(0, 2)))))
+par(mfrow=c(1,2))
+plot(polygon, main = "polygon")
+plot(multipolygon, main = "multipolygon")
 ```
 
 The figure above is from [Chapter 2 Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf) of the Lovelace et al 2019 text, [Geocomputation with R](https://geocompr.robinlovelace.net/). This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R & spatial analysis skills.
@@ -33,8 +55,14 @@ As noted before, the most fundamental element of a spatial data is "location." A
 
 Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out [here](https://futuremaps.com/blogs/news/top-10-world-map-projections) for more different world map projections!)
 
-```{r, echo=F}
-knitr::include_graphics('img/world.png')
+```{r, echo=F, fig.cap="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich)"}
+knitr::include_graphics('img/worldproject1.jpg')
+```
+```{r, echo=F, fig.align = 'center', fig.cap="[Peters Projection World Map (35'x51')](https://www.flickr.com/photos/35468141938@N01/3714559813) by [inju](https://www.flickr.com/photos/35468141938@N01) is under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=rich)"}
+knitr::include_graphics('img/worldproject2.jpg')
+```
+```{r, echo=F, fig.cap="[Hammond Cylindrical Projection World Map 1905](https://www.flickr.com/photos/14277117@N03/4775662240) by [perpetualplum](https://www.flickr.com/photos/14277117@N03) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich)"}
+knitr::include_graphics('img/worldproject3.jpg')
 ```
 
 Because different CRS imply different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any advanced spatial analysis or geometric processing. In `sf`, you can use the function `st_crs` to check the CRS used in one data, and the function `st_transform` to project the data to a particular CRS. See this [Interactive Tutorial](https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial) that demonstrates these functions.  
