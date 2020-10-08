@@ -16,11 +16,11 @@ A common spatial data format is the shapefile, which comes from ESRI/ArcGIS prop
 
 Why should you care about these computational components of spatial systems architecture? Spatial analysis often requires troubleshooting, and spatial formats can be complicated. 
 
-We recommend using the `str` function in R to familiarize yourself with data objects as you go, and to explore the data files as well. For example: a `shapefile` includes (at least) four components, separating the data as a .dbf file and projection information as a .prj file. In contrast, the `sf` spatial file loaded in your R environment is one unified object, has the spatial information recorded as a geometry field, and projection stored as metadata. 
+We recommend using the `str` function in R to familiarize yourself with data objects as you go, and to explore the data files as well. For example: a `shapefile` includes (at least) four components, separating the data as a `.dbf` file and projection information as a `.prj` file. In contrast, the `sf` spatial file loaded in your R environment is one unified object, has the spatial information recorded as a geometry field, and projection stored as metadata. 
 
 ## Spatial data types
 
-Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that crate an enclosed area can generate polygons. Below we use `sf` to plot some commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.  
+Two common formats of spatial data are vector and raster data. For the purpose of this tutorial, we will focus on vector data that represents the world surface using points, lines, and polygons. Connecting points can generate lines, and connecting lines that create an enclosed area can generate polygons. Below we use `sf` to create some commonly used geometry types based on points, lines, and polygons. For our purposes, think of further simplifying these to points, lines, and polygons. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons.  
 
 ```{r}
 library(sf)
@@ -48,12 +48,12 @@ plot(polygon, main = "polygon")
 plot(multipolygon, main = "multipolygon")
 ```
 
-The figure above is from [Chapter 2 Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf) of the Lovelace et al 2019 text, [Geocomputation with R](https://geocompr.robinlovelace.net/). This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R & spatial analysis skills.
+Read more regarding vector and raster data from [Chapter 2 Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf) of the Lovelace et al 2019 text, [Geocomputation with R](https://geocompr.robinlovelace.net/). This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R & spatial analysis skills.
 
 ## Coordinate Reference System {#SD-crs}
 As noted before, the most fundamental element of a spatial data is "location." A **Coordinate Reference System (CRS)** communicates what method should be used to flatten or project the Earth's surface onto a 2-dimensional map.
 
-Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are two world maps using different projections. (Check out [here](https://futuremaps.com/blogs/news/top-10-world-map-projections) for more different world map projections!)
+Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are some world maps using different projections. (Check out [here](https://futuremaps.com/blogs/news/top-10-world-map-projections) for more different world map projections.)
 
 ```{r, echo=F, fig.cap="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich)"}
 knitr::include_graphics('img/worldproject1.jpg')

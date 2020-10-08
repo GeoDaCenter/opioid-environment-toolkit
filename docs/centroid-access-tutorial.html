@@ -350,7 +350,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb118-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb118-3" data-line-number="3"><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
 <a class="sourceLine" id="cb118-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 <div id="CA-calculate-centroids" class="section level2">
 <h2><span class="header-section-number">7.4</span> Calculate centroids</h2>
@@ -733,7 +733,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb151-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
 <a class="sourceLine" id="cb151-5" data-line-number="5">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
 <a class="sourceLine" id="cb151-6" data-line-number="6">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>Access by zip code can also be combined with locations of resources:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
 <a class="sourceLine" id="cb152-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>,</a>
@@ -743,7 +743,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb152-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
 <a class="sourceLine" id="cb152-7" data-line-number="7">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
 <a class="sourceLine" id="cb152-8" data-line-number="8">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="kw">head</span>(chicago_zips)</a></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 9 fields
 ## geometry type:  MULTIPOLYGON
