@@ -2,93 +2,149 @@
 
 ## Overview 
 
-Stuff
+Geographic location can serve as a "key" that links different datasets together. By referencing each dataset and enabling its spatial location, we can **integrate different types of information** in one setting. In this tutorial, we will use the approximated "service areas" generated in our buffer analysis to identify vulnerable populations during the COVID pandemic. We will connect Chicago COVID-19 Case data by ZIP Code, available as a flat file on the [city's data portal](https://data.cityofchicago.org/Health-Human-Services/COVID-19-Cases-Tests-and-Deaths-by-ZIP-Code/yhhz-zm2v), to our environment. 
 
-* items
+We will then overlap the 1-mile buffers representing walkable access to the Methadone providers in the city. We use a conservative threshold because of the multiple challenges posed by the COVID pandemic that may impact travel. 
+
+Our final goal will be to identify zip codes most impacted by COVID that are outside our acceptable access threshold. Our tutorial objectives are to:
+
+* Clean data in preparation of merge
+* Integrate data using geographic identifiers
+* Generate maps for a basic gap analysis
 
 ## Environment Setup 
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-### Packages used 
+### Input/Output {#BA-i-o}
+Our inputs include multiple CSV and SHP files, all of which can be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data), though the providers point file was generated in the Geocoding tutorial. Note that all four files are required (.dbf, .prj, .shp, and .shx) to constitute a shapefile. 
+
+* Chicago Methadone Clinics, `methadoneClinics.shp`
+* 1-mile buffer zone of Clinics, `methadoneClinics_1mi.shp`
+* Chicago Zip Codes, `chicago_zips.shp`
+* Chicago COVID case data by Zip, `COVID-19_Cases__Tests__and_Deaths_by_ZIP_Code.csv`
+
+We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
+
+### Load Libraries  
 We will use the following packages in this tutorial:
 
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
 - `units`: to convert units within spatial data
 
-### Required Inputs and Expected Outputs  
-Our inputs will be:
-
-- a SHP zip code boundary file ("chicago_zips.shp"), a
-- a CSV file with COVID case data from the city data portal, and 
-- a SHP file with the locations of our resources ("methadoneClinics.shp"),  
-
-We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
-
-### Load the packages 
 Load the libraries for use.
 
-```{r load}
+```{r load, warning = FALSE, messages=FALSE}
 library(sf)
 library(tmap)
 ```
 
-## Load data 
-First we'll load the update zip code dataset from a previous labs.
+### Load data 
 
+First we'll load the shapefiles.
 ```{r}
-chicago_zips <- read_sf("data/chicago_zips.shp")
-str(chicago_zips)
-```
-```{r}
-meth_sf <- st_read("methadoneClinics.shp")
+chicago_zips <- st_read("data/chicago_zips.shp")
+meth_sf <- st_read("data/methadoneClinics.shp")
+buffers<- st_read("data/methadoneClinics_1mi.shp")
 ```
 
 Next, we'll load some new data we're interested in joining in: Chicago COVID-19 Cases, Tests, and Deaths by ZIP Code, found on the city data portal [here](https://data.cityofchicago.org/Health-Human-Services/COVID-19-Cases-Tests-and-Deaths-by-ZIP-Code/yhhz-zm2v). We'll load in a CSV and inspect the data:
 
 ```{r}
 COVID <- read.csv("data/COVID-19_Cases__Tests__and_Deaths_by_ZIP_Code.csv")
-str(COVID)
 ```
 
 ## Clean & Merge Data
 
+First, let's inspect COVID case data. What information do we need from this file? We may not need everything, so consider just identifying the field with the geographic identifier and main variable(s) of interest.
+
 ```{r}
-#COVID1 <- COVID[, c("`ZIP Code`", "`Percent Tested Positive - Cumulative`","Population")]
-#head(COVID1)
+head(COVID)
+```
+
+From this we can assess the need for the following variables: ZIP Code and Percent Tested Positive - Cumulative. Let's subset the data accordingly. Because this data file has extremely long header names (common in the epi world), let's use the `colnames` function to get exactly what we need.
+
+```{r}
+colnames(COVID)
+```
+
+### Subset Data
+We can now subset to just include the fields we need. There are many different ways to subset in R -- we just use one example here! Inspect your data to confirm it was pulled correctly. 
+```{r}
+COVID.sub <- COVID[, c("ZIP.Code", "Case.Rate...Cumulative")]
+head(COVID.sub)
+```
+
+### Identify Geographic Key
+Before merging, we need to first identify the **geographic identifier** we would like to merge on. It is the field "ZIP.Code" in our subset. What about the zip code file, which we will be merging to?
+
+```{r}
 head(chicago_zips)
 ```
 
-```{r}
-COVID$GEOID10<- as.character(COVID$ZIP.Code)
-```
-
-Let's merge the data using the zip code geographic identifier, "ZIP Code" field, to bring in the the Percent Tested Positive - Cumalative dataset.
+Aha -- in this dataset, the zip is identified as either the ZCTA5CE10 field or GEOID10 field. Not that we are actually working with 5-digit ZCTA fields, not 9-digit ZIP codes... We decide to merge on the GEOID10 field. To make our lives easier, we'll generate a duplicate field in our subset with a new name, GEOID10, to match. We also convert from the factor structure to a character field to match the data structure of the master zip file.
 
 ```{r}
-new <- merge(chicago_zips, COVID, by = "GEOID10")
-head(new)
-
+COVID.sub$GEOID10<- as.character(COVID.sub$ZIP.Code)
 ```
 
+### Merge Data
+Let's merge the data using the zip code geographic identifier, "ZIP Code" field, to bring in the the Percent Tested Positive - Cumalative dataset. Inspect the data to confirm it merged correctly!
 
 ```{r}
-new$COVIDCaseRt <- new$Case.Rate...Cumulative 
-str(new)
-
-union.buffers<- st_read("data/mclinicarea.shp")
-
+zips_merged <- merge(chicago_zips, COVID.sub, by = "GEOID10")
+head(zips_merged)
 ```
 
+```
 
 ## Visualize Data
-
+Now we are ready to visualize our data! First we'll make a simple map. We generate a choropleth map of case rate data using quantile bins, and the Blue-Purple color palette. You can find an R color cheatsheet useful for identifying palette codes [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf). (More details on thematic mapping are in tutorials that follow!) We overlay the buffers and clincal providers.
 ```{r}
-tm_shape(new) +
-  tm_polygons("COVIDCaseRt", style="jenks", pal="BuPu",
+tm_shape(zips_merged) +
+  tm_polygons("Case.Rate...Cumulative", style="quantile", pal="BuPu",
               title = "COVID Case Rate") +
-  tm_shape(union.buffers) + tm_borders(col = "blue") +
+  tm_shape(buffers) + tm_borders(col = "blue") +
   tm_shape(meth_sf) + tm_dots(col = "black", size = 0.2) 
 ```
 
+Already we can generate some insight. Areas on the far West side of the city have some of the highest case rates, but are outside a walkable distance to Methadone providers. For individuals with opioid use disorder requiring medication access in these locales, they may be especially vulnerable during the pandemic. 
+
+Next, we adjust some `tmap` parameters to improve our map. Now we switch to a red-yellow-green palette, and specify six bins for our quantile map. We flip the direction of the palette using a negative sign, so that red corresponds to areas with higher rates. We adjust transparency using an `alpha` parameter, and line thickness using the `lwd` parameter.
+
+```{r}
+tm_shape(zips_merged) +
+  tm_fill("Case.Rate...Cumulative", style="quantile", n=6, pal="-RdYlGn",
+              title = "COVID Case Rate",alpha = 0.8) + 
+  tm_borders(lwd = 0) + 
+  tm_shape(buffers) + tm_borders(col = "gray") + tm_fill(alpha=0.5) +
+  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.1) 
+```
+
+To improve our map even further, let's make in interactive! By switching the `tmap_mode` function to "view" (from "plot" the default), our newly rendered map is not interactive. We can zoom in and out, click on different basemaps or turn layers on our off, and click on resources for more information. 
+
+```{r}
+tmap_mode("view")
+
+tm_shape(zips_merged) +
+  tm_fill("Case.Rate...Cumulative", style="quantile", n=6, pal="-RdYlGn",
+              title = "COVID Case Rate",alpha = 0.8) + 
+  tm_borders(lwd = 0) + 
+  tm_shape(buffers) + tm_borders(col = "gray") + tm_fill(alpha=0.5) +
+  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.1) +   
+  tm_layout(main.title = "Walkable Methadone Service Areas in Chicago",
+            main.title.position = "center",
+            main.title.size = 1,
+            frame = FALSE)
+```
+
+
+Using this approach, it's clear that the zip codes on the West Side most vulnerable are 60651, 60644, 60632, and 60629. By updating the thresholds and parameters further, these can shift as well to be more or less conservative based on our assumptions.
+
+## Save Data
+We save our newly merged ZCTA level data for future analysis.
+
+```{r}
+write_sf(zips_merged, "data/chizips_COVID.shp")
+```
 

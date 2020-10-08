@@ -187,11 +187,12 @@ MetClinic_2mbuffers <- st_buffer(MetClinics.3435, 10560)
 And then leverage tmap parameter specifications to further customize the a map showing multiple buffers. Here, we add the City of Chicago boundary and soften the zip code boundaries. We add a bounding box for the first zip code layer, so that the whole map is centered around the city boundary (even those the zip codes are layered first). We adjust the transparency of the buffer fills, use different colors, and adjust borders to make the visuals pop. We use the `tmap_layout` function to take away the frame, add and position a title. Explore the `tmap` documentation further to find additional options for legends and more. To find color options in R, there are multiple guides online (like [this](https://bookdown.org/hneth/ds4psy/D-2-apx-colors-essentials.html) one).
 
 ```{r}
+tmap_mode("plot")
 tm_shape(Areas, bbox=CityBoundary) + tm_borders(alpha = 0.2) +
-  tm_shape(CityBoundary) + tm_borders() +
-  tm_shape(MetClinic_2mbuffers) + tm_fill(col = "lightblue1", alpha = .4) + tm_borders(col = "dimgray", alpha = .4) +
-  tm_shape(MetClinic_buffers) + tm_fill(col = "blue", alpha = .4) + tm_borders(col = "blue") +
-  tm_shape(MetClinics.3435) + tm_dots(col = "darkslategray",  size = 0.2) +   
+  tm_shape(CityBoundary) + tm_borders(lwd = 1.5) +
+  tm_shape(MetClinic_2mbuffers) + tm_fill(col = "gray10", alpha = .4) + tm_borders(col = "dimgray", alpha = .4) +
+  tm_shape(MetClinic_buffers) + tm_fill(col = "gray90", alpha = .4) + tm_borders(col = "darkslategray") +
+  tm_shape(MetClinics.3435) + tm_dots(col = "red",  size = 0.2) +   
   tm_layout(main.title = "Methadone Clinic Service Areas in Chicago",
             main.title.position = "center",
             main.title.size = 1,
