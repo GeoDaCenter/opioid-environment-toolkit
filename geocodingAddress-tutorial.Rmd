@@ -16,7 +16,9 @@ Our objectives are thus to:
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
 ### Input/Output {#GA-i-o}
-Our inputs will be a **CSV** file that include addresses of our resources ("chicago_methadone.csv"). To access the test dataset for this tutorial, please download [here]().
+Our input will be a **CSV** file that include addresses of our resources. This files can be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data).
+
+* Chicago Methadone Clinics, `chicago_methadone.csv`
 
 We will convert these addresses to geographic coordinates using an appropriate coordinate reference system (CRS), and then spatially enable the data for mapping. We will then export the spatial dataframe as a **shapefile**.
 
@@ -29,7 +31,7 @@ We will use the following packages in this tutorial:
 
 Then load the libraries for use. *Note:* The messages you see about GEOS, GDAL, and PROJ refer to software libraries that allow you to work with spatial data.
 
-```{r load}
+```{r warning = FALSE, messages=FALSE}
 library(sf)
 library(tidygeocoder)
 library(tmap)
@@ -153,7 +155,7 @@ tm_shape(methadoneSf) + tm_dots() + tm_basemap("OpenStreetMap")
 ### Convert to Shapefile
 Finally, we save this spatial dataframe as a shapefile which can be used for further spatial analysis.
 ```{r write shp,eval= FALSE}
-write_sf(methadoneSf, "methadoneClinics.shp")
+write_sf(methadoneSf, "data/methadoneClinics.shp")
 ```
 
 

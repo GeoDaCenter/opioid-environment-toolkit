@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Spatial Data Introduction | Opioid Environment Toolkit</title>
-  <meta name="description" content="1 Spatial Data Introduction | Opioid Environment Toolkit" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8</title>
+  <meta name="description" content="<span style='color: #982568; font-size:48px'>Opioid Environment Toolkit
+</style>" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Spatial Data Introduction | Opioid Environment Toolkit" />
+  <meta property="og:title" content="1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +17,12 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Spatial Data Introduction | Opioid Environment Toolkit" />
+  <meta name="twitter:title" content="1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8" />
   
   
   
 
-<meta name="author" content="Created by : Center for Spatial Data Science" />
+<meta name="author" content="Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : 2020-10-08" />
 
 
 
@@ -31,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="buffer_analysis.html"/>
+<link rel="next" href="geocodingAddress-tutorial.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -147,66 +148,87 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-crs"><i class="fa fa-check"></i><b>1.4</b> Coordiante Reference System</a></li>
 <li class="chapter" data-level="" data-path="spatial-data-introduction.html"><a href="spatial-data-introduction.html#SD-appendix"><i class="fa fa-check"></i>Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="buffer_analysis.html"><a href="buffer_analysis.html"><i class="fa fa-check"></i><b>2</b> Buffer Analysis</a><ul>
-<li class="chapter" data-level="2.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
-<li class="chapter" data-level="2.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#environment-setup"><i class="fa fa-check"></i><b>2.2</b> Environment Setup</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-i-o"><i class="fa fa-check"></i><b>2.2.1</b> Input/Output</a></li>
-<li class="chapter" data-level="2.2.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-lib"><i class="fa fa-check"></i><b>2.2.2</b> Load Libraries</a></li>
-<li class="chapter" data-level="2.2.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-data"><i class="fa fa-check"></i><b>2.2.3</b> Load Data</a></li>
+<li class="chapter" data-level="2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html"><i class="fa fa-check"></i><b>2</b> Geocoding Resource Locations</a><ul>
+<li class="chapter" data-level="2.1" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-research-question"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-setup"><i class="fa fa-check"></i><b>2.2</b> Environment Setup</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-i-o"><i class="fa fa-check"></i><b>2.2.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.2.2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-packages1"><i class="fa fa-check"></i><b>2.2.2</b> Load Libraries</a></li>
+<li class="chapter" data-level="2.2.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#load-data"><i class="fa fa-check"></i><b>2.2.3</b> Load Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#simple-overlay-map"><i class="fa fa-check"></i><b>2.3</b> Simple Overlay Map</a></li>
-<li class="chapter" data-level="2.4" data-path="buffer_analysis.html"><a href="buffer_analysis.html#spatial-transformation"><i class="fa fa-check"></i><b>2.4</b> Spatial Transformation</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#transform-crs"><i class="fa fa-check"></i><b>2.4.1</b> Transform CRS</a></li>
+<li class="chapter" data-level="2.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-geocode-addresses"><i class="fa fa-check"></i><b>2.3</b> Geocode addresses</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#quality-control"><i class="fa fa-check"></i><b>2.3.1</b> Quality Control</a></li>
+<li class="chapter" data-level="2.3.2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#selecting-geocoding-service"><i class="fa fa-check"></i><b>2.3.2</b> Selecting Geocoding Service</a></li>
+<li class="chapter" data-level="2.3.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#test-geocoding-service"><i class="fa fa-check"></i><b>2.3.3</b> Test Geocoding Service</a></li>
+<li class="chapter" data-level="2.3.4" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#prepare-input-parameter"><i class="fa fa-check"></i><b>2.3.4</b> Prepare input parameter</a></li>
+<li class="chapter" data-level="2.3.5" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#batch-geocoding"><i class="fa fa-check"></i><b>2.3.5</b> Batch Geocoding</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="buffer_analysis.html"><a href="buffer_analysis.html#generate-buffers"><i class="fa fa-check"></i><b>2.5</b> Generate Buffers</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#visualize-buffers"><i class="fa fa-check"></i><b>2.5.1</b> Visualize buffers</a></li>
-<li class="chapter" data-level="2.5.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#buffer-union"><i class="fa fa-check"></i><b>2.5.2</b> Buffer union</a></li>
-<li class="chapter" data-level="2.5.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#save-data"><i class="fa fa-check"></i><b>2.5.3</b> Save Data</a></li>
+<li class="chapter" data-level="2.4" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#GA-spatial-dataframe"><i class="fa fa-check"></i><b>2.4</b> Convert to Spatial Data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#spatial-reference-systems"><i class="fa fa-check"></i><b>2.4.1</b> Spatial Reference Systems</a></li>
+<li class="chapter" data-level="2.4.2" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#enable-points"><i class="fa fa-check"></i><b>2.4.2</b> Enable Points</a></li>
+<li class="chapter" data-level="2.4.3" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#visualize-points"><i class="fa fa-check"></i><b>2.4.3</b> Visualize Points</a></li>
+<li class="chapter" data-level="2.4.4" data-path="geocodingAddress-tutorial.html"><a href="geocodingAddress-tutorial.html#convert-to-shapefile"><i class="fa fa-check"></i><b>2.4.4</b> Convert to Shapefile</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="buffer_analysis.html"><a href="buffer_analysis.html#rinse-repeat"><i class="fa fa-check"></i><b>2.6</b> Rinse &amp; Repeat</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="link-contextual-data.html"><a href="link-contextual-data.html"><i class="fa fa-check"></i><b>3</b> Link Community Data</a><ul>
+<li class="chapter" data-level="3" data-path="buffer_analysis.html"><a href="buffer_analysis.html"><i class="fa fa-check"></i><b>3</b> Buffer Analysis</a><ul>
 <li class="chapter" data-level="3.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
 <li class="chapter" data-level="3.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#environment-setup"><i class="fa fa-check"></i><b>3.2</b> Environment Setup</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#packages-used"><i class="fa fa-check"></i><b>3.2.1</b> Packages used</a></li>
-<li class="chapter" data-level="3.2.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#required-inputs-and-expected-outputs"><i class="fa fa-check"></i><b>3.2.2</b> Required Inputs and Expected Outputs</a></li>
-<li class="chapter" data-level="3.2.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-the-packages"><i class="fa fa-check"></i><b>3.2.3</b> Load the packages</a></li>
+<li class="chapter" data-level="3.2.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-i-o"><i class="fa fa-check"></i><b>3.2.1</b> Input/Output</a></li>
+<li class="chapter" data-level="3.2.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-lib"><i class="fa fa-check"></i><b>3.2.2</b> Load Libraries</a></li>
+<li class="chapter" data-level="3.2.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#BA-data"><i class="fa fa-check"></i><b>3.2.3</b> Load Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-data"><i class="fa fa-check"></i><b>3.3</b> Load data</a></li>
-<li class="chapter" data-level="3.4" data-path="link-contextual-data.html"><a href="link-contextual-data.html#clean-merge-data"><i class="fa fa-check"></i><b>3.4</b> Clean &amp; Merge Data</a></li>
-<li class="chapter" data-level="3.5" data-path="link-contextual-data.html"><a href="link-contextual-data.html#visualize-data"><i class="fa fa-check"></i><b>3.5</b> Visualize Data</a></li>
+<li class="chapter" data-level="3.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#simple-overlay-map"><i class="fa fa-check"></i><b>3.3</b> Simple Overlay Map</a></li>
+<li class="chapter" data-level="3.4" data-path="buffer_analysis.html"><a href="buffer_analysis.html#spatial-transformation"><i class="fa fa-check"></i><b>3.4</b> Spatial Transformation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#transform-crs"><i class="fa fa-check"></i><b>3.4.1</b> Transform CRS</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html"><i class="fa fa-check"></i><b>4</b> Thematic Mapping</a><ul>
-<li class="chapter" data-level="4.1" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-research-question"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
-<li class="chapter" data-level="4.2" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-setup"><i class="fa fa-check"></i><b>4.2</b> Environment Setup</a></li>
-<li class="chapter" data-level="4.3" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-load-variables"><i class="fa fa-check"></i><b>4.3</b> Load data</a></li>
-<li class="chapter" data-level="4.4" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-mapping"><i class="fa fa-check"></i><b>4.4</b> Thematic Plotting</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-quantile-plot"><i class="fa fa-check"></i><b>4.4.1</b> Quantile</a></li>
-<li class="chapter" data-level="4.4.2" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-jenks-plot"><i class="fa fa-check"></i><b>4.4.2</b> Natural Breaks</a></li>
-<li class="chapter" data-level="4.4.3" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-stdev-plot"><i class="fa fa-check"></i><b>4.4.3</b> Standard Deviation</a></li>
+<li class="chapter" data-level="3.5" data-path="buffer_analysis.html"><a href="buffer_analysis.html#generate-buffers"><i class="fa fa-check"></i><b>3.5</b> Generate Buffers</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="buffer_analysis.html"><a href="buffer_analysis.html#visualize-buffers"><i class="fa fa-check"></i><b>3.5.1</b> Visualize buffers</a></li>
+<li class="chapter" data-level="3.5.2" data-path="buffer_analysis.html"><a href="buffer_analysis.html#buffer-union"><i class="fa fa-check"></i><b>3.5.2</b> Buffer union</a></li>
+<li class="chapter" data-level="3.5.3" data-path="buffer_analysis.html"><a href="buffer_analysis.html#save-data"><i class="fa fa-check"></i><b>3.5.3</b> Save Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-appendix"><i class="fa fa-check"></i><b>4.5</b> Appendix</a><ul>
+<li class="chapter" data-level="3.6" data-path="buffer_analysis.html"><a href="buffer_analysis.html#rinse-repeat"><i class="fa fa-check"></i><b>3.6</b> Rinse &amp; Repeat</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="link-contextual-data.html"><a href="link-contextual-data.html"><i class="fa fa-check"></i><b>4</b> Link Community Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#environment-setup-1"><i class="fa fa-check"></i><b>4.2</b> Environment Setup</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="link-contextual-data.html"><a href="link-contextual-data.html#packages-used"><i class="fa fa-check"></i><b>4.2.1</b> Packages used</a></li>
+<li class="chapter" data-level="4.2.2" data-path="link-contextual-data.html"><a href="link-contextual-data.html#required-inputs-and-expected-outputs"><i class="fa fa-check"></i><b>4.2.2</b> Required Inputs and Expected Outputs</a></li>
+<li class="chapter" data-level="4.2.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-the-packages"><i class="fa fa-check"></i><b>4.2.3</b> Load the packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="link-contextual-data.html"><a href="link-contextual-data.html#load-data-1"><i class="fa fa-check"></i><b>4.3</b> Load data</a></li>
+<li class="chapter" data-level="4.4" data-path="link-contextual-data.html"><a href="link-contextual-data.html#clean-merge-data"><i class="fa fa-check"></i><b>4.4</b> Clean &amp; Merge Data</a></li>
+<li class="chapter" data-level="4.5" data-path="link-contextual-data.html"><a href="link-contextual-data.html#visualize-data"><i class="fa fa-check"></i><b>4.5</b> Visualize Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html"><i class="fa fa-check"></i><b>5</b> Thematic Mapping</a><ul>
+<li class="chapter" data-level="5.1" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-research-question"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-setup"><i class="fa fa-check"></i><b>5.2</b> Environment Setup</a></li>
+<li class="chapter" data-level="5.3" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-load-variables"><i class="fa fa-check"></i><b>5.3</b> Load data</a></li>
+<li class="chapter" data-level="5.4" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-mapping"><i class="fa fa-check"></i><b>5.4</b> Thematic Plotting</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-quantile-plot"><i class="fa fa-check"></i><b>5.4.1</b> Quantile</a></li>
+<li class="chapter" data-level="5.4.2" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-jenks-plot"><i class="fa fa-check"></i><b>5.4.2</b> Natural Breaks</a></li>
+<li class="chapter" data-level="5.4.3" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-stdev-plot"><i class="fa fa-check"></i><b>5.4.3</b> Standard Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-appendix"><i class="fa fa-check"></i><b>5.5</b> Appendix</a><ul>
 <li class="chapter" data-level="" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-set-palette"><i class="fa fa-check"></i>Set Color Palette</a></li>
 <li class="chapter" data-level="" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html#TM-colorbrewer"><i class="fa fa-check"></i>Use ColorBrewer</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html"><i class="fa fa-check"></i><b>5</b> Min. Dist Access Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-research-question"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-setup"><i class="fa fa-check"></i><b>5.2</b> Environment Setup</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-packages1"><i class="fa fa-check"></i><b>5.2.1</b> Packages used</a></li>
-<li class="chapter" data-level="5.2.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-i-o"><i class="fa fa-check"></i><b>5.2.2</b> Required Inputs and Expected Outputs</a></li>
-<li class="chapter" data-level="5.2.3" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-packages2"><i class="fa fa-check"></i><b>5.2.3</b> Load the packages</a></li>
+<li class="chapter" data-level="6" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html"><i class="fa fa-check"></i><b>6</b> Min. Dist Access Analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-research-question"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-setup"><i class="fa fa-check"></i><b>6.2</b> Environment Setup</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-packages1"><i class="fa fa-check"></i><b>6.2.1</b> Packages used</a></li>
+<li class="chapter" data-level="6.2.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-i-o"><i class="fa fa-check"></i><b>6.2.2</b> Required Inputs and Expected Outputs</a></li>
+<li class="chapter" data-level="6.2.3" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-packages2"><i class="fa fa-check"></i><b>6.2.3</b> Load the packages</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-read-resources"><i class="fa fa-check"></i><b>5.3</b> Load data</a></li>
-<li class="chapter" data-level="5.4" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-calculate-centroids"><i class="fa fa-check"></i><b>5.4</b> Calculate centroids</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#visualize-confirm"><i class="fa fa-check"></i><b>5.4.1</b> Visualize &amp; Confirm</a></li>
+<li class="chapter" data-level="6.3" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-read-resources"><i class="fa fa-check"></i><b>6.3</b> Load data</a></li>
+<li class="chapter" data-level="6.4" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-calculate-centroids"><i class="fa fa-check"></i><b>6.4</b> Calculate centroids</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#visualize-confirm"><i class="fa fa-check"></i><b>6.4.1</b> Visualize &amp; Confirm</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-correct-projection"><i class="fa fa-check"></i><b>5.5</b> Standardize CRS</a></li>
+<li class="chapter" data-level="6.5" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-correct-projection"><i class="fa fa-check"></i><b>6.5</b> Standardize CRS</a></li>
 <li class="chapter" data-level="" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-distance"><i class="fa fa-check"></i>Calculate min distance</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#merge-data-back-to-area-data"><i class="fa fa-check"></i><b>5.5.1</b> Merge data back to Area Data</a></li>
-<li class="chapter" data-level="5.5.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#visualize-confirm-1"><i class="fa fa-check"></i><b>5.5.2</b> Visualize &amp; Confirm</a></li>
+<li class="chapter" data-level="6.5.1" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#merge-data-back-to-area-data"><i class="fa fa-check"></i><b>6.5.1</b> Merge data back to Area Data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#visualize-confirm-1"><i class="fa fa-check"></i><b>6.5.2</b> Visualize &amp; Confirm</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-save"><i class="fa fa-check"></i><b>5.6</b> Save Data</a></li>
+<li class="chapter" data-level="6.6" data-path="centroid-access-tutorial.html"><a href="centroid-access-tutorial.html#CA-save"><i class="fa fa-check"></i><b>6.6</b> Save Data</a></li>
 </ul></li>
 </ul>
 
@@ -217,7 +239,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Opioid Environment Toolkit</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><span style='color: #982568; font-size:48px'>Opioid Environment Toolkit
+</style></a>
           </h1>
         </div>
 
@@ -270,7 +293,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="buffer_analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="geocodingAddress-tutorial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

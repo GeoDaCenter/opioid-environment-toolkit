@@ -23,7 +23,7 @@ Our inputs will be two shapefiles, and a geojson (all spatial file formats). The
 
 We will generate a 1-mile buffer around each point, and generate maps with the zip code areas for context. We will also export the final buffer areas as another shapefile for future use. Finally, we'll generate a more beautiful map by including the city boundary.
 
-If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](link to end of the geocoding tutorial).
+If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](http://geodacenter.github.io/opioid-environment-toolkit/geocodingAddress-tutorial.html#GA-spatial-dataframe).
 
 ### Load Libraries {#BA-lib}
 We will use the following packages in this tutorial:

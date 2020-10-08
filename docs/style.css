@@ -17,38 +17,44 @@ body {
   text-align: justify;
 }
 
+title {
+  font-family: 'Montserrat', sans-serif;
+  color: #982568;
+  size: 50px;
+}
+
 h1 {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #373a3c;
   size: 40px;
 }
 
 h2 {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #373a3c;
   size: 28px;
 }
 
 h3 {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #818a91;
   size: 24px;
 }
 
 h4 {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #373a3c;
   size: 28px;
 }
 
 p {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #373a3c;
   size: 18px;
 }
 
 ul {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
   color: #373a3c;
   size: 18px;
 }
