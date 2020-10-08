@@ -68,7 +68,7 @@ tm_shape(chicagoZips) + tm_borders() + tm_layout(frame =  FALSE)
 In tmap, the classification scheme is set by the `style` option in `tm_fill()` and the default style is `pretty`. Lets plot the distribution of per capita income by zipcode across the city of Chicago with default style using the code below. We can also change the color palette used to depict the spatial distribution. See [Set Color Palette](#TM-set-palette) in Appendix for more details on that.
 
 ```{r plot pretty, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Pretty') + 
+tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Pretty') + 
 tm_borders() + 
 tm_layout(frame = FALSE, legend.outside = TRUE, legend.outside.position = 'right',
           legend.title.size = 0.9,
@@ -89,7 +89,7 @@ For a more detailed overview of choropleth mapping and methods, check out the re
 A quantile map is based on sorted values for the variable that are then grouped into bins such that each bin has the same number of observations. It is obtained by setting `style = 'quantile'` and `n = no of bins` arguments in tm_fill(). 
 
 ```{r plot quantile, message=FALSE, fig.align='center'}
-p1 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Quantile', 
+p1 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Quantile', 
                                 style = 'quantile', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -108,7 +108,7 @@ Natural breaks or jenks distribution uses a nonlinear algorithm to cluster data 
 As we can see, jenks method better classifies the dataset in review than the quantile distribution. There is no correct method to use and the choice of classification method is dependent on the problem & dataset used.
 
 ```{r plot jenks, message=FALSE, fig.align='center'}
-p2 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
+p2 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -126,7 +126,7 @@ A standard deviation map normalizes the dataset (mean = 0, stdev = 1) and transf
 The normalization process can create bins with negative values, which in this case don't necessarily make sense for the dataset, but it still helps identify the outliers.
 
 ```{r plot stdev, message=FALSE, fig.align='center'}
-p3 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Stdev', 
+p3 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
                                 style = 'sd') + tm_borders() + 
       tm_layout(frame = FALSE, legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -144,7 +144,7 @@ p3
 The range of colors used to depict the distribution in the map can be set by modifying the `palette` argument in tm_fill(). For example, we can use `Blues` palette to create the map below.
 
 ```{r plot palette, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
+tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'Blues') + tm_borders() + 
 tm_layout(frame = FALSE,legend.outside = TRUE, 
           legend.outside.position = 'right', legend.title.size =0.9,
@@ -168,7 +168,7 @@ RColorBrewer::display.brewer.pal(5,"PuBuGn")
 We can update the jenks map by using this sequential color scheme and changing the transparency using `alpha = 0.8` as below.
 
 ```{r plot jenks improved, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
+tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'PuBuGn') + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,
@@ -178,7 +178,7 @@ tm_layout(frame = FALSE,
 
 We can also update the stdev map by using a diverging color scheme as below.
 ```{r plot stdev improved, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Stdev', 
+tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
                                 style = 'sd', palette = '-RdBu', alpha = 0.9) + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,

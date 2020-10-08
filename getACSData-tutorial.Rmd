@@ -46,7 +46,7 @@ library(tigris)
 To be able to use the Census API, we need to signup for an API key. This key effectively is a string identifier for the server to communicate with your machine. A key can be obtained using an email from [here](http://api.census.gov/data/key_signup.html). Once we get the key, we can install it by running the code below.
 
 ```{r setup key, eval = FALSE}
-census_api_key("yourkeyhere", install = TRUE) # installs the key for future sessions. 
+#census_api_key("yourkeyhere", install = TRUE) # installs the key for future sessions. 
 ```
 
 In instances where we might not want to save our key in the .Renviron - for example, when using a shared computer, we can always reinstall the same key using the code above but with `install = FALSE`.
