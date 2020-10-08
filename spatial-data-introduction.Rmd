@@ -20,7 +20,7 @@ We recommend using the `str` function in R to familiarize yourself with data obj
 
 ## Spatial data types
 
-Two common formats of spatial data are vector and raster data. Vector data represents the world surface using **points, lines, and polygons** whereas raster data can be satellite imagery or other pixelated surface. We focus on vector data in this toolkit. A group of clinics can be geocoded and converted to points, whereas zip code boudnaries are represented as polygons. Note that spatial data types include the basic attributes *in addition to* their spatial information. So  point locations on a map correspond to the details fo each clinic provider, etc.
+Two common formats of spatial data are vector and raster data. Vector data represents the world surface using **points, lines, and polygons** whereas raster data can be satellite imagery or other pixelated surface. A group of clinics can be geocoded and converted to points, whereas zip code boundaries are represented as polygons. Note that spatial data types include the basic attributes *in addition to* their spatial information. So points on a map correspond to associated details for each clinic provider, and may also include fields like "name", "services", and more.
 
 Read more regarding vector and raster data from [Chapter 2 Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf) of the Lovelace et al 2019 text, [Geocomputation with R](https://geocompr.robinlovelace.net/). This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R & spatial analysis skills.
 
