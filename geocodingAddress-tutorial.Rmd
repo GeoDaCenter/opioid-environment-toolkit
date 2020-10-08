@@ -15,27 +15,17 @@ Our objectives are thus to:
 ## Environment Setup {#GA-setup}
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {#GA-packages1}
+### Input/Output {#GA-i-o}
+Our inputs will be a **CSV** file that include addresses of our resources ("chicago_methadone.csv"). To access the test dataset for this tutorial, please download [here]().
+
+We will convert these addresses to geographic coordinates using an appropriate coordinate reference system (CRS), and then spatially enable the data for mapping. We will then export the spatial dataframe as a **shapefile**.
+
+### Load Libraries {#GA-packages1}
 We will use the following packages in this tutorial:
   
 - `sf`: to manipulate spatial data
 - `tmap`: to visualize and create maps
 - `tidygeocoder`: to convert addresses to geographic coordinates
-
-#### Input/Output {#GA-i-o}
-Our inputs will be a **CSV** file that include addresses of our resources ("chicago_methadone.csv"). To access the test dataset for this tutorial, please download [here]().
-
-We will convert these addresses to geographic coordinates using an appropriate coordinate reference system (CRS), and then spatially enable the data for mapping. We will then export the spatial dataframe as a **shapefile**.
-
-### Install and load the packages {#GA-packages2}
-First, let's install the relevant R packages:
-  
-```{r install, eval=FALSE}
-install.packages("sf")
-install.packages("tmap")
-install.packages("tidygeocoder")
-```
-
 
 Then load the libraries for use. *Note:* The messages you see about GEOS, GDAL, and PROJ refer to software libraries that allow you to work with spatial data.
 
@@ -45,8 +35,7 @@ library(tidygeocoder)
 library(tmap)
 ```
 
-### Read in CSV File 
-
+### Load Data 
 We will use a CSV that includes methadone clinic addresses in Chicago as an example. We start with a small dataset to test our geocoding workflow, as best practice.
 
 Let's take a look at the first few rows of the dataset. Our data includes addresses but not geographic coordinates. 
