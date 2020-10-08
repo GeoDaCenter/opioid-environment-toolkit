@@ -1,7 +1,6 @@
 ---
-title: "Opioid Environment Toolkit"
-author: "An Opensource Introduction to GIS & Spatial Analysis"
-date: "Last Updated : `r Sys.Date()`"
+title: "<span style='color: #982568; font-size:48px'>Opioid Environment Toolkit</style>"
+author: "Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : `r Sys.Date()`"
 output: bookdown::gitbook
 documentclass: book
 ---
