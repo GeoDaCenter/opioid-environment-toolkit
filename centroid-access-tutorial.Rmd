@@ -2,7 +2,7 @@
 
 ## Overview {#CA-research-question}
 
-Spatial Access to specific resource is often considered a multidimensional concept where accessibility can be measured on affordability, availability, accommodation & acceptability [**include reference**]. Distance to the nearest resource is a common metric used to capture the availability of a resource, and in this tutorial we demonstrate how to calculate a minimum distance value from a zip code centroid to a set of resources, such as locations of methadone clinics. Each zip code will be assigned a "minimum distance access metric" as a value that indicates access to resources from that zip code. Our objectives are thus to:
+Spatial Access to specific resource is often considered a multidimensional concept, though geographic distance is often central to the topic. **Distance to the nearest resource** is a common metric used to capture the availability of a resource, and in this tutorial we demonstrate how to calculate a minimum distance value from a ZCTA centroid to a set of resources, such as locations of methadone clinics. Each zip code will be assigned a "minimum distance access metric" as a value that indicates access to resources from that zip code. Our objectives are thus to:
 
 * Generate centroids from areal data
 * Calculate minimum distance from resources to area centroids
@@ -18,13 +18,16 @@ We will use the following packages in this tutorial:
 - `tmap`: to visualize and create maps
 - `units`: to convert units within spatial data
 
-### Required Inputs and Expected Outputs {#CA-i-o}
-Our inputs will be:
 
-- a CSV file with the locations of our resources ("chicago_methadone.csv"), and 
-- a zip code boundary file ("chicago_zips.shp"). 
+### Input/Output {#BA-i-o}
+Our inputs will be the clinic points we generated in previous tutorials, and the ZCTA boundary.
+
+* Chicago Methadone Clinics, `methadoneClinics.shp`
+* Chicago Zip Codes, `chicago_zips.shp`
 
 We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
+
+If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](http://geodacenter.github.io/opioid-environment-toolkit/geocodingAddress-tutorial.html#GA-spatial-dataframe).
 
 ### Load the packages {#CA-packages2}
 Load the libraries for use.
@@ -42,8 +45,6 @@ First, load in the MOUD resources shapefile. Let's take a look at the first few 
 meth_sf <- st_read("methadoneClinics.shp")
 head(meth_sf)
 ```
-
-If you don't have a shapefile of your data, but already have geographic coordinates as two columns in your CSV file, you can still use this tutorial. A reminder of how to transform your CSV with coordinates into a spatial data frame in R can be found [here](link to end of the geocoding tutorial).
 
 Next, we'll load Chicago zip code boundaries.
 
@@ -146,7 +147,7 @@ plot(st_geometry(chicago_centroids), col = "red", add = TRUE)
 plot(st_geometry(meth_sf), col = "blue", add = TRUE)
 ```
 
-## Calculate min distance {-#CA-distance}
+## Calculate Distance {#CA-distance}
 
 First, we'll identify the resource that is the closest to a zip centroid using the `st_nearest_feature` function. (It will return the index of the object that is nearest, so we will subset the resources by the index to get the nearest object.)
 
@@ -174,7 +175,7 @@ min_dists_mi <- set_units(min_dists, "mi")
 min_dists_mi
 ```
 
-### Merge data back to Area Data 
+### Merge Data
 We then rejoin the minimum distances to the zip code data, by column binding `min_dists_mi` to the original `chicago_zips` data.
 
 ```{r rejoin}
@@ -183,13 +184,13 @@ min_dist_sf
 ```
 
 ### Visualize & Confirm
-We can now visualize the zip-level access to methadone clinics using our new access metric, using the `tmap` package.
+We can now visualize the zip-level access to methadone clinics using our new access metric, using the `tmap` package. We'll use quantile bins with five intervals.
 
 ```{r}
 tmap_mode("plot")
 
 tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", 
+  tm_polygons("min_dists_mi", style = 'quantile', n=5,
               title = "Minimum Distance (mi)") +
   tm_layout(main.title = "Minimum Distance from Zip Centroid\n to Methadone Clinic",
             main.title.position = "center",
@@ -200,7 +201,7 @@ Access by zip code can also be combined with locations of resources:
 
 ```{r}
 tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", style = 'jenks',
+  tm_polygons("min_dists_mi", style = 'quantile', n=5,
               title = "Minimum Distance (mi)") +
   tm_shape(meth_sf) +
   tm_dots(size = 0.2) +
