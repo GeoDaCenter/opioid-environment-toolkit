@@ -1,4 +1,4 @@
-# Min. Dist Access Analysis {#min-distance}
+# Nearest Resource Analysis {#min-distance}
 
 ## Overview {#CA-research-question}
 

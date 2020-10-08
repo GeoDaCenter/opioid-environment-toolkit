@@ -1,54 +1,49 @@
-# Downloading Community Contextual Data {-#contextual-data}
+# Census Data Wrangling {#contextual-data}
 
-## Research Question {-#CD-research-question}
+## Overview {#CD-research-question}
 
 Once we identify the appropriate access metric to use, we can now include contextual data to add nuance to our findings. This can help identify if any specific disparities in access exist for certain groups of people or if there are any specific factors that can help explain the spatial patterns. Such datasets are often sourced from the [US Census Bureau](https://data.census.gov). The American Community Survey (ACS) is an ongoing survey that provides data every year with 1 and 5-year estimates. We generally recommend using the 5-year estimates as these multiperiod estimates tend to have increased statistical reliability as compared to the 1-year numbers, especially for less populated areas and small population subgroups.
 
 In this tutorial we demonstrate how to explore and download most commonly used population datasets from the same, with and without spatial components. Please note this tutorial focuses **only** on the American Community Survey datasets available via the Census Bureau API. 
 
-## Environment Setup {-#CD-setup}
+Our objectives are to:
+* Download census data through the Census API
+* Download census boundaries thorugh the Census API
+* Wrangle 
+
+## Environment Setup {#CD-setup}
 
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
-#### Packages used {-#CD-packages1}
-We will use the following packages:
+### Input/Output {#CD-i-o}
+We will not be using an external input for this exercise. 
+  
+Our output will be a .csv file and shapefile (.shp suite) with data at the census tract level.
+
+### Load Libraries {#BA-lib}
+We will use the following packages in this tutorial:
   
 - `sf`: to read/write sf (spatial) objects
 - `tidycensus`: to download census variables using ACS API 
 - `tidyverse`: to manipulate and clean data
 - `tigris` : to download census tiger shapefiles
 
-#### Required Inputs and Expected Outputs {-#CD-i-o}
-We will not be using an external input for this exercise.
-  
-Our output will be a .csv file and shapefile (.shp suite) with race data at the census tract level.
+Load the required libraries.
 
-#### Install and load the packages {-#CD-packages2}
-First, let's install the relevant R packages:
-
-```{r install, eval=FALSE}
-install.packages("sf")
-install.packages("tidycensus")
-install.packages("tidyverse")
-install.packages("tigris")
-install.packages("tidycensus")
-```
-
-```{r load,message=FALSE, results='hide'}
+```{r load,message=FALSE, results='hide', eval = FALSE}
 library(sf)
 library(tidycensus)
 library(tidyverse)
 library(tigris)
 ```
 
-## Get your Census API Key {-#CD-api-key}
+## Enable Census API Key {#CD-api-key}
 
 To be able to use the Census API, we need to signup for an API key. This key effectively is a string identifier for the server to communicate with your machine. A key can be obtained using an email from [here](http://api.census.gov/data/key_signup.html). Once we get the key, we can install it by running the code below.
 
 ```{r setup key, eval = FALSE}
 census_api_key("yourkeyhere", install = TRUE) # installs the key for future sessions. 
 ```
-
 
 In instances where we might not want to save our key in the .Renviron - for example, when using a shared computer, we can always reinstall the same key using the code above but with `install = FALSE`.
 
@@ -57,7 +52,7 @@ To check an already installed census API key, run
 Sys.getenv("CENSUS_API_KEY")
 ```
 
-## Download variables of interest {-#CD-get-data}
+## Load Data Dynamically {#CD-get-data}
 
 We can now start using the *tidycensus* package to download population based datasets from the US Census Bureau. In this tutorial, we will be covering methods to download data at the state, county, zip and census tract levels. We will also be covering methods to download the data with and without the geometry feature of the geographic entities. 
 
@@ -73,9 +68,9 @@ c. `year`      - the year to source the data for
 d. `geometry`  - whether or not to include the geometry feature in the tibble. *(TRUE / FALSE)*
 
 
-#### State Level {-}
+### State Level {}
 To get data for only a specific state, we can add `state = sampleStateName`.
-```{r download state level, message = FALSE}
+```{r download state level, message = FALSE, eval = FALSE}
 stateDf <- get_acs(geography = 'state', variables = c(totPop18 = "B01001_001", 
                                                       hispanic ="B03003_003", 
                                                       notHispanic = "B03003_002",
@@ -88,7 +83,7 @@ head(stateDf)
 
 As we can see the data is available in the _tidy_ format. We can use other tools in the `tidyverse` universe to clean and manipulate it. 
 
-```{r reshape data}
+```{r reshape data, eval = FALSE}
 stateDf <- stateDf %>% 
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
@@ -99,16 +94,15 @@ stateDf <- stateDf %>%
 head(stateDf)
 ```
 
-#### County Level {-}
+### County Level {}
 Similarly, for county level 
 
 + use `geometry = county` to download for all counties in the U.S.
 + use `geometry = county, state = sampleStateName` for all counties within a state
 + use `geometry = county, state = sampleStateName, county = sampleCountyName` for a specific county
 
-We can also use the FIPS codes for the relevant state & counties. Finally, we can also write the tibble to a .csv file.
 
-```{r download county level, message = FALSE}
+```{r download county level, message = FALSE, eval = FALSE}
 countyDf <- get_acs(geography = 'county', variables = c(totPop18 = "B01001_001", 
                                                         hispanic ="B03003_003", 
                                                         notHispanic = "B03003_002",
@@ -123,14 +117,18 @@ countyDf <- get_acs(geography = 'county', variables = c(totPop18 = "B01001_001",
             select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
 
 head(countyDf)
-write.csv(countyDf , file = "IL_County_18.csv")
+```
 
+We can also use the FIPS codes for the relevant state & counties. Finally, we can also write the tibble to a .csv file.
+
+```{r eval = FALSE}
+write.csv(countyDf , file = "data/IL_County_18.csv")
 ```
 
 
-#### Zipcode Level {-}
+### Zipcode Level {}
 For zipcode level, use `geometry = zcta`. Given zips cross state lines, zcta data is only available for the entire U.S.
-```{r download zip level, message = FALSE}
+```{r download zip level, message = FALSE, eval = FALSE}
 zctaDf <- get_acs(geography = 'zcta',variables = c(totPop18 = "B01001_001", 
                                                    hispanic ="B03003_003", 
                                                    notHispanic = "B03003_002",
@@ -143,19 +141,22 @@ zctaDf <- get_acs(geography = 'zcta',variables = c(totPop18 = "B01001_001",
             mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18, 
                    AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
             select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+```
 
+Inspect the data.
+
+```{r eval = FALSE}
 head(zctaDf)
 dim(zctaDf)
 ```
 
-
-#### Census Tract Level {-}
+### Census Tract Level {}
 For census tract level, at the minimum *stateName* needs to be provided. 
 
 + use `geometry = tract, state = sampleStateName` to download all tracts within a state
 + use `geometry = tract, state = sampleStateName, county = sampleCountyName` to download all tracts within a specific county
 
-```{r download tract level, message = FALSE, results='hide'}
+```{r download tract level, message = FALSE, results='hide', eval = FALSE}
 tractDf <- get_acs(geography = 'tract',variables = c(totPop18 = "B01001_001", 
                                                    hispanic ="B03003_003", 
                                                    notHispanic = "B03003_002",
@@ -174,7 +175,7 @@ head(tractDf)
 
 For more details on the other geographies available via the *tidycensus package*, check [here](https://walker-data.com/tidycensus/articles/basic-usage.html#geography-in-tidycensus-1).
 
-## Get Geometry {-#CD-get-geometry}
+## Get Geometry {#CD-get-geometry}
 
 Geometry/Geographic Boundaries are one of the key features for American Community Survey Data as they set up the framework for data collection and estimation. While boundaries don't change often, updates do occur from time to time and census data for a specific year generally tends to use the boundaries available at the beginning of that year. Most ACS products since 2010 reflect the 2010 Census Geographic Definitions. Given certain boundaries like congressional districts, census tracts & block groups are updated after every decennial census, products for year 2009 and earlier will have significantly different boundaries from that in 2010. We recommend using IPUMS datasets to generate estimates for years prior to 2010. 
 
@@ -183,7 +184,7 @@ The datasets downloaded so far did not have a spatial geometry feature attached 
 1. using `tigris` 
 2. using `tidycensus`
 
-#### Using tigris {-}
+### Using tigris {}
 To download and use the Tiger Shapefiles shared by the [US Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) we will use the `tigris` package. Set `cb = TRUE` to get generalized files, these don't have high resolution details and hence are smaller in size. 
 
 ```{r download shapefiles, message = FALSE, results = 'hide', eval = FALSE}
@@ -207,7 +208,7 @@ head(stateShp)
 
 ```
 
-Similarly for counties, zctas & census tracts we can use the code below and then finally save the census tract results with geometry in a shapefile using `write_sf`. 
+Similarly for counties, zctas & census tracts we can use the code below.
 
 ```{r merge with Census shapefiles,  message = FALSE, eval=FALSE}
 countyShp <- merge(countyShp, countyDf, by.x  = 'GEOID', by.y = 'GEOID', all.x = TRUE)%>%
@@ -215,11 +216,14 @@ countyShp <- merge(countyShp, countyDf, by.x  = 'GEOID', by.y = 'GEOID', all.x =
 
 zctaShp <- merge(zctaShp, zctaDf, by.x  = 'GEOID10', by.y = 'GEOID', all.x = TRUE)
 tractShp <- merge(tractShp, tractDf, by.x  = 'GEOID', by.y = 'GEOID', all.x = TRUE) 
-
-write_sf(countyShp, "IL_County_18.shp")
 ```
 
-#### Using tidycensus {-}
+Now we can finally save the census tract results with geometry in a shapefile using `write_sf`. 
+```{r eval=FALSE}
+write_sf(countyShp, "data/IL_County_18.shp")
+```
+
+### Using tidycensus {}
 
 The previous method adds an additional step of using `tigris` package to download the shapefile.
 The tidycensus package already has the wrapper for invoking tigris within the `get_acs()` function, and we can simply download the dataset with geometry feature by using `geometry = TRUE`. 
@@ -250,9 +254,16 @@ tractsShp <- merge(tractShp, tractDf, by.x = 'GEOID', by.y = 'GEOID', all.x = TR
 head(tractShp)
 ```
 
+## Save Data
 
-## Appendix {-#CD-appendix}
-### Explore variables available {-#CD-explore-variables}
+--> @Moksha: Also save ZCTA data for Illinois so that we can merge with master shapefile for next tutorial??
+
+--> make sure you save to data/ folder 
+
+
+## Appendix {#CD-appendix}
+
+### Explore variables {#CD-explore-variables}
 Using `tidycensus` we can download datasets from various types of tables. The ones most commonly used are:
 
 1. *Data Profiles* - These are the most commonly used collection of variables grouped by category, e.g. Social (DP02), Economic (DP03), Housing (DP04), Demographic (DP05)
@@ -261,7 +272,7 @@ Using `tidycensus` we can download datasets from various types of tables. The on
 
 We can explore all the variables for our year of interest by running the code below. Please note as the Profiles evolve, variable IDs might change from year to year. 
 
-```{r check variables,  message = FALSE}
+```{r check variables,  message = FALSE, eval = FALSE}
 sVarnames <- load_variables(2018, "acs5/subject", cache = TRUE)
 pVarnames <- load_variables(2018, "acs5/profile", cache = TRUE)
 otherVarnames <- load_variables(2018, "acs5", cache = TRUE)
@@ -275,7 +286,7 @@ Name is a combination of table id and variable id within that table. Concept gen
 
 We can explore these tibbles to identify the correct variable ID `name` to use with the `get_acs()` function by using `View(sVarnames)` or other filters e.g. for age
 
-```{r explore variables 1 ,  message = FALSE}
+```{r explore variables 1 ,  message = FALSE, eval = FALSE}
 
 sVarnames %>% filter(str_detect(concept, "AGE AND SEX")) %>%  # search for this concept
               filter(str_detect(label, "Under 5 years")) %>%  # search for variables
@@ -290,7 +301,7 @@ sVarnames %>% filter(str_sub(name, 1, 5) == "S0101") %>%  # search for these tab
 
 e.g per capita income, we can check on DP table variables.
 
-```{r explore variables 2,  message = FALSE}
+```{r explore variables 2,  message = FALSE, eval = FALSE}
 
 pVarnames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
@@ -303,7 +314,7 @@ pVarnames %>% filter(str_detect(label, "Under 5 years")) %>%  # search for varia
 
 The order and structure of profile tables can change from year to year, hence the variable Id or label, so when downloading same dataset over different years we recommend using the standard B & C tables.
 
-```{r explore variables 3}
+```{r explore variables 3, eval = FALSE}
 
 otherVarnames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
