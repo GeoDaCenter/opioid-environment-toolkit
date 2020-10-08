@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
@@ -7,7 +7,7 @@
   <title>7 Nearest Resource Analysis | Opioid-Environment-Toolkit.utf8</title>
   <meta name="description" content="<span style='color: #982568; font-size:42px'>Opioid Environment Toolkit
 </style>" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Nearest Resource Analysis | Opioid-Environment-Toolkit.utf8" />
   <meta property="og:type" content="book" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -63,9 +64,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +75,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +93,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -214,16 +217,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-get-data"><i class="fa fa-check"></i><b>5.4</b> Load Data Dynamically</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#state-level"><i class="fa fa-check"></i><b>5.4.1</b> State Level</a></li>
 <li class="chapter" data-level="5.4.2" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#county-level"><i class="fa fa-check"></i><b>5.4.2</b> County Level</a></li>
-<li class="chapter" data-level="5.4.3" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#zipcode-level"><i class="fa fa-check"></i><b>5.4.3</b> Zipcode Level</a></li>
-<li class="chapter" data-level="5.4.4" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#census-tract-level"><i class="fa fa-check"></i><b>5.4.4</b> Census Tract Level</a></li>
+<li class="chapter" data-level="5.4.3" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#census-tract-level"><i class="fa fa-check"></i><b>5.4.3</b> Census Tract Level</a></li>
+<li class="chapter" data-level="5.4.4" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#zipcode-level"><i class="fa fa-check"></i><b>5.4.4</b> Zipcode Level</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-get-geometry"><i class="fa fa-check"></i><b>5.5</b> Get Geometry</a><ul>
 <li class="chapter" data-level="5.5.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#using-tigris"><i class="fa fa-check"></i><b>5.5.1</b> Using tigris</a></li>
 <li class="chapter" data-level="5.5.2" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#using-tidycensus"><i class="fa fa-check"></i><b>5.5.2</b> Using tidycensus</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#save-data-2"><i class="fa fa-check"></i><b>5.6</b> Save Data</a></li>
-<li class="chapter" data-level="5.7" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-appendix"><i class="fa fa-check"></i><b>5.7</b> Appendix</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-explore-variables"><i class="fa fa-check"></i><b>5.7.1</b> Explore variables</a></li>
+<li class="chapter" data-level="5.6" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-appendix"><i class="fa fa-check"></i><b>5.6</b> Appendix</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="getACSData-tutorial.html"><a href="getACSData-tutorial.html#CD-explore-variables"><i class="fa fa-check"></i><b>5.6.1</b> Explore variables</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="visualizeArealData-tutorial.html"><a href="visualizeArealData-tutorial.html"><i class="fa fa-check"></i><b>6</b> Thematic Mapping</a><ul>
@@ -312,402 +314,538 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="CA-packages2" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Load the packages</h3>
 <p>Load the libraries for use.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="kw">library</span>(units)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="centroid-access-tutorial.html#cb145-1"></a><span class="kw">library</span>(sf)</span>
+<span id="cb145-2"><a href="centroid-access-tutorial.html#cb145-2"></a><span class="kw">library</span>(tmap)</span>
+<span id="cb145-3"><a href="centroid-access-tutorial.html#cb145-3"></a><span class="kw">library</span>(units)</span></code></pre></div>
 </div>
 </div>
 <div id="CA-read-resources" class="section level2">
 <h2><span class="header-section-number">7.3</span> Load data</h2>
 <p>First, load in the MOUD resources shapefile. Let’s take a look at the first few rows of the dataset.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;methadoneClinics.shp&quot;</span>)</a></code></pre></div>
-<pre><code>## Reading layer `methadoneClinics&#39; from data source `/Users/maryniakolak/code/opioid-environment-toolkit/methadoneClinics.shp&#39; using driver `ESRI Shapefile&#39;
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="centroid-access-tutorial.html#cb146-1"></a>meth_sf &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;methadoneClinics.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `methadoneClinics&#39; from data source `/Users/yashbansal/Desktop/CSDS_RA/opioid-environment-toolkit/methadoneClinics.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 27 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
 ## bbox:           xmin: -87.7349 ymin: 41.68698 xmax: -87.57673 ymax: 41.96475
-## CRS:            4326</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">head</span>(meth_sf)</a></code></pre></div>
+## geographic CRS: WGS 84</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="centroid-access-tutorial.html#cb148-1"></a><span class="kw">head</span>(meth_sf)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
 ## bbox:           xmin: -87.67818 ymin: 41.89268 xmax: -87.63409 ymax: 41.96475
-## CRS:            4326
-##   X                                                         Name                 Address    City
-## 1 1                Chicago Treatment and Counseling Center, Inc. 4453 North Broadway st. Chicago
-## 2 2                      Sundace Methadone Treatment Center, LLC 4545 North Broadway St. Chicago
-## 3 3 Soft Landing Interventions/DBA Symetria Recovery of Lakeview    3934 N. Lincoln Ave. Chicago
-## 4 4                                        PDSSC - Chicago, Inc.     2260 N. Elston Ave. Chicago
-## 5 5                          Center for Addictive Problems, Inc.        609 N. Wells St. Chicago
-## 6 6                                Family Guidance Centers, Inc.     310 W. Chicago Ave. Chicago
-##   State   Zip                                  fullAdd geo_method                   geometry
-## 1    IL 60640 4453 North Broadway st. Chicago IL 60640        osm POINT (-87.65566 41.96321)
-## 2    IL 60640 4545 North Broadway St. Chicago IL 60640        osm POINT (-87.65694 41.96475)
-## 3    IL 60613    3934 N. Lincoln Ave. Chicago IL 60613     census POINT (-87.67818 41.95331)
-## 4    IL 60614     2260 N. Elston Ave. Chicago IL 60614     census POINT (-87.67407 41.92269)
-## 5    IL 60654        609 N. Wells St. Chicago IL 60654     census POINT (-87.63409 41.89268)
-## 6    IL 60654     310 W. Chicago Ave. Chicago IL 60654     census POINT (-87.63636 41.89657)</code></pre>
+## geographic CRS: WGS 84
+##   X                                                         Name
+## 1 1                Chicago Treatment and Counseling Center, Inc.
+## 2 2                      Sundace Methadone Treatment Center, LLC
+## 3 3 Soft Landing Interventions/DBA Symetria Recovery of Lakeview
+## 4 4                                        PDSSC - Chicago, Inc.
+## 5 5                          Center for Addictive Problems, Inc.
+## 6 6                                Family Guidance Centers, Inc.
+##                   Address    City State   Zip
+## 1 4453 North Broadway st. Chicago    IL 60640
+## 2 4545 North Broadway St. Chicago    IL 60640
+## 3    3934 N. Lincoln Ave. Chicago    IL 60613
+## 4     2260 N. Elston Ave. Chicago    IL 60614
+## 5        609 N. Wells St. Chicago    IL 60654
+## 6     310 W. Chicago Ave. Chicago    IL 60654
+##                                    fullAdd geo_method
+## 1 4453 North Broadway st. Chicago IL 60640        osm
+## 2 4545 North Broadway St. Chicago IL 60640        osm
+## 3    3934 N. Lincoln Ave. Chicago IL 60613     census
+## 4     2260 N. Elston Ave. Chicago IL 60614     census
+## 5        609 N. Wells St. Chicago IL 60654     census
+## 6     310 W. Chicago Ave. Chicago IL 60654     census
+##                     geometry
+## 1 POINT (-87.65566 41.96321)
+## 2 POINT (-87.65694 41.96475)
+## 3 POINT (-87.67818 41.95331)
+## 4 POINT (-87.67407 41.92269)
+## 5 POINT (-87.63409 41.89268)
+## 6 POINT (-87.63636 41.89657)</code></pre>
 <p>Next, we’ll load Chicago zip code boundaries.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/chicago_zips.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="centroid-access-tutorial.html#cb150-1"></a>chicago_zips &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/chicago_zips.shp&quot;</span>)</span></code></pre></div>
 <p>We can quickly plot our data for to confirm they loaded correctly, here using an interactive map:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="centroid-access-tutorial.html#cb151-1"></a><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></span>
+<span id="cb151-2"><a href="centroid-access-tutorial.html#cb151-2"></a><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></span>
+<span id="cb151-3"><a href="centroid-access-tutorial.html#cb151-3"></a><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></span>
+<span id="cb151-4"><a href="centroid-access-tutorial.html#cb151-4"></a><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="CA-calculate-centroids" class="section level2">
 <h2><span class="header-section-number">7.4</span> Calculate centroids</h2>
 <p>Now, we will calculate the centroids of the zip code boundaries. We will first need to project our data, which means change it from latitude and longitude to meaningful units, like ft or meters, so we can calculate distance properly. We’ll use the Illinois State Plane projection, with an EPSG code of 3435.</p>
 <p><strong>Aside</strong>: To find the most appropriate projection for your data, do a Google Search for which projection works well - for state level data, each state has a State Plane projection with a specific code, known as the EPSG. I use epsg.io to check projections - here’s the <a href="https://epsg.io/2263">New York State Plane</a> page.</p>
 <p>Use the <code>st_transform</code> function to change the projection of the data. Notice how the values in <code>geometry</code> go from being relatively small (unprojected, lat/long) to very large (projected, in US feet).</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">chicago_zips &lt;-<span class="st"> </span><span class="kw">st_transform</span>(chicago_zips, <span class="dv">3435</span>)</a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb133-3" data-line-number="3">chicago_zips</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="centroid-access-tutorial.html#cb152-1"></a>chicago_zips &lt;-<span class="st"> </span><span class="kw">st_transform</span>(chicago_zips, <span class="dv">3435</span>)</span>
+<span id="cb152-2"><a href="centroid-access-tutorial.html#cb152-2"></a></span>
+<span id="cb152-3"><a href="centroid-access-tutorial.html#cb152-3"></a>chicago_zips</span></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 9 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: 1058388 ymin: 1791133 xmax: 1205317 ymax: 1966816
-## CRS:            EPSG:3435
+## projected CRS:  NAD83 / Illinois East (ftUS)
 ## # A tibble: 85 x 10
-##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10 INTPTLAT10 INTPTLON10
-##  * &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     
-##  1 60501     60501   B5        G6350   S          125322… 974360   +41.78022… -087.8232…
-##  2 60007     60007   B5        G6350   S          364933… 917560   +42.00860… -087.9973…
-##  3 60651     60651   B5        G6350   S          9052862 0        +41.90209… -087.7408…
-##  4 60652     60652   B5        G6350   S          129878… 0        +41.74793… -087.7147…
-##  5 60653     60653   B5        G6350   S          6041418 1696670  +41.81996… -087.6059…
-##  6 60654     60654   B5        G6350   S          1464813 113471   +41.89182… -087.6383…
-##  7 60655     60655   B5        G6350   S          114080… 0        +41.69477… -087.7037…
-##  8 60656     60656   B5        G6350   S          8465226 0        +41.97428… -087.8271…
-##  9 60657     60657   B5        G6350   S          5888324 2025836  +41.94029… -087.6468…
-## 10 60659     60659   B5        G6350   S          5251086 2818     +41.99148… -087.7039…
-## # … with 75 more rows, and 1 more variable: geometry &lt;MULTIPOLYGON [US_survey_foot]&gt;</code></pre>
+##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10
+##  * &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   
+##  1 60501     60501   B5        G6350   S          125322… 974360  
+##  2 60007     60007   B5        G6350   S          364933… 917560  
+##  3 60651     60651   B5        G6350   S          9052862 0       
+##  4 60652     60652   B5        G6350   S          129878… 0       
+##  5 60653     60653   B5        G6350   S          6041418 1696670 
+##  6 60654     60654   B5        G6350   S          1464813 113471  
+##  7 60655     60655   B5        G6350   S          114080… 0       
+##  8 60656     60656   B5        G6350   S          8465226 0       
+##  9 60657     60657   B5        G6350   S          5888324 2025836 
+## 10 60659     60659   B5        G6350   S          5251086 2818    
+## # … with 75 more rows, and 3 more variables: INTPTLAT10 &lt;chr&gt;,
+## #   INTPTLON10 &lt;chr&gt;, geometry &lt;MULTIPOLYGON [US_survey_foot]&gt;</code></pre>
 <p>Then, we will calculate the centroids:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">chicago_centroids &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(chicago_zips)</a></code></pre></div>
-<pre><code>## Warning in st_centroid.sf(chicago_zips): st_centroid assumes attributes are constant over geometries
-## of x</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">chicago_centroids</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="centroid-access-tutorial.html#cb154-1"></a>chicago_centroids &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(chicago_zips)</span></code></pre></div>
+<pre><code>## Warning in st_centroid.sf(chicago_zips): st_centroid assumes
+## attributes are constant over geometries of x</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="centroid-access-tutorial.html#cb156-1"></a>chicago_centroids</span></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 9 fields
 ## geometry type:  POINT
 ## dimension:      XY
 ## bbox:           xmin: 1076716 ymin: 1802621 xmax: 1198093 ymax: 1956017
-## CRS:            EPSG:3435
+## projected CRS:  NAD83 / Illinois East (ftUS)
 ## # A tibble: 85 x 10
-##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10 INTPTLAT10 INTPTLON10
-##  * &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     
-##  1 60501     60501   B5        G6350   S          125322… 974360   +41.78022… -087.8232…
-##  2 60007     60007   B5        G6350   S          364933… 917560   +42.00860… -087.9973…
-##  3 60651     60651   B5        G6350   S          9052862 0        +41.90209… -087.7408…
-##  4 60652     60652   B5        G6350   S          129878… 0        +41.74793… -087.7147…
-##  5 60653     60653   B5        G6350   S          6041418 1696670  +41.81996… -087.6059…
-##  6 60654     60654   B5        G6350   S          1464813 113471   +41.89182… -087.6383…
-##  7 60655     60655   B5        G6350   S          114080… 0        +41.69477… -087.7037…
-##  8 60656     60656   B5        G6350   S          8465226 0        +41.97428… -087.8271…
-##  9 60657     60657   B5        G6350   S          5888324 2025836  +41.94029… -087.6468…
-## 10 60659     60659   B5        G6350   S          5251086 2818     +41.99148… -087.7039…
-## # … with 75 more rows, and 1 more variable: geometry &lt;POINT [US_survey_foot]&gt;</code></pre>
+##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10
+##  * &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   
+##  1 60501     60501   B5        G6350   S          125322… 974360  
+##  2 60007     60007   B5        G6350   S          364933… 917560  
+##  3 60651     60651   B5        G6350   S          9052862 0       
+##  4 60652     60652   B5        G6350   S          129878… 0       
+##  5 60653     60653   B5        G6350   S          6041418 1696670 
+##  6 60654     60654   B5        G6350   S          1464813 113471  
+##  7 60655     60655   B5        G6350   S          114080… 0       
+##  8 60656     60656   B5        G6350   S          8465226 0       
+##  9 60657     60657   B5        G6350   S          5888324 2025836 
+## 10 60659     60659   B5        G6350   S          5251086 2818    
+## # … with 75 more rows, and 3 more variables: INTPTLAT10 &lt;chr&gt;,
+## #   INTPTLON10 &lt;chr&gt;, geometry &lt;POINT [US_survey_foot]&gt;</code></pre>
 <p>For each zip code, this will calculate the centroid, and the output will be a point dataset.</p>
 <p>Plot to double check that everything is ok. The <code>st_geometry()</code> function will once again just return the outline:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="centroid-access-tutorial.html#cb158-1"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</span>
+<span id="cb158-2"><a href="centroid-access-tutorial.html#cb158-2"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-zips-centroids-1.png" width="672" /></p>
 <div id="visualize-confirm" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Visualize &amp; Confirm</h3>
 <p>Once again, we can create an interactive map:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="kw">tm_shape</span>(chicago_centroids) <span class="op">+</span></a>
-<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_dots</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="centroid-access-tutorial.html#cb159-1"></a><span class="kw">tm_shape</span>(chicago_zips) <span class="op">+</span></span>
+<span id="cb159-2"><a href="centroid-access-tutorial.html#cb159-2"></a><span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span></span>
+<span id="cb159-3"><a href="centroid-access-tutorial.html#cb159-3"></a><span class="kw">tm_shape</span>(chicago_centroids) <span class="op">+</span></span>
+<span id="cb159-4"><a href="centroid-access-tutorial.html#cb159-4"></a><span class="st">  </span><span class="kw">tm_dots</span>()</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-interactive-zips-centroids-1.png" width="672" /></p>
 </div>
 </div>
 <div id="CA-correct-projection" class="section level2">
 <h2><span class="header-section-number">7.5</span> Standardize CRS</h2>
 <p>If we immediately try to calculate the distance between the zip centroids and the locations of the resources using the <code>st_distance</code> function, we’ll get an error:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">st_distance</span>(chicago_centroids, meth_sf, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="centroid-access-tutorial.html#cb160-1"></a><span class="kw">st_distance</span>(chicago_centroids, meth_sf, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>Error in st_distance(chicago_centroids, meth_sf, by_element = TRUE) : st_crs(x) == st_crs(y) is not TRUE</code></pre>
 <p>Why is there an error? Because the projection of the centroids and the resource locations don’t match up. Let’s project the resource locations so that they match the projection of the centroids.</p>
 <p>First, use the <code>st_crs</code> function to check that the coordinate reference system (or projection) is the same. They’re not, so we have to fix it.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="centroid-access-tutorial.html#cb162-1"></a><span class="kw">st_crs</span>(chicago_centroids)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
-## PROJCS[&quot;NAD83 / Illinois East (ftUS)&quot;,
-##     GEOGCS[&quot;NAD83&quot;,
-##         DATUM[&quot;North_American_Datum_1983&quot;,
-##             SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,
-##                 AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],
-##             TOWGS84[0,0,0,0,0,0,0],
-##             AUTHORITY[&quot;EPSG&quot;,&quot;6269&quot;]],
+## PROJCRS[&quot;NAD83 / Illinois East (ftUS)&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
 ##         PRIMEM[&quot;Greenwich&quot;,0,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
-##         UNIT[&quot;degree&quot;,0.0174532925199433,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
-##         AUTHORITY[&quot;EPSG&quot;,&quot;4269&quot;]],
-##     PROJECTION[&quot;Transverse_Mercator&quot;],
-##     PARAMETER[&quot;latitude_of_origin&quot;,36.66666666666666],
-##     PARAMETER[&quot;central_meridian&quot;,-88.33333333333333],
-##     PARAMETER[&quot;scale_factor&quot;,0.999975],
-##     PARAMETER[&quot;false_easting&quot;,984250.0000000002],
-##     PARAMETER[&quot;false_northing&quot;,0],
-##     UNIT[&quot;US survey foot&quot;,0.3048006096012192,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;9003&quot;]],
-##     AXIS[&quot;X&quot;,EAST],
-##     AXIS[&quot;Y&quot;,NORTH],
-##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;SPCS83 Illinois East zone (US Survey feet)&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,36.6666666666667,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-88.3333333333333,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.999975,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,984250,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##     USAGE[
+##         SCOPE[&quot;unknown&quot;],
+##         AREA[&quot;USA - Illinois - SPCS - E&quot;],
+##         BBOX[37.06,-89.28,42.5,-87.02]],
+##     ID[&quot;EPSG&quot;,3435]]</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="centroid-access-tutorial.html#cb164-1"></a><span class="kw">st_crs</span>(meth_sf)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
-##   User input: 4326 
+##   User input: WGS 84 
 ##   wkt:
-## GEOGCS[&quot;WGS 84&quot;,
-##     DATUM[&quot;WGS_1984&quot;,
-##         SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],
-##         AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],
+## GEOGCRS[&quot;WGS 84&quot;,
+##     DATUM[&quot;World Geodetic System 1984&quot;,
+##         ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+##             LENGTHUNIT[&quot;metre&quot;,1]]],
 ##     PRIMEM[&quot;Greenwich&quot;,0,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
-##     UNIT[&quot;degree&quot;,0.0174532925199433,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
-##     AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</code></pre>
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;latitude&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;longitude&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     ID[&quot;EPSG&quot;,4326]]</code></pre>
 <p>We’ll take the CRS from the zip code centroids data, and use it as input to <code>st_transform</code> applied to the methadone clinics data.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">new_crs &lt;-<span class="st"> </span><span class="kw">st_crs</span>(chicago_centroids)</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">new_crs</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="centroid-access-tutorial.html#cb166-1"></a>new_crs &lt;-<span class="st"> </span><span class="kw">st_crs</span>(chicago_centroids)</span>
+<span id="cb166-2"><a href="centroid-access-tutorial.html#cb166-2"></a>new_crs</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
-## PROJCS[&quot;NAD83 / Illinois East (ftUS)&quot;,
-##     GEOGCS[&quot;NAD83&quot;,
-##         DATUM[&quot;North_American_Datum_1983&quot;,
-##             SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,
-##                 AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],
-##             TOWGS84[0,0,0,0,0,0,0],
-##             AUTHORITY[&quot;EPSG&quot;,&quot;6269&quot;]],
+## PROJCRS[&quot;NAD83 / Illinois East (ftUS)&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
 ##         PRIMEM[&quot;Greenwich&quot;,0,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
-##         UNIT[&quot;degree&quot;,0.0174532925199433,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
-##         AUTHORITY[&quot;EPSG&quot;,&quot;4269&quot;]],
-##     PROJECTION[&quot;Transverse_Mercator&quot;],
-##     PARAMETER[&quot;latitude_of_origin&quot;,36.66666666666666],
-##     PARAMETER[&quot;central_meridian&quot;,-88.33333333333333],
-##     PARAMETER[&quot;scale_factor&quot;,0.999975],
-##     PARAMETER[&quot;false_easting&quot;,984250.0000000002],
-##     PARAMETER[&quot;false_northing&quot;,0],
-##     UNIT[&quot;US survey foot&quot;,0.3048006096012192,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;9003&quot;]],
-##     AXIS[&quot;X&quot;,EAST],
-##     AXIS[&quot;Y&quot;,NORTH],
-##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">meth_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(meth_sf, new_crs)</a></code></pre></div>
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;SPCS83 Illinois East zone (US Survey feet)&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,36.6666666666667,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-88.3333333333333,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.999975,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,984250,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##     USAGE[
+##         SCOPE[&quot;unknown&quot;],
+##         AREA[&quot;USA - Illinois - SPCS - E&quot;],
+##         BBOX[37.06,-89.28,42.5,-87.02]],
+##     ID[&quot;EPSG&quot;,3435]]</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="centroid-access-tutorial.html#cb168-1"></a>meth_sf &lt;-<span class="st"> </span><span class="kw">st_transform</span>(meth_sf, new_crs)</span></code></pre></div>
 <p>If we check the CRS again, we now see that they match. <strong>Mismatched projections are a commonly made mistake in geospatial data processing.</strong></p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">st_crs</span>(chicago_centroids)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="centroid-access-tutorial.html#cb169-1"></a><span class="kw">st_crs</span>(chicago_centroids)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
-## PROJCS[&quot;NAD83 / Illinois East (ftUS)&quot;,
-##     GEOGCS[&quot;NAD83&quot;,
-##         DATUM[&quot;North_American_Datum_1983&quot;,
-##             SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,
-##                 AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],
-##             TOWGS84[0,0,0,0,0,0,0],
-##             AUTHORITY[&quot;EPSG&quot;,&quot;6269&quot;]],
+## PROJCRS[&quot;NAD83 / Illinois East (ftUS)&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
 ##         PRIMEM[&quot;Greenwich&quot;,0,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
-##         UNIT[&quot;degree&quot;,0.0174532925199433,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
-##         AUTHORITY[&quot;EPSG&quot;,&quot;4269&quot;]],
-##     PROJECTION[&quot;Transverse_Mercator&quot;],
-##     PARAMETER[&quot;latitude_of_origin&quot;,36.66666666666666],
-##     PARAMETER[&quot;central_meridian&quot;,-88.33333333333333],
-##     PARAMETER[&quot;scale_factor&quot;,0.999975],
-##     PARAMETER[&quot;false_easting&quot;,984250.0000000002],
-##     PARAMETER[&quot;false_northing&quot;,0],
-##     UNIT[&quot;US survey foot&quot;,0.3048006096012192,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;9003&quot;]],
-##     AXIS[&quot;X&quot;,EAST],
-##     AXIS[&quot;Y&quot;,NORTH],
-##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">st_crs</span>(meth_sf)</a></code></pre></div>
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;SPCS83 Illinois East zone (US Survey feet)&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,36.6666666666667,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-88.3333333333333,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.999975,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,984250,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##     USAGE[
+##         SCOPE[&quot;unknown&quot;],
+##         AREA[&quot;USA - Illinois - SPCS - E&quot;],
+##         BBOX[37.06,-89.28,42.5,-87.02]],
+##     ID[&quot;EPSG&quot;,3435]]</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="centroid-access-tutorial.html#cb171-1"></a><span class="kw">st_crs</span>(meth_sf)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: EPSG:3435 
 ##   wkt:
-## PROJCS[&quot;NAD83 / Illinois East (ftUS)&quot;,
-##     GEOGCS[&quot;NAD83&quot;,
-##         DATUM[&quot;North_American_Datum_1983&quot;,
-##             SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,
-##                 AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],
-##             TOWGS84[0,0,0,0,0,0,0],
-##             AUTHORITY[&quot;EPSG&quot;,&quot;6269&quot;]],
+## PROJCRS[&quot;NAD83 / Illinois East (ftUS)&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
 ##         PRIMEM[&quot;Greenwich&quot;,0,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
-##         UNIT[&quot;degree&quot;,0.0174532925199433,
-##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
-##         AUTHORITY[&quot;EPSG&quot;,&quot;4269&quot;]],
-##     PROJECTION[&quot;Transverse_Mercator&quot;],
-##     PARAMETER[&quot;latitude_of_origin&quot;,36.66666666666666],
-##     PARAMETER[&quot;central_meridian&quot;,-88.33333333333333],
-##     PARAMETER[&quot;scale_factor&quot;,0.999975],
-##     PARAMETER[&quot;false_easting&quot;,984250.0000000002],
-##     PARAMETER[&quot;false_northing&quot;,0],
-##     UNIT[&quot;US survey foot&quot;,0.3048006096012192,
-##         AUTHORITY[&quot;EPSG&quot;,&quot;9003&quot;]],
-##     AXIS[&quot;X&quot;,EAST],
-##     AXIS[&quot;Y&quot;,NORTH],
-##     AUTHORITY[&quot;EPSG&quot;,&quot;3435&quot;]]</code></pre>
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;SPCS83 Illinois East zone (US Survey feet)&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,36.6666666666667,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-88.3333333333333,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.999975,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,984250,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;US survey foot&quot;,0.304800609601219]],
+##     USAGE[
+##         SCOPE[&quot;unknown&quot;],
+##         AREA[&quot;USA - Illinois - SPCS - E&quot;],
+##         BBOX[37.06,-89.28,42.5,-87.02]],
+##     ID[&quot;EPSG&quot;,3435]]</code></pre>
 <p>Now we have the zip boundaries, the centroids of the zips, and the resource locations, as shown below. Next, we will calculate the distance to the nearest resource from each zip code centroid.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</a>
-<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(meth_sf), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="centroid-access-tutorial.html#cb173-1"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_zips))</span>
+<span id="cb173-2"><a href="centroid-access-tutorial.html#cb173-2"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(chicago_centroids), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb173-3"><a href="centroid-access-tutorial.html#cb173-3"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(meth_sf), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot-zips-centroids-resources-1.png" width="672" /></p>
 </div>
 <div id="CA-distance" class="section level2">
 <h2><span class="header-section-number">7.6</span> Calculate Distance</h2>
 <p>First, we’ll identify the resource that is the closest to a zip centroid using the <code>st_nearest_feature</code> function. (It will return the index of the object that is nearest, so we will subset the resources by the index to get the nearest object.)</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">nearest_clinic_indexes &lt;-<span class="st"> </span><span class="kw">st_nearest_feature</span>(chicago_centroids, meth_sf)</a>
-<a class="sourceLine" id="cb155-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb155-3" data-line-number="3">nearest_clinic &lt;-<span class="st"> </span>meth_sf[nearest_clinic_indexes,]</a>
-<a class="sourceLine" id="cb155-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb155-5" data-line-number="5">nearest_clinic</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="centroid-access-tutorial.html#cb174-1"></a>nearest_clinic_indexes &lt;-<span class="st"> </span><span class="kw">st_nearest_feature</span>(chicago_centroids, meth_sf)</span>
+<span id="cb174-2"><a href="centroid-access-tutorial.html#cb174-2"></a></span>
+<span id="cb174-3"><a href="centroid-access-tutorial.html#cb174-3"></a>nearest_clinic &lt;-<span class="st"> </span>meth_sf[nearest_clinic_indexes,]</span>
+<span id="cb174-4"><a href="centroid-access-tutorial.html#cb174-4"></a></span>
+<span id="cb174-5"><a href="centroid-access-tutorial.html#cb174-5"></a>nearest_clinic</span></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 8 fields
 ## geometry type:  POINT
 ## dimension:      XY
 ## bbox:           xmin: 1147259 ymin: 1829330 xmax: 1190680 ymax: 1930471
-## CRS:            EPSG:3435
+## projected CRS:  NAD83 / Illinois East (ftUS)
 ## First 10 features:
-##       X                                                         Name                 Address    City
-## 16   16                          Katherine Boone Robinson Foundation      4100 W. Ogden Ave. Chicago
-## 7     7                                     A Rincon Family Services      3809 W. Grand Ave. Chicago
-## 7.1   7                                     A Rincon Family Services      3809 W. Grand Ave. Chicago
-## 26   26                            New Hope Community Service Center        2559 W. 79th St. Chicago
-## 15   15         HRDI- Grand Boulevard Professional Counseling Center         340 E. 51st St. Chicago
-## 5     5                          Center for Addictive Problems, Inc.        609 N. Wells St. Chicago
-## 26.1 26                            New Hope Community Service Center        2559 W. 79th St. Chicago
-## 7.2   7                                     A Rincon Family Services      3809 W. Grand Ave. Chicago
-## 1     1                Chicago Treatment and Counseling Center, Inc. 4453 North Broadway st. Chicago
-## 3     3 Soft Landing Interventions/DBA Symetria Recovery of Lakeview    3934 N. Lincoln Ave. Chicago
-##      State   Zip                                  fullAdd geo_method                geometry
-## 16      IL 60623      4100 W. Ogden Ave. Chicago IL 60623     census POINT (1149437 1888620)
-## 7       IL 60651      3809 W. Grand Ave. Chicago IL 60651     census POINT (1150707 1908328)
-## 7.1     IL 60651      3809 W. Grand Ave. Chicago IL 60651     census POINT (1150707 1908328)
-## 26      IL 60652        2559 W. 79th St. Chicago IL 60652        osm POINT (1160422 1852071)
-## 15      IL 60615         340 E. 51st St. Chicago IL 60615     census POINT (1179319 1871281)
-## 5       IL 60654        609 N. Wells St. Chicago IL 60654     census POINT (1174632 1904257)
-## 26.1    IL 60652        2559 W. 79th St. Chicago IL 60652        osm POINT (1160422 1852071)
-## 7.2     IL 60651      3809 W. Grand Ave. Chicago IL 60651     census POINT (1150707 1908328)
-## 1       IL 60640 4453 North Broadway st. Chicago IL 60640        osm POINT (1168556 1929911)
-## 3       IL 60613    3934 N. Lincoln Ave. Chicago IL 60613     census POINT (1162460 1926257)</code></pre>
+##       X
+## 16   16
+## 7     7
+## 7.1   7
+## 26   26
+## 15   15
+## 5     5
+## 26.1 26
+## 7.2   7
+## 1     1
+## 3     3
+##                                                              Name
+## 16                            Katherine Boone Robinson Foundation
+## 7                                        A Rincon Family Services
+## 7.1                                      A Rincon Family Services
+## 26                              New Hope Community Service Center
+## 15           HRDI- Grand Boulevard Professional Counseling Center
+## 5                             Center for Addictive Problems, Inc.
+## 26.1                            New Hope Community Service Center
+## 7.2                                      A Rincon Family Services
+## 1                   Chicago Treatment and Counseling Center, Inc.
+## 3    Soft Landing Interventions/DBA Symetria Recovery of Lakeview
+##                      Address    City State   Zip
+## 16        4100 W. Ogden Ave. Chicago    IL 60623
+## 7         3809 W. Grand Ave. Chicago    IL 60651
+## 7.1       3809 W. Grand Ave. Chicago    IL 60651
+## 26          2559 W. 79th St. Chicago    IL 60652
+## 15           340 E. 51st St. Chicago    IL 60615
+## 5           609 N. Wells St. Chicago    IL 60654
+## 26.1        2559 W. 79th St. Chicago    IL 60652
+## 7.2       3809 W. Grand Ave. Chicago    IL 60651
+## 1    4453 North Broadway st. Chicago    IL 60640
+## 3       3934 N. Lincoln Ave. Chicago    IL 60613
+##                                       fullAdd geo_method
+## 16        4100 W. Ogden Ave. Chicago IL 60623     census
+## 7         3809 W. Grand Ave. Chicago IL 60651     census
+## 7.1       3809 W. Grand Ave. Chicago IL 60651     census
+## 26          2559 W. 79th St. Chicago IL 60652        osm
+## 15           340 E. 51st St. Chicago IL 60615     census
+## 5           609 N. Wells St. Chicago IL 60654     census
+## 26.1        2559 W. 79th St. Chicago IL 60652        osm
+## 7.2       3809 W. Grand Ave. Chicago IL 60651     census
+## 1    4453 North Broadway st. Chicago IL 60640        osm
+## 3       3934 N. Lincoln Ave. Chicago IL 60613     census
+##                     geometry
+## 16   POINT (1149437 1888620)
+## 7    POINT (1150707 1908328)
+## 7.1  POINT (1150707 1908328)
+## 26   POINT (1160422 1852071)
+## 15   POINT (1179319 1871281)
+## 5    POINT (1174632 1904257)
+## 26.1 POINT (1160422 1852071)
+## 7.2  POINT (1150707 1908328)
+## 1    POINT (1168556 1929911)
+## 3    POINT (1162460 1926257)</code></pre>
 <p>Then, we will calculate the distance between the nearest resource and the zip code centroid with the <code>st_distance</code> function. As shown above, make sure both of your datasets are projected, and in the same projection, before you run <code>st_distance</code>.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">min_dists &lt;-<span class="st"> </span><span class="kw">st_distance</span>(chicago_centroids, nearest_clinic, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb157-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb157-3" data-line-number="3">min_dists</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="centroid-access-tutorial.html#cb176-1"></a>min_dists &lt;-<span class="st"> </span><span class="kw">st_distance</span>(chicago_centroids, nearest_clinic, <span class="dt">by_element =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb176-2"><a href="centroid-access-tutorial.html#cb176-2"></a></span>
+<span id="cb176-3"><a href="centroid-access-tutorial.html#cb176-3"></a>min_dists</span></code></pre></div>
 <pre><code>## Units: [US_survey_foot]
-##  [1] 36764.471 82821.757  5237.764  7419.050  7241.215   873.991 20515.835 38337.779  8516.342
-## [10] 15479.988  9823.172  4447.705 33707.202 24111.173 24184.991 45224.230 31198.648 10113.372
-## [19] 10890.143 13779.075 49874.400 32463.844 36633.404 21981.243 13637.327 22151.171 63268.911
-## [28]  4242.008  3749.998  5116.415  5530.724  8696.602  3965.649  4368.285  6998.725  6937.025
-## [37]  3967.509 45944.187 32598.459 44548.952 58483.551  5416.487  5728.851  2327.899  6646.411
-## [46]  5817.262   365.628 13619.270  7021.182  5024.536  2829.488  1648.361  7709.690  2628.400
-## [55]  1521.495  9423.848 16648.775  2185.237 11463.785 22537.644 11872.133  7759.662 39665.409
-## [64] 11741.279 18689.070 27555.396  5301.820  8808.542 25363.914 18986.590 26456.564  7562.917
-## [73]  3496.941 11023.379  3128.000 16826.923  6172.874 25276.556 17290.797 15198.524 25164.072
-## [82] 18438.696 19972.965 33211.229 22518.257</code></pre>
+##  [1] 36764.471 82821.757  5237.764  7419.050  7241.215   873.991
+##  [7] 20515.835 38337.779  8516.342 15479.988  9823.172  4447.705
+## [13] 33707.202 24111.173 24184.991 45224.230 31198.648 10113.372
+## [19] 10890.143 13779.075 49874.400 32463.844 36633.404 21981.243
+## [25] 13637.327 22151.171 63268.911  4242.008  3749.998  5116.415
+## [31]  5530.724  8696.602  3965.649  4368.285  6998.725  6937.025
+## [37]  3967.509 45944.187 32598.459 44548.952 58483.551  5416.487
+## [43]  5728.851  2327.899  6646.411  5817.262   365.628 13619.270
+## [49]  7021.182  5024.536  2829.488  1648.361  7709.690  2628.400
+## [55]  1521.495  9423.848 16648.775  2185.237 11463.785 22537.644
+## [61] 11872.133  7759.662 39665.409 11741.279 18689.070 27555.396
+## [67]  5301.820  8808.542 25363.914 18986.590 26456.564  7562.917
+## [73]  3496.941 11023.379  3128.000 16826.923  6172.874 25276.556
+## [79] 17290.797 15198.524 25164.072 18438.696 19972.965 33211.229
+## [85] 22518.257</code></pre>
 <p>This is in US feet. To change to a more meaningful unit, such as miles, we can use the <code>set_units()</code> function:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">min_dists_mi &lt;-<span class="st"> </span><span class="kw">set_units</span>(min_dists, <span class="st">&quot;mi&quot;</span>)</a>
-<a class="sourceLine" id="cb159-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb159-3" data-line-number="3">min_dists_mi</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="centroid-access-tutorial.html#cb178-1"></a>min_dists_mi &lt;-<span class="st"> </span><span class="kw">set_units</span>(min_dists, <span class="st">&quot;mi&quot;</span>)</span>
+<span id="cb178-2"><a href="centroid-access-tutorial.html#cb178-2"></a></span>
+<span id="cb178-3"><a href="centroid-access-tutorial.html#cb178-3"></a>min_dists_mi</span></code></pre></div>
 <pre><code>## Units: [mi]
-##  [1]  6.96298198 15.68597011  0.99200275  1.40512596  1.37144503  0.16552893  3.88558262  7.26095754
-##  [9]  1.61294677  2.93182182  1.86045293  0.84236999  6.38395252  4.56651915  4.58049994  8.56521226
-## [17]  5.90884663  1.91541520  2.06253115  2.60967860  9.44592795  6.14846754  6.93815858  4.16312245
-## [25]  2.58283224  4.19530595 11.98277234  0.80341215  0.71022833  0.96901998  1.04748778  1.64708702
-## [33]  0.75107138  0.82732834  1.32551867  1.31383303  0.75142366  8.70156788  6.17396283  8.43731838
-## [41] 11.07645233  1.02585189  1.08501190  0.44089088  1.25879245  1.10175645  0.06924787  2.57941243
-## [49]  1.32977202  0.95161851  0.53588899  0.31219014  1.46017146  0.49780409  0.28816254  1.78482335
-## [57]  3.15318335  0.41387148  2.17117583  4.26850167  2.24851459  1.46963585  7.51240307  2.22373150
-## [65]  3.53960367  5.21883539  1.00413457  1.66828778  4.80378114  3.59595236  5.01072284  1.43237347
-## [73]  0.66230081  2.08776534  0.59242542  3.18692368  1.16910723  4.78723618  3.27477863  2.87851400
+##  [1]  6.96298198 15.68597011  0.99200275  1.40512596  1.37144503
+##  [6]  0.16552893  3.88558262  7.26095754  1.61294677  2.93182182
+## [11]  1.86045293  0.84236999  6.38395252  4.56651915  4.58049994
+## [16]  8.56521226  5.90884663  1.91541520  2.06253115  2.60967860
+## [21]  9.44592795  6.14846754  6.93815858  4.16312245  2.58283224
+## [26]  4.19530595 11.98277234  0.80341215  0.71022833  0.96901998
+## [31]  1.04748778  1.64708702  0.75107138  0.82732834  1.32551867
+## [36]  1.31383303  0.75142366  8.70156788  6.17396283  8.43731838
+## [41] 11.07645233  1.02585189  1.08501190  0.44089088  1.25879245
+## [46]  1.10175645  0.06924787  2.57941243  1.32977202  0.95161851
+## [51]  0.53588899  0.31219014  1.46017146  0.49780409  0.28816254
+## [56]  1.78482335  3.15318335  0.41387148  2.17117583  4.26850167
+## [61]  2.24851459  1.46963585  7.51240307  2.22373150  3.53960367
+## [66]  5.21883539  1.00413457  1.66828778  4.80378114  3.59595236
+## [71]  5.01072284  1.43237347  0.66230081  2.08776534  0.59242542
+## [76]  3.18692368  1.16910723  4.78723618  3.27477863  2.87851400
 ## [81]  4.76593224  3.49218425  3.78276617  6.29001804  4.26482998</code></pre>
 <div id="merge-data-1" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Merge Data</h3>
 <p>We then rejoin the minimum distances to the zip code data, by column binding <code>min_dists_mi</code> to the original <code>chicago_zips</code> data.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">min_dist_sf &lt;-<span class="st"> </span><span class="kw">cbind</span>(chicago_zips, min_dists_mi)</a>
-<a class="sourceLine" id="cb161-2" data-line-number="2">min_dist_sf</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="centroid-access-tutorial.html#cb180-1"></a>min_dist_sf &lt;-<span class="st"> </span><span class="kw">cbind</span>(chicago_zips, min_dists_mi)</span>
+<span id="cb180-2"><a href="centroid-access-tutorial.html#cb180-2"></a>min_dist_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 85 features and 10 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: 1058388 ymin: 1791133 xmax: 1205317 ymax: 1966816
-## CRS:            EPSG:3435
+## projected CRS:  NAD83 / Illinois East (ftUS)
 ## First 10 features:
-##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10  ALAND10 AWATER10  INTPTLAT10   INTPTLON10
-## 1      60501   60501        B5   G6350          S 12532295   974360 +41.7802209 -087.8232440
-## 2      60007   60007        B5   G6350          S 36493383   917560 +42.0086000 -087.9973398
-## 3      60651   60651        B5   G6350          S  9052862        0 +41.9020934 -087.7408565
-## 4      60652   60652        B5   G6350          S 12987857        0 +41.7479319 -087.7147951
-## 5      60653   60653        B5   G6350          S  6041418  1696670 +41.8199645 -087.6059654
-## 6      60654   60654        B5   G6350          S  1464813   113471 +41.8918225 -087.6383036
-## 7      60655   60655        B5   G6350          S 11408010        0 +41.6947762 -087.7037764
-## 8      60656   60656        B5   G6350          S  8465226        0 +41.9742800 -087.8271283
-## 9      60657   60657        B5   G6350          S  5888324  2025836 +41.9402931 -087.6468569
-## 10     60659   60659        B5   G6350          S  5251086     2818 +41.9914885 -087.7039859
-##       min_dists_mi                       geometry
-## 1   6.9629820 [mi] MULTIPOLYGON (((1112613 185...
-## 2  15.6859701 [mi] MULTIPOLYGON (((1058389 194...
-## 3   0.9920027 [mi] MULTIPOLYGON (((1136069 190...
-## 4   1.4051260 [mi] MULTIPOLYGON (((1145542 185...
-## 5   1.3714450 [mi] MULTIPOLYGON (((1177007 187...
-## 6   0.1655289 [mi] MULTIPOLYGON (((1170904 190...
-## 7   3.8855826 [mi] MULTIPOLYGON (((1146378 183...
-## 8   7.2609575 [mi] MULTIPOLYGON (((1110359 193...
-## 9   1.6129468 [mi] MULTIPOLYGON (((1162394 192...
-## 10  2.9318218 [mi] MULTIPOLYGON (((1148555 194...</code></pre>
+##    ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10  ALAND10
+## 1      60501   60501        B5   G6350          S 12532295
+## 2      60007   60007        B5   G6350          S 36493383
+## 3      60651   60651        B5   G6350          S  9052862
+## 4      60652   60652        B5   G6350          S 12987857
+## 5      60653   60653        B5   G6350          S  6041418
+## 6      60654   60654        B5   G6350          S  1464813
+## 7      60655   60655        B5   G6350          S 11408010
+## 8      60656   60656        B5   G6350          S  8465226
+## 9      60657   60657        B5   G6350          S  5888324
+## 10     60659   60659        B5   G6350          S  5251086
+##    AWATER10  INTPTLAT10   INTPTLON10    min_dists_mi
+## 1    974360 +41.7802209 -087.8232440  6.9629820 [mi]
+## 2    917560 +42.0086000 -087.9973398 15.6859701 [mi]
+## 3         0 +41.9020934 -087.7408565  0.9920027 [mi]
+## 4         0 +41.7479319 -087.7147951  1.4051260 [mi]
+## 5   1696670 +41.8199645 -087.6059654  1.3714450 [mi]
+## 6    113471 +41.8918225 -087.6383036  0.1655289 [mi]
+## 7         0 +41.6947762 -087.7037764  3.8855826 [mi]
+## 8         0 +41.9742800 -087.8271283  7.2609575 [mi]
+## 9   2025836 +41.9402931 -087.6468569  1.6129468 [mi]
+## 10     2818 +41.9914885 -087.7039859  2.9318218 [mi]
+##                          geometry
+## 1  MULTIPOLYGON (((1112613 185...
+## 2  MULTIPOLYGON (((1058389 194...
+## 3  MULTIPOLYGON (((1136069 190...
+## 4  MULTIPOLYGON (((1145542 185...
+## 5  MULTIPOLYGON (((1177007 187...
+## 6  MULTIPOLYGON (((1170904 190...
+## 7  MULTIPOLYGON (((1146378 183...
+## 8  MULTIPOLYGON (((1110359 193...
+## 9  MULTIPOLYGON (((1162394 192...
+## 10 MULTIPOLYGON (((1148555 194...</code></pre>
 </div>
 <div id="visualize-confirm-1" class="section level3">
 <h3><span class="header-section-number">7.6.2</span> Visualize &amp; Confirm</h3>
 <p>We can now visualize the zip-level access to methadone clinics using our new access metric, using the <code>tmap</code> package. We’ll use quantile bins with five intervals.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="centroid-access-tutorial.html#cb182-1"></a><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n=</span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb165-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
-<a class="sourceLine" id="cb165-5" data-line-number="5">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
-<a class="sourceLine" id="cb165-6" data-line-number="6">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="centroid-access-tutorial.html#cb184-1"></a><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></span>
+<span id="cb184-2"><a href="centroid-access-tutorial.html#cb184-2"></a><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n=</span><span class="dv">5</span>,</span>
+<span id="cb184-3"><a href="centroid-access-tutorial.html#cb184-3"></a>              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></span>
+<span id="cb184-4"><a href="centroid-access-tutorial.html#cb184-4"></a><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</span>
+<span id="cb184-5"><a href="centroid-access-tutorial.html#cb184-5"></a>            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb184-6"><a href="centroid-access-tutorial.html#cb184-6"></a>            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Access by zip code can also be combined with locations of resources:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n=</span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb166-3" data-line-number="3">              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</a>
-<a class="sourceLine" id="cb166-7" data-line-number="7">            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</a>
-<a class="sourceLine" id="cb166-8" data-line-number="8">            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">head</span>(chicago_zips)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="centroid-access-tutorial.html#cb185-1"></a><span class="kw">tm_shape</span>(min_dist_sf) <span class="op">+</span></span>
+<span id="cb185-2"><a href="centroid-access-tutorial.html#cb185-2"></a><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;min_dists_mi&quot;</span>, <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n=</span><span class="dv">5</span>,</span>
+<span id="cb185-3"><a href="centroid-access-tutorial.html#cb185-3"></a>              <span class="dt">title =</span> <span class="st">&quot;Minimum Distance (mi)&quot;</span>) <span class="op">+</span></span>
+<span id="cb185-4"><a href="centroid-access-tutorial.html#cb185-4"></a><span class="st">  </span><span class="kw">tm_shape</span>(meth_sf) <span class="op">+</span></span>
+<span id="cb185-5"><a href="centroid-access-tutorial.html#cb185-5"></a><span class="st">  </span><span class="kw">tm_dots</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb185-6"><a href="centroid-access-tutorial.html#cb185-6"></a><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Minimum Distance from Zip Centroid</span><span class="ch">\n</span><span class="st"> to Methadone Clinic&quot;</span>,</span>
+<span id="cb185-7"><a href="centroid-access-tutorial.html#cb185-7"></a>            <span class="dt">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb185-8"><a href="centroid-access-tutorial.html#cb185-8"></a>            <span class="dt">main.title.size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Opioid-Environment-Toolkit_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="centroid-access-tutorial.html#cb186-1"></a><span class="kw">head</span>(chicago_zips)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 9 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: 1058388 ymin: 1846408 xmax: 1189038 ymax: 1957548
-## CRS:            EPSG:3435
+## projected CRS:  NAD83 / Illinois East (ftUS)
 ## # A tibble: 6 x 10
-##   ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10 INTPTLAT10 INTPTLON10
-##   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     
-## 1 60501     60501   B5        G6350   S          125322… 974360   +41.78022… -087.8232…
-## 2 60007     60007   B5        G6350   S          364933… 917560   +42.00860… -087.9973…
-## 3 60651     60651   B5        G6350   S          9052862 0        +41.90209… -087.7408…
-## 4 60652     60652   B5        G6350   S          129878… 0        +41.74793… -087.7147…
-## 5 60653     60653   B5        G6350   S          6041418 1696670  +41.81996… -087.6059…
-## 6 60654     60654   B5        G6350   S          1464813 113471   +41.89182… -087.6383…
-## # … with 1 more variable: geometry &lt;MULTIPOLYGON [US_survey_foot]&gt;</code></pre>
+##   ZCTA5CE10 GEOID10 CLASSFP10 MTFCC10 FUNCSTAT10 ALAND10 AWATER10
+##   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   
+## 1 60501     60501   B5        G6350   S          125322… 974360  
+## 2 60007     60007   B5        G6350   S          364933… 917560  
+## 3 60651     60651   B5        G6350   S          9052862 0       
+## 4 60652     60652   B5        G6350   S          129878… 0       
+## 5 60653     60653   B5        G6350   S          6041418 1696670 
+## 6 60654     60654   B5        G6350   S          1464813 113471  
+## # … with 3 more variables: INTPTLAT10 &lt;chr&gt;, INTPTLON10 &lt;chr&gt;,
+## #   geometry &lt;MULTIPOLYGON [US_survey_foot]&gt;</code></pre>
 </div>
 </div>
 <div id="CA-save" class="section level2">
 <h2><span class="header-section-number">7.7</span> Save Data</h2>
 <p>To save our final result to a CSV:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="centroid-access-tutorial.html#cb188-1"></a><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.csv&quot;</span>)</span></code></pre></div>
 <p>We can also write out this data to a shapefile format:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="centroid-access-tutorial.html#cb189-1"></a><span class="kw">write_sf</span>(min_dist_sf, <span class="st">&quot;chizips_Access.shp&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

@@ -2,11 +2,10 @@
 
 ## Overview {#TM-research-question}
 
-Once we have downloaded the contextual data and generated the access metrics, we can start visualizing them to identify any spatial patterns. This can help identify whether a variable is homogeneously distributed across space or do we see clustering & spatial heterogeneity. In this tutorial we will cover methods to plot data variables spatially i.e. create thematic maps, technically known as choropleth maps. We will cover the most commonly used types of choropleth mapping techniques employed in R. Please note the methods covered here are mere an introduction to spatial plotting. Thus, in this tutorial our objectives are to:
+Once we have downloaded the contextual data and generated the access metrics, we can start visualizing them to identify any spatial patterns. This can help identify whether a variable is homogeneously distributed across space or do we see clustering & spatial heterogeneity. In this tutorial we will cover methods to plot data variables spatially i.e. create thematic maps, technically known as choropleth maps. We will cover the most commonly used types of choropleth mapping techniques employed in R. Please note the methods covered here are mere an introduction to spatial plotting. Thus, in this tutorial our objectives are to:  
 
-* item 1
-* item 2
-* item 3
+* Plot basic thematic map
+* Visualize spatial distributions using thematic maps
 
 ## Environment Setup {#TM-setup}
 
@@ -20,9 +19,11 @@ We will use the following packages in this tutorial:
 - `sf`: to read/write and manipulate spatial data
 
 #### Required Inputs and Expected Outputs {#TM-i-o}
-We will using the race data for Illinois downloaded & saved as a shapefile using the [get-ACS_Data tutorial](link) from the Census Bureau.
+We will using the per capita income data for the City of Chicago downloaded & saved as a shapefile in the [Census Data Wrangling](#contextual-data). Our inputs will be :
 
-Our output will be three thematic maps highlighting the distribution of percentage hispanic population at a county level across the state of Illinois.
+- a zip code boundary file with per capita income ("Chicago_Zip_PCI_18.shp"). 
+
+Our output will be three thematic maps highlighting the distribution of per capita income at a zip code level across the city of Chicago.
 
 #### Load libraries {#TM-packages2}
 First, load the libraries required.
@@ -35,29 +36,18 @@ library(sf)
 
 ## Load data {#TM-load-variables}
 
-We will read in the shapefile with percentage hispanic population at the county level for the state of Illinois for year 2018.Alternatively, if you have not saved the dataset from [get-ACS-Data tutorial](link), you can access it [here](https://uchicago.app.box.com/folder/123662619823).
+We will read in the shapefile with the per capita income at the zipcode level for the city of Chicago for year 2018.
 
 ``` {r}
-ILcounties <- st_read("data/IL_County_18.shp")
-head(ILcounties)
+chicagoZips <- st_read("data/Chicago_Zip_PCI_18.shp")
+head(chicagoZips)
 ```
 
 Lets review the dataset structure. In the R `sf` data object, the 'geometry' column provides the geographic information/boundaries that we can map. This is unique to simple features data structures, and a pretty phenomenal concept. 
 
 We can do a quick plot using:
 ```{r quick plot, fig.align='center'}
-plot(ILcounties$geometry)
-```
-
-Before we move ahead, lets convert the percentages for easy plotting using some `tidyverse` thinking. View the dataframe afterwards to confirm your change was successful.
-
-**Moksha note -- please explain what is happening here, how this uses the tidyvrse, etc -- 
-
-```{r multiply, message=FALSE, warning=FALSE}
-ILcounties <- ILcounties %>% 
-               mutate_at(vars(hispPr18:AsianPr18),
-                          .funs = funs(round(. * 100,2)))
-head(ILcounties)
+plot(chicagoZips$geometry)
 ```
 
 
@@ -72,21 +62,21 @@ Similar to ggplot2, aesthetics can be provided for each layer and plot layout ca
 
 ```{r quick plot tmap, fig.align='center'}
 tmap_mode('plot')
-tm_shape(ILcounties) + tm_borders() + tm_layout(frame =  FALSE)
+tm_shape(chicagoZips) + tm_borders() + tm_layout(frame =  FALSE)
 ```
 
-In tmap, the classification scheme is set by the `style` option in `tm_fill()` and the default style is `pretty`. Lets plot the distribution of percentage of hispanic population by county across the state of Illinois with default style using the code below. We can also change the color palette used to depict the spatial distribution. See [Set Color Palette](#TM-set-palette) in Appendix for more details on that.
+In tmap, the classification scheme is set by the `style` option in `tm_fill()` and the default style is `pretty`. Lets plot the distribution of per capita income by zipcode across the city of Chicago with default style using the code below. We can also change the color palette used to depict the spatial distribution. See [Set Color Palette](#TM-set-palette) in Appendix for more details on that.
 
 ```{r plot pretty, fig.align='center'}
-tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Pretty') + 
+tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Pretty') + 
 tm_borders() + 
 tm_layout(frame = FALSE, legend.outside = TRUE, legend.outside.position = 'right',
           legend.title.size = 0.9,
-          main.title = 'Pct of hispanic population by county, IL 2018', 
+          main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
           main.title.size = 0.9)
 ```
 
-We will be plotting the spatial distribution of variable hispPr18 for the state of Illinois using three methods.
+We will be plotting the spatial distribution of variable perCapIncome for the city of Chicago using three methods.
 
 1. Quantile
 2. Natural Breaks
@@ -99,11 +89,11 @@ For detailed documentation on choropleth mapping and methods use check [GeoDa Ce
 A quantile map is based on sorted values for the variable that are then grouped into bins such that each bin has the same number of observations. It is obtained by setting `style = 'quantile'` and `n = no of bins` arguments in tm_fill(). 
 
 ```{r plot quantile, message=FALSE, fig.align='center'}
-p1 <- tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Quantile', 
+p1 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Quantile', 
                                 style = 'quantile', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
-                main.title = 'Pct of hispanic population by county, IL 2018', 
+                main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
                 main.title.size = 0.9)
 
 #tmap_save(p1, 'PctHisp_18_Quantile.png') # save the map in a .png file
@@ -118,11 +108,11 @@ Natural breaks or jenks distribution uses a nonlinear algorithm to cluster data 
 As we can see, jenks method better classifies the dataset in review than the quantile distribution. There is no correct method to use and the choice of classification method is dependent on the problem & dataset used.
 
 ```{r plot jenks, message=FALSE, fig.align='center'}
-p2 <- tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Jenks', 
+p2 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
-                main.title = 'Pct of hispanic population by county, IL 2018', 
+                main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
                 main.title.size = 0.9)
 
 #tmap_save(p2, 'PctHisp_18_Jenks.png')# save the map in a .png file
@@ -136,11 +126,11 @@ A standard deviation map normalizes the dataset (mean = 0, stdev = 1) and transf
 The normalization process can create bins with negative values, which in this case don't necessarily make sense for the dataset, but it still helps identify the outliers.
 
 ```{r plot stdev, message=FALSE, fig.align='center'}
-p3 <- tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Stdev', 
+p3 <- tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Stdev', 
                                 style = 'sd') + tm_borders() + 
       tm_layout(frame = FALSE, legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
-                main.title = 'Pct of hispanic population by county, IL 2018', 
+                main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
                 main.title.size = 0.9)
 
 #tmap_save(p3, 'PctHisp_18_Stdev.png')# save the map in a .png file
@@ -154,11 +144,11 @@ p3
 The range of colors used to depict the distribution in the map can be set by modifying the `palette` argument in tm_fill(). For example, we can use `Blues` palette to create the map below.
 
 ```{r plot palette, fig.align='center'}
-tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Jenks', 
+tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'Blues') + tm_borders() + 
 tm_layout(frame = FALSE,legend.outside = TRUE, 
           legend.outside.position = 'right', legend.title.size =0.9,
-          main.title = 'Pct of hispanic population by county, IL 2018', 
+          main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
           main.title.size = 0.9)
 ```
 
@@ -178,20 +168,20 @@ RColorBrewer::display.brewer.pal(5,"PuBuGn")
 We can update the jenks map by using this sequential color scheme and changing the transparency using `alpha = 0.8` as below.
 
 ```{r plot jenks improved, fig.align='center'}
-tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Jenks', 
+tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'PuBuGn') + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,
-          main.title = 'Pct of hispanic population by county, IL 2018', 
+          main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
           main.title.size = 0.9)
 ```
 
 We can also update the stdev map by using a diverging color scheme as below.
 ```{r plot stdev improved, fig.align='center'}
-tm_shape(ILcounties) + tm_fill('hispPr18', title = 'PctHispanic% - Stdev', 
+tm_shape(chicagoZips) + tm_fill('perCapInc', title = 'Per Capita Income - Stdev', 
                                 style = 'sd', palette = '-RdBu', alpha = 0.9) + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,
-          main.title = 'Pct of hispanic population by county, IL 2018', 
+          main.title = 'Per Capita Income, by Zipcode, Chicago 2018', 
           main.title.size = 0.9)
 ```

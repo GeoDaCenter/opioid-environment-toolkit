@@ -61,7 +61,7 @@ When considering which geocoding service to use, consider scale and potential ge
 
 ### Test Geocoding Service
 
-Before geocoding your entire dataset, first review the documentation for the geocoding service you'll be using. In our example we use `tidygeocoder`, with documentation found [here](). Let's test the service by starting with one address:
+Before geocoding your entire dataset, first review the documentation for the geocoding service you'll be using. In our example we use `tidygeocoder`, with documentation found [here](https://cran.r-project.org/web/packages/tidygeocoder/vignettes/tidygeocoder.html). Let's test the service by starting with one address:
 
 ```{r}
 sample <- geo("4545 North Broadway St. Chicago, IL", lat = latitude, long = longitude, method = 'cascade')
