@@ -127,7 +127,7 @@ tm_shape(zips_merged) +
             frame = FALSE)
 ```
 
-To improve our map even further, let's make in interactive! By switching the `tmap_mode` function to "view" (from "plot" the default), our newly rendered map is not interactive. We can zoom in and out, click on different basemaps or turn layers on our off, and click on resources for more information. 
+To improve our map even further, let's make it interactive! By switching the `tmap_mode` function to "view" (from "plot" the default), our newly rendered map is not interactive. We can zoom in and out, click on different basemaps or turn layers on our off, and click on resources for more information. 
 
 ```{r warning = FALSE, messages=FALSE}
 tmap_mode("view")
@@ -142,7 +142,7 @@ tm_shape(zips_merged) +
 ```
 
 
-Using this approach, it's clear that the zip codes on the West Side most vulnerable are 60651, 60644, 60632, and 60629. By updating the thresholds and parameters further, these can shift as well to be more or less conservative based on our assumptions.
+Using this approach, it's clear that the zip codes on the West Side most vulnerable are 60651, 60644, 60632, 60629, and 60608. By updating the thresholds and parameters further, these can shift as well to be more or less conservative based on our assumptions.
 
 ## Save Data
 We save our newly merged ZCTA level data for future analysis.
