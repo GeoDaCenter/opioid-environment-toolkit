@@ -22,7 +22,7 @@ You can download data files from [here](https://uchicago.app.box.com/folder/1236
 | 4 | Link Community Data | Marynia  | Marynia  | Final  |
 | 5 | Census Data Handling (R) |  Moksha |  Marynia | Final  |
 | 6 | Thematic Mapping (R) |  Moksha |  Marynia | Final  |
-| 7 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | Revision  |
+| 7 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | Final  |
 | 8 | Spatial Aggregations (R) | Qinyun | Moksha  |  Planning |
 | 9 | Advanced Access Metrics (python) | Moksha  | Marynia |  Planning |
 | 10 | SAMSHA Scraping/ Data Recovery (python)  | Olina  | Qinyun  | Planning  |
