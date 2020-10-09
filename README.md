@@ -1,4 +1,5 @@
 # opioid-environment-toolkit
+[![DOI](https://zenodo.org/badge/253884758.svg)](https://zenodo.org/badge/latestdoi/253884758)
 
 ## Overview
 This bookdown project will provide an overview of basic spatial analytics for the JCOIN network. We will introduce basic spatial analytic functionalities using open source tools, mainly in R, using applied examples for visualizing, mapping, and understanding the opioid risk environment. 
