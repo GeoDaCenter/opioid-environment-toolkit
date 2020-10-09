@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
@@ -7,7 +7,7 @@
   <title>6 Thematic Mapping | Opioid-Environment-Toolkit.utf8</title>
   <meta name="description" content="<span style='color: #982568; font-size:42px'>Opioid Environment Toolkit
 </style>" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Thematic Mapping | Opioid-Environment-Toolkit.utf8" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
   
   
 
-<meta name="author" content="Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : 2020-10-08" />
+<meta name="author" content="Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : 2020-10-09" />
 
 
 
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -63,9 +64,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +75,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +93,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -311,26 +314,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><code>sf</code>: to read/write and manipulate spatial data</li>
 </ul>
 <p>Load the libraries required.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="kw">library</span>(sf)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="visualizeArealData-tutorial.html#cb125-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb125-2"><a href="visualizeArealData-tutorial.html#cb125-2"></a><span class="kw">library</span>(tmap)</span>
+<span id="cb125-3"><a href="visualizeArealData-tutorial.html#cb125-3"></a><span class="kw">library</span>(sf)</span></code></pre></div>
 </div>
 <div id="TM-load-variables" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Load data</h3>
 <p>We will read in the shapefile with the per capita income at the zipcode level for the city of Chicago for year 2018.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">chicagoZips &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;data/chizips_ACS.shp&quot;</span>)</a></code></pre></div>
-<pre><code>## Reading layer `chizips_ACS&#39; from data source `/Users/maryniakolak/code/opioid-environment-toolkit/data/chizips_ACS.shp&#39; using driver `ESRI Shapefile&#39;
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="visualizeArealData-tutorial.html#cb126-1"></a>chicagoZips &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;data/chizips_ACS.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `chizips_ACS&#39; from data source `/Users/yashbansal/Desktop/CSDS_RA/opioid-environment-toolkit/data/chizips_ACS.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 56 features and 3 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: -87.86962 ymin: 41.62992 xmax: -87.52416 ymax: 42.02313
-## CRS:            4269</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">head</span>(chicagoZips)</a></code></pre></div>
+## geographic CRS: NAD83</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="visualizeArealData-tutorial.html#cb128-1"></a><span class="kw">head</span>(chicagoZips)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 3 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: -87.64138 ymin: 41.85206 xmax: -87.60586 ymax: 41.88908
-## CRS:            4269
+## geographic CRS: NAD83
 ##   GEOID totPp18 prCptIn                       geometry
 ## 1 60601   14675   92125 MULTIPOLYGON (((-87.63396 4...
 ## 2 60602    1244  100507 MULTIPOLYGON (((-87.63389 4...
@@ -340,7 +343,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 6 60606    3101  132765 MULTIPOLYGON (((-87.63998 4...</code></pre>
 <p>Lets review the dataset structure. In the R <code>sf</code> data object, the ‘geometry’ column provides the geographic information/boundaries that we can map. This is unique to simple features data structures, and a pretty phenomenal concept.</p>
 <p>We can do a quick plot using:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="kw">plot</span>(chicagoZips<span class="op">$</span>geometry)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="visualizeArealData-tutorial.html#cb130-1"></a><span class="kw">plot</span>(chicagoZips<span class="op">$</span>geometry)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/quick%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -352,17 +355,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>followed by the method to plot it, e.g <code>tm_fill() or tm_dots() or tm_line() or tm_borders()</code> etc.</li>
 </ul>
 <p>Similar to ggplot2, aesthetics can be provided for each layer and plot layout can be manipulated using <code>tm_layout()</code>. For more details on <code>tmap</code> usage &amp; functionality, check <a href="https://cran.r-project.org/web/packages/tmap/tmap.pdf">tmap documentation</a>. The previous map we plotted using <code>plot</code> can be mapped using <code>tmap</code> as in the code below.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">tmap_mode</span>(<span class="st">&#39;plot&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="visualizeArealData-tutorial.html#cb131-1"></a><span class="kw">tmap_mode</span>(<span class="st">&#39;plot&#39;</span>)</span></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span>  <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="visualizeArealData-tutorial.html#cb133-1"></a><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span>  <span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/quick%20plot%20tmap-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In tmap, the classification scheme is set by the <code>style</code> option in <code>tm_fill()</code> and the default style is <code>pretty</code>. Lets plot the distribution of per capita income by zipcode across the city of Chicago with default style using the code below. We can also change the color palette used to depict the spatial distribution. See <a href="visualizeArealData-tutorial.html#TM-set-palette">Set Color Palette</a> in Appendix for more details on that.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Pretty&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>,</a>
-<a class="sourceLine" id="cb135-4" data-line-number="4">          <span class="dt">legend.title.size =</span> <span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb135-5" data-line-number="5">          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb135-6" data-line-number="6">          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="visualizeArealData-tutorial.html#cb134-1"></a><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Pretty&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb134-2"><a href="visualizeArealData-tutorial.html#cb134-2"></a><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb134-3"><a href="visualizeArealData-tutorial.html#cb134-3"></a><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>,</span>
+<span id="cb134-4"><a href="visualizeArealData-tutorial.html#cb134-4"></a>          <span class="dt">legend.title.size =</span> <span class="fl">0.9</span>,</span>
+<span id="cb134-5"><a href="visualizeArealData-tutorial.html#cb134-5"></a>          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb134-6"><a href="visualizeArealData-tutorial.html#cb134-6"></a>          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20pretty-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We will be plotting the spatial distribution of variable perCapIncome for the city of Chicago using three methods.</p>
 <ol style="list-style-type: decimal">
@@ -374,45 +377,45 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="TM-quantile-plot" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Quantile</h3>
 <p>A quantile map is based on sorted values for the variable that are then grouped into bins such that each bin has the same number of observations. It is obtained by setting <code>style = 'quantile'</code> and <code>n = no of bins</code> arguments in tm_fill().</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">p1 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Quantile&#39;</span>, </a>
-<a class="sourceLine" id="cb136-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb136-4" data-line-number="4">                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb136-5" data-line-number="5">                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb136-6" data-line-number="6">                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a>
-<a class="sourceLine" id="cb136-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb136-8" data-line-number="8"><span class="co">#tmap_save(p1, &#39;PctHisp_18_Quantile.png&#39;) # save the map in a .png file</span></a>
-<a class="sourceLine" id="cb136-9" data-line-number="9">p1</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="visualizeArealData-tutorial.html#cb135-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Quantile&#39;</span>, </span>
+<span id="cb135-2"><a href="visualizeArealData-tutorial.html#cb135-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;quantile&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb135-3"><a href="visualizeArealData-tutorial.html#cb135-3"></a><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb135-4"><a href="visualizeArealData-tutorial.html#cb135-4"></a>                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb135-5"><a href="visualizeArealData-tutorial.html#cb135-5"></a>                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb135-6"><a href="visualizeArealData-tutorial.html#cb135-6"></a>                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span>
+<span id="cb135-7"><a href="visualizeArealData-tutorial.html#cb135-7"></a></span>
+<span id="cb135-8"><a href="visualizeArealData-tutorial.html#cb135-8"></a><span class="co">#tmap_save(p1, &#39;PctHisp_18_Quantile.png&#39;) # save the map in a .png file</span></span>
+<span id="cb135-9"><a href="visualizeArealData-tutorial.html#cb135-9"></a>p1</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20quantile-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="TM-jenks-plot" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Natural Breaks</h3>
 <p>Natural breaks or jenks distribution uses a nonlinear algorithm to cluster data into groups such that the intra-bin similarity is maximized and inter-bin dissimilarity is minimized. It is obtained by setting <code>style = 'jenks'</code> and <code>n = no. of bins</code> in the tm_fill().</p>
 <p>As we can see, jenks method better classifies the dataset in review than the quantile distribution. There is no correct method to use and the choice of classification method is dependent on the problem &amp; dataset used.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">p2 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </a>
-<a class="sourceLine" id="cb137-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb137-4" data-line-number="4">                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb137-5" data-line-number="5">                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb137-6" data-line-number="6">                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a>
-<a class="sourceLine" id="cb137-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="co">#tmap_save(p2, &#39;PctHisp_18_Jenks.png&#39;)# save the map in a .png file</span></a>
-<a class="sourceLine" id="cb137-9" data-line-number="9">p2</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="visualizeArealData-tutorial.html#cb136-1"></a>p2 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </span>
+<span id="cb136-2"><a href="visualizeArealData-tutorial.html#cb136-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb136-3"><a href="visualizeArealData-tutorial.html#cb136-3"></a><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb136-4"><a href="visualizeArealData-tutorial.html#cb136-4"></a>                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb136-5"><a href="visualizeArealData-tutorial.html#cb136-5"></a>                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb136-6"><a href="visualizeArealData-tutorial.html#cb136-6"></a>                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span>
+<span id="cb136-7"><a href="visualizeArealData-tutorial.html#cb136-7"></a></span>
+<span id="cb136-8"><a href="visualizeArealData-tutorial.html#cb136-8"></a><span class="co">#tmap_save(p2, &#39;PctHisp_18_Jenks.png&#39;)# save the map in a .png file</span></span>
+<span id="cb136-9"><a href="visualizeArealData-tutorial.html#cb136-9"></a>p2</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20jenks-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="TM-stdev-plot" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> Standard Deviation</h3>
 <p>A standard deviation map normalizes the dataset (mean = 0, stdev = 1) and transforms it into units of stdev (given mean =0). It helps identify outliers in the dataset. It is obtained by setting <code>style = 'sd'</code> in the tm_fill().
 The normalization process can create bins with negative values, which in this case don’t necessarily make sense for the dataset, but it still helps identify the outliers.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">p3 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Stdev&#39;</span>, </a>
-<a class="sourceLine" id="cb138-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;sd&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb138-4" data-line-number="4">                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb138-5" data-line-number="5">                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb138-6" data-line-number="6">                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a>
-<a class="sourceLine" id="cb138-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="co">#tmap_save(p3, &#39;PctHisp_18_Stdev.png&#39;)# save the map in a .png file</span></a>
-<a class="sourceLine" id="cb138-9" data-line-number="9">p3</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="visualizeArealData-tutorial.html#cb137-1"></a>p3 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Stdev&#39;</span>, </span>
+<span id="cb137-2"><a href="visualizeArealData-tutorial.html#cb137-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;sd&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb137-3"><a href="visualizeArealData-tutorial.html#cb137-3"></a><span class="st">      </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb137-4"><a href="visualizeArealData-tutorial.html#cb137-4"></a>                <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb137-5"><a href="visualizeArealData-tutorial.html#cb137-5"></a>                <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb137-6"><a href="visualizeArealData-tutorial.html#cb137-6"></a>                <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span>
+<span id="cb137-7"><a href="visualizeArealData-tutorial.html#cb137-7"></a></span>
+<span id="cb137-8"><a href="visualizeArealData-tutorial.html#cb137-8"></a><span class="co">#tmap_save(p3, &#39;PctHisp_18_Stdev.png&#39;)# save the map in a .png file</span></span>
+<span id="cb137-9"><a href="visualizeArealData-tutorial.html#cb137-9"></a>p3</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20stdev-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -421,39 +424,39 @@ The normalization process can create bins with negative values, which in this ca
 <div id="TM-set-palette" class="section level3 unnumbered">
 <h3>Set Color Palette</h3>
 <p>The range of colors used to depict the distribution in the map can be set by modifying the <code>palette</code> argument in tm_fill(). For example, we can use <code>Blues</code> palette to create the map below.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">palette =</span> <span class="st">&#39;Blues&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb139-4" data-line-number="4">          <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb139-5" data-line-number="5">          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb139-6" data-line-number="6">          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="visualizeArealData-tutorial.html#cb138-1"></a><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </span>
+<span id="cb138-2"><a href="visualizeArealData-tutorial.html#cb138-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">palette =</span> <span class="st">&#39;Blues&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb138-3"><a href="visualizeArealData-tutorial.html#cb138-3"></a><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb138-4"><a href="visualizeArealData-tutorial.html#cb138-4"></a>          <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb138-5"><a href="visualizeArealData-tutorial.html#cb138-5"></a>          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb138-6"><a href="visualizeArealData-tutorial.html#cb138-6"></a>          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20palette-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="TM-colorbrewer" class="section level3 unnumbered">
 <h3>Use ColorBrewer</h3>
 <p>To build aesthetically pleasing and easy-to-read maps, we recommend using color palette schemes recommended in <a href="https://colorbrewer2.org/#">ColorBrewer 2.0</a> developed by Cynthia Brewer. The website distinguishes between sequential(ordered), diverging(spread around a center) &amp; qualitative(categorical) data. Information on these palettes cab be displayed in R using RColorBrewer package.</p>
 <p>We can get the hex values for the colors used in a specific palette with n bins &amp; plot the corresponding colors using code below.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">require</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;PuBuGn&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="visualizeArealData-tutorial.html#cb139-1"></a><span class="kw">require</span>(RColorBrewer)</span>
+<span id="cb139-2"><a href="visualizeArealData-tutorial.html#cb139-2"></a></span>
+<span id="cb139-3"><a href="visualizeArealData-tutorial.html#cb139-3"></a>RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;PuBuGn&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;#F6EFF7&quot; &quot;#BDC9E1&quot; &quot;#67A9CF&quot; &quot;#1C9099&quot; &quot;#016C59&quot;</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">RColorBrewer<span class="op">::</span><span class="kw">display.brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;PuBuGn&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="visualizeArealData-tutorial.html#cb141-1"></a>RColorBrewer<span class="op">::</span><span class="kw">display.brewer.pal</span>(<span class="dv">5</span>,<span class="st">&quot;PuBuGn&quot;</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/colorbrewer-1.png" width="672" /></p>
 <p>We can update the jenks map by using this sequential color scheme and changing the transparency using <code>alpha = 0.8</code> as below.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">palette =</span> <span class="st">&#39;PuBuGn&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4">          <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5">          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb143-6" data-line-number="6">          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="visualizeArealData-tutorial.html#cb142-1"></a><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Jenks&#39;</span>, </span>
+<span id="cb142-2"><a href="visualizeArealData-tutorial.html#cb142-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">palette =</span> <span class="st">&#39;PuBuGn&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb142-3"><a href="visualizeArealData-tutorial.html#cb142-3"></a><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb142-4"><a href="visualizeArealData-tutorial.html#cb142-4"></a>          <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb142-5"><a href="visualizeArealData-tutorial.html#cb142-5"></a>          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb142-6"><a href="visualizeArealData-tutorial.html#cb142-6"></a>          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20jenks%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can also update the stdev map by using a diverging color scheme as below.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Stdev&#39;</span>, </a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">                                <span class="dt">style =</span> <span class="st">&#39;sd&#39;</span>, <span class="dt">palette =</span> <span class="st">&#39;-RdBu&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb144-4" data-line-number="4">          <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb144-5" data-line-number="5">          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </a>
-<a class="sourceLine" id="cb144-6" data-line-number="6">          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="visualizeArealData-tutorial.html#cb143-1"></a><span class="kw">tm_shape</span>(chicagoZips) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&#39;prCptIn&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Per Capita Income - Stdev&#39;</span>, </span>
+<span id="cb143-2"><a href="visualizeArealData-tutorial.html#cb143-2"></a>                                <span class="dt">style =</span> <span class="st">&#39;sd&#39;</span>, <span class="dt">palette =</span> <span class="st">&#39;-RdBu&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb143-3"><a href="visualizeArealData-tutorial.html#cb143-3"></a><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb143-4"><a href="visualizeArealData-tutorial.html#cb143-4"></a>          <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&#39;right&#39;</span>, <span class="dt">legend.title.size =</span><span class="fl">0.9</span>,</span>
+<span id="cb143-5"><a href="visualizeArealData-tutorial.html#cb143-5"></a>          <span class="dt">main.title =</span> <span class="st">&#39;Per Capita Income, by Zipcode, Chicago 2018&#39;</span>, </span>
+<span id="cb143-6"><a href="visualizeArealData-tutorial.html#cb143-6"></a>          <span class="dt">main.title.size =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <p><img src="Opioid-Environment-Toolkit_files/figure-html/plot%20stdev%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>

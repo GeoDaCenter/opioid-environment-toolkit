@@ -1,6 +1,8 @@
+fig:unnamed-chunk-2
 fig:unnamed-chunk-3
 fig:unnamed-chunk-4
 fig:unnamed-chunk-5
+fig:unnamed-chunk-6
 spatial-data-introduction
 SD-spatial-data
 SD-vector-data
@@ -62,12 +64,12 @@ zipcode-level
 CD-get-geometry
 using-tigris
 using-tidycensus
+save-data-2
 CD-appendix
 CD-explore-variables
 thematic-maps
 TM-research-question
 TM-setup
-TM-packages1
 TM-i-o
 TM-packages2
 TM-load-variables

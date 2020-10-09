@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
@@ -7,7 +7,7 @@
   <title>1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8</title>
   <meta name="description" content="<span style='color: #982568; font-size:42px'>Opioid Environment Toolkit
 </style>" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Spatial Data Introduction | Opioid-Environment-Toolkit.utf8" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
   
   
 
-<meta name="author" content="Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : 2020-10-08" />
+<meta name="author" content="Developed for the JCOIN Network of the NIH HEAL Initiative. Last Updated : 2020-10-09" />
 
 
 
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -63,9 +64,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +75,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +93,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -300,29 +303,42 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="spatial-data-types" class="section level2">
 <h2><span class="header-section-number">1.3</span> Spatial data types</h2>
-<p>Two common formats of spatial data are vector and raster data. Vector data represents the world surface using <strong>points, lines, and polygons</strong> whereas raster data can be satellite imagery or other pixelated surface. A group of clinics can be geocoded and converted to points, whereas zip code boundaries are represented as polygons. Note that spatial data types include the basic attributes <em>in addition to</em> their spatial information. So points on a map correspond to associated details for each clinic provider, and may also include fields like “name”, “services”, and more.</p>
+<p>Two common formats of spatial data are vector and raster data. Vector data represents the world surface using <strong>points, lines, and polygons</strong> whereas raster data can be satellite imagery or other pixelated surface. The figure below demonstrates how vector and raster data models represent geographic space differently, where points, lines, and polygons consist of the essential basis of the vector data model.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="img/Vector-and-raster.pbm" alt="[Vector and raster data model in geographic space](https://www.researchgate.net/figure/2-Vector-and-raster-data-model-in-geographic-space_fig3_330468019) [(Jukil &amp; Al-Hadad, 2017)](https://www.researchgate.net/publication/330468019_Highway_Vertical_Alignment_Optimization_Using_Genetic_Algorithm_GA)"  />
+<p class="caption">
+Figure 1.1: <a href="https://www.researchgate.net/figure/2-Vector-and-raster-data-model-in-geographic-space_fig3_330468019">Vector and raster data model in geographic space</a> <a href="https://www.researchgate.net/publication/330468019_Highway_Vertical_Alignment_Optimization_Using_Genetic_Algorithm_GA">(Jukil &amp; Al-Hadad, 2017)</a>
+</p>
+</div>
+<p>We mainly use vector data for our purpose. For example, a group of clinics can be geocoded and converted to points, whereas zip code boundaries are represented as polygons. Note that spatial data types include the basic attributes <em>in addition to</em> their spatial information. So points on a map correspond to associated details for each clinic provider, and may also include fields like “name”, “services”, and more. For example, each park is represented as a green polygon in the figure below. Linked with each park, we can have information regarding their names, sizes, types of plants, open hours, and other various features. These attributes can be stored in a data table, along with their spatial inforamtion, in a <code>shapefile</code>, or a <code>sf</code> spatial file loaded in your R environment.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="img/park.jpg" alt="[Glasgow park access  network](https://www.flickr.com/photos/29266908@N02/8520851663) by [macrofight](https://www.flickr.com/photos/29266908@N02) is under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/?ref=ccsearch&amp;atype=rich)" width="512" />
+<p class="caption">
+Figure 1.2: <a href="https://www.flickr.com/photos/29266908@N02/8520851663">Glasgow park access network</a> by <a href="https://www.flickr.com/photos/29266908@N02">macrofight</a> is under <a href="https://creativecommons.org/licenses/by-sa/2.0/?ref=ccsearch&amp;atype=rich">CC BY-SA 2.0</a>
+</p>
+</div>
 <p>Read more regarding vector and raster data from <a href="https://geocompr.robinlovelace.net/spatial-class.html#intro-sf">Chapter 2 Geographic data in R</a> of the Lovelace et al 2019 text, <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>. This opensource text is an incredible resource for those who are interested in learning more details regarding geographic data analysis, visualization, and modeling, and represents one of dozens of resources available for learning and honing R &amp; spatial analysis skills.</p>
 </div>
 <div id="SD-crs" class="section level2">
 <h2><span class="header-section-number">1.4</span> Coordinate Reference System</h2>
 <p>As noted before, the most fundamental element of a spatial data is “location.” A <strong>Coordinate Reference System (CRS)</strong> communicates what method should be used to flatten or project the Earth’s surface onto a 2-dimensional map.</p>
 <p>Importantly, different CRS implies different ways of projections and generates substantially different visualizations. For example, following are some world maps using different projections. (Check out <a href="https://futuremaps.com/blogs/news/top-10-world-map-projections">here</a> for more different world map projections.)</p>
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="img/worldproject1.jpg" alt="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)"  />
-<p class="caption">
-Figure 1.1: <a href="https://www.flickr.com/photos/34197995@N02/9514590409">The whole wide world</a> by <a href="https://www.flickr.com/photos/34197995@N02">PeterFisken</a> is under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="img/worldproject2.jpg" alt="[Peters Projection World Map (35'x51')](https://www.flickr.com/photos/35468141938@N01/3714559813) by [inju](https://www.flickr.com/photos/35468141938@N01) is under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich)"  />
-<p class="caption">
-Figure 1.2: <a href="https://www.flickr.com/photos/35468141938@N01/3714559813">Peters Projection World Map (35’x51’)</a> by <a href="https://www.flickr.com/photos/35468141938@N01">inju</a> is under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich">CC BY-NC-SA 2.0</a>
-</p>
-</div>
 <div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="img/worldproject3.jpg" alt="[Hammond Cylindrical Projection World Map 1905](https://www.flickr.com/photos/14277117@N03/4775662240) by [perpetualplum](https://www.flickr.com/photos/14277117@N03) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)"  />
+<img src="img/worldproject1.jpg" alt="[The whole wide world](https://www.flickr.com/photos/34197995@N02/9514590409) by [PeterFisken](https://www.flickr.com/photos/34197995@N02) is under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)" width="1024" />
 <p class="caption">
-Figure 1.3: <a href="https://www.flickr.com/photos/14277117@N03/4775662240">Hammond Cylindrical Projection World Map 1905</a> by <a href="https://www.flickr.com/photos/14277117@N03">perpetualplum</a> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
+Figure 1.3: <a href="https://www.flickr.com/photos/34197995@N02/9514590409">The whole wide world</a> by <a href="https://www.flickr.com/photos/34197995@N02">PeterFisken</a> is under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="img/worldproject2.jpg" alt="[Peters Projection World Map (35'x51')](https://www.flickr.com/photos/35468141938@N01/3714559813) by [inju](https://www.flickr.com/photos/35468141938@N01) is under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich)" width="500" />
+<p class="caption">
+Figure 1.4: <a href="https://www.flickr.com/photos/35468141938@N01/3714559813">Peters Projection World Map (35’x51’)</a> by <a href="https://www.flickr.com/photos/35468141938@N01">inju</a> is under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&amp;atype=rich">CC BY-NC-SA 2.0</a>
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="img/worldproject3.jpg" alt="[Hammond Cylindrical Projection World Map 1905](https://www.flickr.com/photos/14277117@N03/4775662240) by [perpetualplum](https://www.flickr.com/photos/14277117@N03) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich)" width="1022" />
+<p class="caption">
+Figure 1.5: <a href="https://www.flickr.com/photos/14277117@N03/4775662240">Hammond Cylindrical Projection World Map 1905</a> by <a href="https://www.flickr.com/photos/14277117@N03">perpetualplum</a> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>
 </p>
 </div>
 <p>Because different CRS imply different ways of projections and generates substantially different visualizations, it is important to make sure the CRS accompanied with each spatial data are the same before implementing any advanced spatial analysis or geometric processing. In <code>sf</code>, you can use the function <code>st_crs</code> to check the CRS used in one data, and the function <code>st_transform</code> to project the data to a particular CRS. See this <a href="https://spatialanalysis.github.io/workshop-notes/introduction-to-spatial-data.html#interactive-tutorial">Interactive Tutorial</a> that demonstrates these functions.</p>

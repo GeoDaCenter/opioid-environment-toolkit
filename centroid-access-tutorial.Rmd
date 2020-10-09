@@ -42,7 +42,7 @@ library(units)
 First, load in the MOUD resources shapefile. Let's take a look at the first few rows of the dataset.
 
 ```{r}
-meth_sf <- st_read("methadoneClinics.shp")
+meth_sf <- st_read("data/methadoneClinics.shp")
 head(meth_sf)
 ```
 
