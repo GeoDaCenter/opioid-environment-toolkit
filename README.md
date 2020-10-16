@@ -16,12 +16,12 @@ You can download data files from [here](https://uchicago.app.box.com/folder/1236
 
 | No. | Topic | Author | Editor | Status  |
 |---|---|---|---|---|
-| 1 | Spatial Data Intro (R) | Qinyun | Moksha, Marynia  | Final  |
-| 2 | Geocoding Resources (R) | Moksha  | Marynia  | Final  |
-| 3 | Buffer Analysis (R) |  Marynia |  Marynia | Final |
-| 4 | Link Community Data | Marynia  | Marynia  | Final  |
-| 5 | Census Data Handling (R) |  Moksha |  Marynia | Final  |
-| 6 | Thematic Mapping (R) |  Moksha |  Marynia | Final  |
+| 1 | [Spatial Data Intro](https://geodacenter.github.io/opioid-environment-toolkit/spatial-data-introduction.html) | Qinyun | Moksha, Marynia  | Final  |
+| 2 | [Geocoding Resources](https://geodacenter.github.io/opioid-environment-toolkit/geocodingAddress-tutorial.html) (R) | Moksha  | Marynia  | Final  |
+| 3 | [Buffer Analysis](https://geodacenter.github.io/opioid-environment-toolkit/buffer_analysis.html) (R) |  Marynia |  Marynia | Final |
+| 4 | [Link Community Data](https://geodacenter.github.io/opioid-environment-toolkit/link-contextual-data.html) (R) | Marynia  | Marynia  | Final  |
+| 5 | [Census Data Wrangling](https://geodacenter.github.io/opioid-environment-toolkit/getACSData-tutorial.html) (R) |  Moksha |  Marynia | Final  |
+| 6 | [Thematic Mapping](https://geodacenter.github.io/opioid-environment-toolkit/visualizeArealData-tutorial.html) (R) |  Moksha |  Marynia | Final  |
 | 7 | [Min Distance Access Metrics](https://geodacenter.github.io/opioid-environment-toolkit/centroid-access-tutorial.html) (R) | Angela  | Marynia  | Final  |
 | 8 | Spatial Aggregations (R) | Qinyun | TBD  |  Planning |
 | 9 | Advanced Access Metrics (python) | Moksha  | TBD |  Planning |
