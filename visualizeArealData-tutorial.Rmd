@@ -15,7 +15,7 @@ To replicate the codes & functions illustrated in this tutorial, you’ll need t
 ### Input/Output {#TM-i-o}
 We will using the per capita income data for the City of Chicago downloaded & saved as a shapefile in the [Census Data Wrangling](#contextual-data). These files can also be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data). Our input is:
 
-- Chicago Zip Codes with per capita income, `chizips_ACS.shp` 
+- Chicago Zip Codes with per capita income, `chizips_18_pci.shp` 
 
 Our output will be three thematic maps highlighting the distribution of per capita income at a zip code level across the city of Chicago.
 
@@ -39,15 +39,15 @@ library(sf)
 We will read in the shapefile with the per capita income at the zipcode level for the city of Chicago for year 2018.
 
 ``` {r}
-chicagoZips <- st_read("data/chizips_ACS.shp")
-head(chicagoZips)
+chicagoZips_18_PCI <- st_read("data/chizips_18_pci.shp")
+head(chicagoZips_18_PCI)
 ```
 
 Lets review the dataset structure. In the R `sf` data object, the 'geometry' column provides the geographic information/boundaries that we can map. This is unique to simple features data structures, and a pretty phenomenal concept. 
 
 We can do a quick plot using:
 ```{r quick plot, fig.align='center'}
-plot(chicagoZips$geometry)
+plot(chicagoZips_18_PCI$geometry)
 ```
 
 
@@ -62,13 +62,13 @@ Similar to ggplot2, aesthetics can be provided for each layer and plot layout ca
 
 ```{r quick plot tmap, fig.align='center'}
 tmap_mode('plot')
-tm_shape(chicagoZips) + tm_borders() + tm_layout(frame =  FALSE)
+tm_shape(chicagoZips_18_PCI) + tm_borders() + tm_layout(frame =  FALSE)
 ```
 
 In tmap, the classification scheme is set by the `style` option in `tm_fill()` and the default style is `pretty`. Lets plot the distribution of per capita income by zipcode across the city of Chicago with default style using the code below. We can also change the color palette used to depict the spatial distribution. See [Set Color Palette](#TM-set-palette) in Appendix for more details on that.
 
 ```{r plot pretty, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Pretty') + 
+tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Pretty') + 
 tm_borders() + 
 tm_layout(frame = FALSE, legend.outside = TRUE, legend.outside.position = 'right',
           legend.title.size = 0.9,
@@ -89,7 +89,7 @@ For a more detailed overview of choropleth mapping and methods, check out the re
 A quantile map is based on sorted values for the variable that are then grouped into bins such that each bin has the same number of observations. It is obtained by setting `style = 'quantile'` and `n = no of bins` arguments in tm_fill(). 
 
 ```{r plot quantile, message=FALSE, fig.align='center'}
-p1 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Quantile', 
+p1 <- tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Quantile', 
                                 style = 'quantile', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -108,7 +108,7 @@ Natural breaks or jenks distribution uses a nonlinear algorithm to cluster data 
 As we can see, jenks method better classifies the dataset in review than the quantile distribution. There is no correct method to use and the choice of classification method is dependent on the problem & dataset used.
 
 ```{r plot jenks, message=FALSE, fig.align='center'}
-p2 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
+p2 <- tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5) + tm_borders() + 
       tm_layout(frame = FALSE,legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -126,7 +126,7 @@ A standard deviation map normalizes the dataset (mean = 0, stdev = 1) and transf
 The normalization process can create bins with negative values, which in this case don't necessarily make sense for the dataset, but it still helps identify the outliers.
 
 ```{r plot stdev, message=FALSE, fig.align='center'}
-p3 <- tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
+p3 <- tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
                                 style = 'sd') + tm_borders() + 
       tm_layout(frame = FALSE, legend.outside = TRUE, 
                 legend.outside.position = 'right', legend.title.size =0.9,
@@ -144,7 +144,7 @@ p3
 The range of colors used to depict the distribution in the map can be set by modifying the `palette` argument in tm_fill(). For example, we can use `Blues` palette to create the map below.
 
 ```{r plot palette, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
+tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'Blues') + tm_borders() + 
 tm_layout(frame = FALSE,legend.outside = TRUE, 
           legend.outside.position = 'right', legend.title.size =0.9,
@@ -168,7 +168,7 @@ RColorBrewer::display.brewer.pal(5,"PuBuGn")
 We can update the jenks map by using this sequential color scheme and changing the transparency using `alpha = 0.8` as below.
 
 ```{r plot jenks improved, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
+tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Jenks', 
                                 style = 'jenks', n = 5, palette = 'PuBuGn') + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,
@@ -178,7 +178,7 @@ tm_layout(frame = FALSE,
 
 We can also update the stdev map by using a diverging color scheme as below.
 ```{r plot stdev improved, fig.align='center'}
-tm_shape(chicagoZips) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
+tm_shape(chicagoZips_18_PCI) + tm_fill('prCptIn', title = 'Per Capita Income - Stdev', 
                                 style = 'sd', palette = '-RdBu', alpha = 0.9) + tm_borders() + 
 tm_layout(frame = FALSE,
           legend.outside = TRUE, legend.outside.position = 'right', legend.title.size =0.9,

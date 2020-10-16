@@ -18,7 +18,7 @@ To replicate the codes & functions illustrated in this tutorial, you’ll need t
 ### Input/Output {#BA-i-o}
 Our inputs include multiple CSV and SHP files, all of which can be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data), though the providers point file was generated in the Geocoding tutorial. Note that all four files are required (.dbf, .prj, .shp, and .shx) to constitute a shapefile. 
 
-* Chicago Methadone Clinics, `methadoneClinics.shp`
+* Chicago Methadone Clinics, `methadone_clinics.shp`
 * 1-mile buffer zone of Clinics, `methadoneClinics_1mi.shp`
 * Chicago Zip Codes, `chicago_zips.shp`
 * Chicago COVID case data by Zip, `COVID-19_Cases__Tests__and_Deaths_by_ZIP_Code.csv`
@@ -43,8 +43,8 @@ library(tmap)
 
 First we'll load the shapefiles.
 ```{r}
-chicago_zips <- st_read("data/chicago_zips.shp")
-meth_sf <- st_read("data/methadoneClinics.shp")
+chicagoZips <- st_read("data/chicago_zips.shp")
+methadoneSf <- st_read("data/methadone_clinics.shp")
 buffers<- st_read("data/methadoneClinics_1mi.shp")
 ```
 
@@ -79,7 +79,7 @@ head(COVID.sub)
 Before merging, we need to first identify the **geographic identifier** we would like to merge on. It is the field "ZIP.Code" in our subset. What about the zip code file, which we will be merging to?
 
 ```{r}
-head(chicago_zips)
+head(chicagoZips)
 ```
 
 Aha -- in this dataset, the zip is identified as either the ZCTA5CE10 field or GEOID10 field. Not that we are actually working with 5-digit ZCTA fields, not 9-digit ZIP codes... We decide to merge on the GEOID10 field. To make our lives easier, we'll generate a duplicate field in our subset with a new name, GEOID10, to match. We also convert from the factor structure to a character field to match the data structure of the master zip file.
@@ -92,8 +92,8 @@ COVID.sub$GEOID10<- as.character(COVID.sub$ZIP.Code)
 Let's merge the data using the zip code geographic identifier, "ZIP Code" field, to bring in the the Percent Tested Positive - Cumalative dataset. Inspect the data to confirm it merged correctly!
 
 ```{r}
-zips_merged <- merge(chicago_zips, COVID.sub, by = "GEOID10")
-head(zips_merged)
+zipsMerged <- merge(chicagoZips, COVID.sub, by = "GEOID10")
+head(zipsMerged)
 ```
 
 ## Visualize Data
@@ -102,11 +102,11 @@ Now we are ready to visualize our data! First we'll make a simple map. We genera
 ```{r warning = FALSE, messages=FALSE}
 tmap_mode("plot")
 
-tm_shape(zips_merged) +
+tm_shape(zipsMerged) +
   tm_polygons("Case.Rate...Cumulative", style="quantile", pal="BuPu",
               title = "COVID Case Rate") +
   tm_shape(buffers) + tm_borders(col = "blue") +
-  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.2) 
+  tm_shape(methadoneSf) + tm_dots(col = "black", size = 0.2) 
 ```
 
 Already we can generate some insight. Areas on the far West side of the city have some of the highest case rates, but are outside a walkable distance to Methadone providers. For individuals with opioid use disorder requiring medication access in these locales, they may be especially vulnerable during the pandemic. 
@@ -115,12 +115,12 @@ Next, we adjust some `tmap` parameters to improve our map. Now we switch to a re
 
 ```{r warning = FALSE, messages=FALSE}
 
-tm_shape(zips_merged) +
+tm_shape(zipsMerged) +
   tm_fill("Case.Rate...Cumulative", style="quantile", n=6, pal="-RdYlGn",
               title = "COVID Case Rate",alpha = 0.8) + 
   tm_borders(lwd = 0) + 
   tm_shape(buffers) + tm_borders(col = "gray") + tm_fill(alpha=0.5) +
-  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.1) +
+  tm_shape(methadoneSf) + tm_dots(col = "black", size = 0.1) +
   tm_layout(main.title = "Walkable Methadone Service Areas",
             main.title.position = "center",
             main.title.size = 1,
@@ -132,22 +132,22 @@ To improve our map even further, let's make it interactive! By switching the `tm
 ```{r warning = FALSE, messages=FALSE}
 tmap_mode("view")
 
-tm_shape(zips_merged) +
+tm_shape(zipsMerged) +
   tm_fill("Case.Rate...Cumulative", style="quantile", n=6, pal="-RdYlGn",
               title = "COVID Case Rate",alpha = 0.8) + 
   tm_borders(lwd = 0) + 
   tm_shape(buffers) + tm_borders(col = "gray") + tm_fill(alpha=0.5) +  
-  tm_shape(meth_sf) + tm_dots(col = "black", size = 0.1) 
+  tm_shape(methadoneSf) + tm_dots(col = "black", size = 0.1) 
 
 ```
 
 
 Using this approach, it's clear that the zip codes on the West Side most vulnerable are 60651, 60644, 60632, 60629, and 60608. By updating the thresholds and parameters further, these can shift as well to be more or less conservative based on our assumptions.
 
-## Save Data
+### Save Data
 We save our newly merged ZCTA level data for future analysis.
 
 ```{r}
-write_sf(zips_merged, "data/chizips_COVID.shp")
+write_sf(zipsMerged, "data/chizips_COVID.shp")
 ```
 
