@@ -42,7 +42,7 @@ library(units)
 First, load in the MOUD resources shapefile. Let's take a look at the first few rows of the dataset.
 
 ```{r}
-meth_sf <- st_read("methadoneClinics.shp")
+meth_sf <- st_read("data/methadoneClinics.shp")
 head(meth_sf)
 ```
 
@@ -190,7 +190,7 @@ We can now visualize the zip-level access to methadone clinics using our new acc
 tmap_mode("plot")
 
 tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", style = 'quantile', n=5,
+  tm_polygons("min_dists_mi", style = 'pretty', n=5,
               title = "Minimum Distance (mi)") +
   tm_layout(main.title = "Minimum Distance from Zip Centroid\n to Methadone Clinic",
             main.title.position = "center",
@@ -201,7 +201,7 @@ Access by zip code can also be combined with locations of resources:
 
 ```{r}
 tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", style = 'quantile', n=5,
+  tm_polygons("min_dists_mi", style = 'quantile', pal ="BuPu",n=5,
               title = "Minimum Distance (mi)") +
   tm_shape(meth_sf) +
   tm_dots(size = 0.2) +

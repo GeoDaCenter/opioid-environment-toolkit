@@ -93,8 +93,10 @@ As we can see the data is available in the _tidy_ format. We can use other tools
 stateDf <- stateDf %>% 
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
-            mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18,
-                   AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
+            mutate(hispPr18  = hispanic/totPop18, 
+                   WhitePr18 = white/totPop18,
+                   AfrAmPr18 = afrAm/totPop18, 
+                   AsianPr18 = asian/totPop18) %>%
             select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
 
 head(stateDf)
@@ -123,6 +125,20 @@ countyDf <- get_acs(geography = 'county', variables = c(totPop18 = "B01001_001",
             select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
 
 head(countyDf)
+
+
+
+              
+
+
+tractDf <- get_acs(geography = 'tract',variables = 
+                     c(totunit = "B25003_001",
+                       owner ="B25003_002"), 
+                    year = 2018, state = 'IL', geometry = FALSE) %>% 
+            select(tractce10, NAME, variable, estimate) %>% 
+            spread(variable, estimate) %>% 
+            mutate(ownEP  = owner/totunit) %>%
+            select(tractce10,ownEP, totunit, owner)
 ```
 
 
