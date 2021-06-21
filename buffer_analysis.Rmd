@@ -1,7 +1,6 @@
+# Buffer Analysis{#buffer-analysis}
 
-# Buffer Analysis
-
-## Overview
+## Overview {#BA-research-question}
 
 Once we have spatially referenced resource locations, it's helpful to plot the data in the community of interest for some preliminary analysis. In this tutorial we will plot Methadone Providers in Chicago and community areas to provide some context. We will also generate a simple 1-mile **buffer service area** around each provider to highlight neighborhoods with better, and worse, access to resources. In order to accomplish this task, we will need to standardize our spatial data (clinic points, and community areas) with an appropriate coordinate reference system. Finally, we'll make some maps!
 
@@ -11,15 +10,15 @@ Our objectives are thus to:
 * Use a spatial transform operation to change coordinate reference systems
 * Conduct a simple buffer analysis
 
-## Environment Setup 
+## Environment Setup {#BA-setup}
 To replicate the code & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
 ### Input/Output {#BA-i-o}
 Our inputs will be two shapefiles, and a geojson (all spatial file formats). These files can be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data), though the providers point file was generated in the Geocoding tutorial. Note that all four files are required (.dbf, .prj, .shp, and .shx) to consitute a shapefile. 
 
-* Chicago Methadone Clinics, `methadoneClinics.shp`
+* Chicago Methadone Clinics, `methadone_clinics.shp`
 * Chicago Zip Codes, `chicago_zips.shp`
-* Chicago City Boundary, `BoundariesChicago.geojson`
+* Chicago City Boundary, `boundaries_chicago.geojson`
 
 We will generate a 1-mile buffer around each point, and generate maps with the zip code areas for context. We will also export the final buffer areas as another shapefile for future use. Finally, we'll generate a more beautiful map by including the city boundary.
 
@@ -42,26 +41,26 @@ library(tmap)
 Load in the MOUD resources shapefile.
 
 ```{r}
-MetClinics <- st_read("data/methadoneClinics.shp")
+metClinics <- st_read("data/methadone_clinics.shp")
 ```
 
 Next, we load a shapefile of Chicago zip codes. You can often find shapefiles (or spatial data formats like geojson) on city data portals for direct download. We will walk you through downloading zip code boundaries directly through the Census via R in a later tutorial.
 
 ```{r}
-Areas <- st_read("data/chicago_zips.shp")
+areas <- st_read("data/chicago_zips.shp")
 ```
 
 ```{r}
-CityBoundary <- st_read("data/BoundariesChicago.geojson")
+cityBoundary <- st_read("data/boundaries_chicago.geojson")
 ```
 
 Quickly view the first few rows of the zip codes and clinics using your favorite function (`head`, `glimpse`, `str`, and so forth).
 
 ```{r}
-head(Areas)
+head(areas)
 ```
 
-## Simple Overlay Map
+## Simple Overlay Map 
 
 We can plot these quickly using the `tmap` library to ensure they are overlaying correctly. If they are, our coordinate systems are working correctly.  
 
@@ -73,21 +72,21 @@ We use the tmap "plot" view mode to view the data in a static format.
 tmap_mode("plot")
 
 ## 1st layer (gets plotted first)
-tm_shape(Areas) + tm_borders(alpha = 0.4) + 
+tm_shape(areas) + tm_borders(alpha = 0.4) + 
   
   ## 2nd layer (overlay)
-  tm_shape(MetClinics) + tm_dots(size = 0.4, col="red") 
+  tm_shape(metClinics) + tm_dots(size = 0.4, col="red") 
 ```
 
-## Spatial Transformation
+## Spatial Transformation 
 
 Next, we check the Coordinate Reference System for our data. Are the coordinate systems for clinic **points** and community **areas** the same? For R to treat both coordinate reference systems the same, the metadata has to be exact. 
 
 ```{r}
-st_crs(MetClinics) 
+st_crs(metClinics) 
 ```
 ```{r}
-st_crs(Areas)
+st_crs(areas)
 ```
 
 We can see that while both have a code of 4326 and appear to both be WGS84 systems, they are not encoded in exactly the same why. Thus, R will treat them differently -- which will pose problems for spatial analysis that interacts these two layers. One way of resolving this challenge is to **transform the spatial reference system** so that they are exact.
@@ -109,8 +108,8 @@ CRS.new <- st_crs("EPSG:3435")
 Next, transform both datasets to your new CRS.
 
 ```{r}
-MetClinics.3435 <- st_transform(MetClinics, CRS.new)
-Areas.3435 <- st_transform(Areas, CRS.new)
+metClinics.3435 <- st_transform(metClinics, CRS.new)
+areas.3435 <- st_transform(areas, CRS.new)
 ```
 
 Check the CRS of both datasets again. If they are identical you're ready to move onto the next step!
@@ -123,7 +122,7 @@ We choose a mile as a walkable distance for urban environments, commonly used fo
 We use the `st_buffer` function to create a buffer, and use 5280 feet to equal one mile.
 
 ```{r}
-MetClinic_buffers <- st_buffer(MetClinics.3435, 5280)
+metClinic_buffers <- st_buffer(metClinics.3435, 5280)
 ```
 
 Inspect the structure of the object you just created. Note that this is a *new* data object, represented as multiple polygons (rather than multiple points). Each buffer around each point is a separate entity.
@@ -136,42 +135,42 @@ We use `tmap` again, in the static plot mode. We layer our zip code areas, then 
 ```{r}
 tmap_mode("plot")
 
-tm_shape(Areas.3435) + tm_borders() +
-  tm_shape(MetClinics.3435) + tm_dots(col = "red") +
-  tm_shape(MetClinic_buffers) + tm_borders(col = "blue") 
+tm_shape(areas.3435) + tm_borders() +
+  tm_shape(metClinics.3435) + tm_dots(col = "red") +
+  tm_shape(metClinic_buffers) + tm_borders(col = "blue") 
 ```
 
 While this map shows our buffers were calculated correctly, the default settings make it difficult to view. To improve aesthetics we change the transparency of zip code boundaries by adjusting the alpha level. We add a fill to the buffers, and make it transparent. We increase the size of the points. 
 
 ```{r}
 # Map Housing Buffers
-tm_shape(Areas) + tm_borders(alpha = 0.6) +
-  tm_shape(MetClinic_buffers) + tm_fill(col = "blue", alpha = .4) + tm_borders(col = "blue") +
-  tm_shape(MetClinics.3435) + tm_dots(col = "red",  size = 0.2) 
+tm_shape(areas) + tm_borders(alpha = 0.6) +
+  tm_shape(metClinic_buffers) + tm_fill(col = "blue", alpha = .4) + tm_borders(col = "blue") +
+  tm_shape(metClinics.3435) + tm_dots(col = "red",  size = 0.2) 
 ```
 
 ### Buffer union
 While individual buffers are interesting and can be useful to consider overlapping service areas, we are also interested in getting a sense of which areas fall within a 1-mile service area in our study region -- or not. For this, we need to to use a **union** spatial operation. This will flatten all the individual buffers into one entity. 
 
 ```{r}
-union.buffers <- st_union(MetClinic_buffers)
+unionBuffers <- st_union(metClinic_buffers)
 ```
 
-Inspect the data structures of `MetClinic_buffers` and `union.buffers` to see what happens to the data in this step.
+Inspect the data structures of `metClinic_buffers` and `union.buffers` to see what happens to the data in this step.
 
 Finally, we map the buffer union. 
 
 ```{r}
-tm_shape(Areas) +  tm_borders()+
-  tm_shape(union.buffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
-  tm_shape(MetClinics.3435) + tm_dots(col = "red", size = 0.4) 
+tm_shape(areas) +  tm_borders()+
+  tm_shape(unionBuffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
+  tm_shape(metClinics.3435) + tm_dots(col = "red", size = 0.4) 
 ```
 
 ### Save Data
 We will save the merged 1-mile buffers to bring into maps for future analysis. The `st_write` function does the trick. Uncomment, and run on your system!
 
 ```{r}
-#st_write(union.buffers, "data/methadoneClinics_1mi.shp")
+#st_write(unionBuffers, "data/methadoneClinics_1mi.shp")
 ```
 
 
@@ -181,18 +180,18 @@ From here, we can generate additional buffers to compare access associations and
 We generate a two-mile buffer to add:
 
 ```{r}
-MetClinic_2mbuffers <- st_buffer(MetClinics.3435, 10560)
+metClinic_2mbuffers <- st_buffer(metClinics.3435, 10560)
 ```
 
 And then leverage tmap parameter specifications to further customize the a map showing multiple buffers. Here, we add the City of Chicago boundary and soften the zip code boundaries. We add a bounding box for the first zip code layer, so that the whole map is centered around the city boundary (even those the zip codes are layered first). We adjust the transparency of the buffer fills, use different colors, and adjust borders to make the visuals pop. We use the `tmap_layout` function to take away the frame, add and position a title. Explore the `tmap` documentation further to find additional options for legends and more. To find color options in R, there are multiple guides online (like [this](https://bookdown.org/hneth/ds4psy/D-2-apx-colors-essentials.html) one).
 
 ```{r}
 tmap_mode("plot")
-tm_shape(Areas, bbox=CityBoundary) + tm_borders(alpha = 0.2) +
-  tm_shape(CityBoundary) + tm_borders(lwd = 1.5) +
-  tm_shape(MetClinic_2mbuffers) + tm_fill(col = "gray10", alpha = .4) + tm_borders(col = "dimgray", alpha = .4) +
-  tm_shape(MetClinic_buffers) + tm_fill(col = "gray90", alpha = .4) + tm_borders(col = "darkslategray") +
-  tm_shape(MetClinics.3435) + tm_dots(col = "red",  size = 0.2) +   
+tm_shape(areas, bbox=cityBoundary) + tm_borders(alpha = 0.2) +
+  tm_shape(cityBoundary) + tm_borders(lwd = 1.5) +
+  tm_shape(metClinic_2mbuffers) + tm_fill(col = "gray10", alpha = .4) + tm_borders(col = "dimgray", alpha = .4) +
+  tm_shape(metClinic_buffers) + tm_fill(col = "gray90", alpha = .4) + tm_borders(col = "darkslategray") +
+  tm_shape(metClinics.3435) + tm_dots(col = "red",  size = 0.2) +   
   tm_layout(main.title = "Methadone Clinic Service Areas in Chicago",
             main.title.position = "center",
             main.title.size = 1,
@@ -205,9 +204,9 @@ Next, we'll try an interactive map to better explore the data that we have. We s
 
 tmap_mode("view")
 
-tm_shape(Areas) +  tm_borders(alpha = 0.5, col="gray")+ tm_text("GEOID10", size = 0.7) +
-  tm_shape(CityBoundary) + tm_borders() +
-  tm_shape(union.buffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
-  tm_shape(MetClinics.3435) + tm_dots(col = "red") 
+tm_shape(areas) +  tm_borders(alpha = 0.5, col="gray")+ tm_text("GEOID10", size = 0.7) +
+  tm_shape(cityBoundary) + tm_borders() +
+  tm_shape(unionBuffers) + tm_fill(col = "blue", alpha = .2) + tm_borders(col = "blue") +
+  tm_shape(metClinics.3435) + tm_dots(col = "red") 
 ```
 

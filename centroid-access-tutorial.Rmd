@@ -22,8 +22,8 @@ We will use the following packages in this tutorial:
 ### Input/Output {#BA-i-o}
 Our inputs will be the clinic points we generated in previous tutorials, and the ZCTA boundary.
 
-* Chicago Methadone Clinics, `methadoneClinics.shp`
-* Chicago Zip Codes, `chicago_zips.shp`
+* Chicago Methadone Clinics, `methadone_clinics.shp`
+* Chicago Zip Codes, `chicagoZips.shp`
 
 We will calculate the minimum distance between the resources and the centroids of the zip codes, then save the results as a shapefile and as a CSV. Our final result will be a shapefile/CSV with the minimum distance value for each zip. 
 
@@ -42,21 +42,22 @@ library(units)
 First, load in the MOUD resources shapefile. Let's take a look at the first few rows of the dataset.
 
 ```{r}
-meth_sf <- st_read("data/methadoneClinics.shp")
-head(meth_sf)
+
+methadoneSf <- st_read("data/methadone_clinics.shp")
+head(methadoneSf)
 ```
 
 Next, we'll load Chicago zip code boundaries.
 
 ```{r read zips}
-chicago_zips <- read_sf("data/chicago_zips.shp")
+chicagoZips <- read_sf("data/chicago_zips.shp")
 ```
 
 We can quickly plot our data for to confirm they loaded correctly, here using an interactive map:
 ```{r}
-tm_shape(chicago_zips) +
+tm_shape(chicagoZips) +
   tm_borders() +
-tm_shape(meth_sf) +
+tm_shape(methadoneSf) +
   tm_dots(col = "blue", size = 0.2)
 ```
 
@@ -69,17 +70,17 @@ Now, we will calculate the centroids of the zip code boundaries. We will first n
 Use the `st_transform` function to change the projection of the data. Notice how the values in `geometry` go from being relatively small (unprojected, lat/long) to very large (projected, in US feet).
 
 ```{r project-zips}
-chicago_zips <- st_transform(chicago_zips, 3435)
+chicagoZips <- st_transform(chicagoZips, 3435)
 
-chicago_zips
+chicagoZips
 ```
 
 Then, we will calculate the centroids:
 
 ```{r calc-centroids}
-chicago_centroids <- st_centroid(chicago_zips)
+chicagoCentroids <- st_centroid(chicagoZips)
 
-chicago_centroids
+chicagoCentroids
 ```
 
 For each zip code, this will calculate the centroid, and the output will be a point dataset.
@@ -87,8 +88,8 @@ For each zip code, this will calculate the centroid, and the output will be a po
 Plot to double check that everything is ok. The `st_geometry()` function will once again just return the outline:
 
 ```{r plot-zips-centroids}
-plot(st_geometry(chicago_zips))
-plot(st_geometry(chicago_centroids), add = TRUE, col = "red")
+plot(st_geometry(chicagoZips))
+plot(st_geometry(chicagoCentroids), add = TRUE, col = "red")
 ```
 
 ### Visualize & Confirm 
@@ -96,9 +97,9 @@ plot(st_geometry(chicago_centroids), add = TRUE, col = "red")
 Once again, we can create an interactive map:
 
 ```{r plot-interactive-zips-centroids}
-tm_shape(chicago_zips) +
+tm_shape(chicagoZips) +
   tm_borders() +
-tm_shape(chicago_centroids) +
+tm_shape(chicagoCentroids) +
   tm_dots()
 ```
 
@@ -108,43 +109,43 @@ tm_shape(chicago_centroids) +
 If we immediately try to calculate the distance between the zip centroids and the locations of the resources using the `st_distance` function, we'll get an error:
 
 ```{r eval=FALSE}
-st_distance(chicago_centroids, meth_sf, by_element = TRUE)
+st_distance(chicagoCentroids, methadoneSf, by_element = TRUE)
 ```
 
 ```
-Error in st_distance(chicago_centroids, meth_sf, by_element = TRUE) : st_crs(x) == st_crs(y) is not TRUE
+Error in st_distance(chicagoCentroids, methadoneSf, by_element = TRUE) : st_crs(x) == st_crs(y) is not TRUE
 ```
 Why is there an error? Because the projection of the centroids and the resource locations don't match up. Let's project the resource locations so that they match the projection of the centroids.
 
 First, use the `st_crs` function to check that the coordinate reference system (or projection) is the same. They're not, so we have to fix it.
 
 ```{r check-crs-1}
-st_crs(chicago_centroids)
-st_crs(meth_sf)
+st_crs(chicagoCentroids)
+st_crs(methadoneSf)
 ```
 
 We'll take the CRS from the zip code centroids data, and use it as input to `st_transform` applied to the methadone clinics data.
 
 ```{r project resources}
-new_crs <- st_crs(chicago_centroids)
-new_crs
+newCRS <- st_crs(chicagoCentroids)
+newCRS
 
-meth_sf <- st_transform(meth_sf, new_crs)
+methadoneSf <- st_transform(methadoneSf, newCRS)
 ```
 
 If we check the CRS again, we now see that they match. **Mismatched projections are a commonly made mistake in geospatial data processing.**
 
 ```{r check-crs-2}
-st_crs(chicago_centroids)
-st_crs(meth_sf)
+st_crs(chicagoCentroids)
+st_crs(methadoneSf)
 ```
 
 Now we have the zip boundaries, the centroids of the zips, and the resource locations, as shown below. Next, we will calculate the distance to the nearest resource from each zip code centroid.
 
 ```{r plot-zips-centroids-resources}
-plot(st_geometry(chicago_zips))
-plot(st_geometry(chicago_centroids), col = "red", add = TRUE)
-plot(st_geometry(meth_sf), col = "blue", add = TRUE)
+plot(st_geometry(chicagoZips))
+plot(st_geometry(chicagoCentroids), col = "red", add = TRUE)
+plot(st_geometry(methadoneSf), col = "blue", add = TRUE)
 ```
 
 ## Calculate Distance {#CA-distance}
@@ -152,35 +153,35 @@ plot(st_geometry(meth_sf), col = "blue", add = TRUE)
 First, we'll identify the resource that is the closest to a zip centroid using the `st_nearest_feature` function. (It will return the index of the object that is nearest, so we will subset the resources by the index to get the nearest object.)
 
 ```{r find nearest resource}
-nearest_clinic_indexes <- st_nearest_feature(chicago_centroids, meth_sf)
+nearestClinic_indexes <- st_nearest_feature(chicagoCentroids, methadoneSf)
 
-nearest_clinic <- meth_sf[nearest_clinic_indexes,]
+nearestClinic <- methadoneSf[nearestClinic_indexes,]
 
-nearest_clinic
+nearestClinic
 ```
 
 Then, we will calculate the distance between the nearest resource and the zip code centroid with the `st_distance` function. As shown above, make sure both of your datasets are projected, and in the same projection, before you run `st_distance`.
 
 ```{r calc min dists}
-min_dists <- st_distance(chicago_centroids, nearest_clinic, by_element = TRUE)
+minDist <- st_distance(chicagoCentroids, nearestClinic, by_element = TRUE)
 
-min_dists
+minDist
 ```
 
 This is in US feet. To change to a more meaningful unit, such as miles, we can use the `set_units()` function:
 
 ```{r convert units}
-min_dists_mi <- set_units(min_dists, "mi")
+minDist_mi <- set_units(minDist, "mi")
 
-min_dists_mi
+minDist_mi
 ```
 
 ### Merge Data
-We then rejoin the minimum distances to the zip code data, by column binding `min_dists_mi` to the original `chicago_zips` data.
+We then rejoin the minimum distances to the zip code data, by column binding `minDist_mi` to the original `chicagoZips` data.
 
 ```{r rejoin}
-min_dist_sf <- cbind(chicago_zips, min_dists_mi)
-min_dist_sf
+minDistSf <- cbind(chicagoZips, minDist_mi)
+minDistSf
 ```
 
 ### Visualize & Confirm
@@ -189,8 +190,9 @@ We can now visualize the zip-level access to methadone clinics using our new acc
 ```{r}
 tmap_mode("plot")
 
-tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", style = 'pretty', n=5,
+
+tm_shape(minDistSf) +
+  tm_polygons("minDist_mi", style = 'quantile', n=5,
               title = "Minimum Distance (mi)") +
   tm_layout(main.title = "Minimum Distance from Zip Centroid\n to Methadone Clinic",
             main.title.position = "center",
@@ -200,10 +202,11 @@ tm_shape(min_dist_sf) +
 Access by zip code can also be combined with locations of resources:
 
 ```{r}
-tm_shape(min_dist_sf) +
-  tm_polygons("min_dists_mi", style = 'quantile', pal ="BuPu",n=5,
+
+tm_shape(minDistSf) +
+  tm_polygons("minDist_mi", style = 'quantile', n=5,
               title = "Minimum Distance (mi)") +
-  tm_shape(meth_sf) +
+  tm_shape(methadoneSf) +
   tm_dots(size = 0.2) +
   tm_layout(main.title = "Minimum Distance from Zip Centroid\n to Methadone Clinic",
             main.title.position = "center",
@@ -213,7 +216,7 @@ tm_shape(min_dist_sf) +
 
 
 ```{r}
-head(chicago_zips)
+head(chicagoZips)
 ```
 
 ## Save Data {#CA-save}
@@ -221,11 +224,11 @@ head(chicago_zips)
 To save our final result to a CSV:
 
 ```{r, eval=FALSE, write-csv}
-write_sf(min_dist_sf, "chizips_Access.csv")
+write_sf(minDistSf, "chizips_Access.csv")
 ```
 
 We can also write out this data to a shapefile format:
 
 ```{r, eval=FALSE, write-shp}
-write_sf(min_dist_sf, "chizips_Access.shp")
+write_sf(minDistSf, "chizips_Access.shp")
 ```

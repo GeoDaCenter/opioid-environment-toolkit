@@ -17,14 +17,16 @@ Our objectives are to:
 To replicate the codes & functions illustrated in this tutorial, you’ll need to have R and RStudio downloaded and installed on your system. This tutorial assumes some familiarity with the R programming language.
 
 ### Input/Output {#CD-i-o}
-We will not be using an external input for this exercise. 
-  
+Our only external input will be the SHP file for Chicago City Boundary to filter the zipcode level data for the City of Chicago, which can be found [here](https://github.com/GeoDaCenter/opioid-environment-toolkit/tree/master/data). Simply downloading the datasets from the [US Census Bureau](https://data.census.gov) website doesn't require any external file input. 
+
+* Chicago City Boundary, `boundaries_chicago.geojson`
+
 Our output will be two sets of files:  
 
 - CSV file and shapefile with Race Data distributions at county level for the state of Illinois. 
 - and CSV file and shapefile with Population and Per Capita Income for the zipcodes within the city of Chicago for 2018.
 
-### Load Libraries {#BA-lib}
+### Load Libraries {#CD-lib}
 We will use the following packages in this tutorial:
   
 - `sf`: to read/write sf (spatial) objects
@@ -120,9 +122,9 @@ countyDf <- get_acs(geography = 'county', variables = c(totPop18 = "B01001_001",
                     year = 2018, state = 'IL', geometry = FALSE) %>% 
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
-            mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18,
-                   AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
-            select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+            mutate(hispPr18  = hispanic/totPop18, whitePr18 = white/totPop18,
+                   afrAmPr18 = afrAm/totPop18, asianPr18 = asian/totPop18) %>%
+            select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
 head(countyDf)
 
@@ -142,11 +144,6 @@ tractDf <- get_acs(geography = 'tract',variables =
 ```
 
 
-And now we can save the dataset in CSV file using code below.
-```{r save county level data, message = FALSE, results='hide', eval = TRUE}
-write.csv(countyDf, "data/ILcounty_ACS.csv")
-```
-
 ### Census Tract Level {}
 For census tract level, at the minimum *stateName* needs to be provided. 
 
@@ -163,9 +160,9 @@ tractDf <- get_acs(geography = 'tract',variables = c(totPop18 = "B01001_001",
                     year = 2018, state = 'IL', geometry = FALSE) %>% 
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
-            mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18, 
-                   AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
-            select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+            mutate(hispPr18  = hispanic/totPop18, whitePr18 = white/totPop18, 
+                   afrAmPr18 = afrAm/totPop18, asianPr18 = asian/totPop18) %>%
+            select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
 head(tractDf)
 ```
@@ -182,9 +179,9 @@ zctaDf <- get_acs(geography = 'zcta',variables = c(totPop18 = "B01001_001",
                     year = 2018, geometry = FALSE) %>% 
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
-            mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18, 
-                   AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
-            select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+            mutate(hispPr18  = hispanic/totPop18, whitePr18 = white/totPop18, 
+                   afrAmPr18 = afrAm/totPop18, asianPr18 = asian/totPop18) %>%
+            select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 ```
 
 Inspect the data. 
@@ -193,16 +190,23 @@ head(zctaDf)
 dim(zctaDf)
 ```
 
-Given zipcode data can only be sourced for the entire nation, after sourcing it, we can filter them for certain region,e.g. below we can filter for zipcodes in Chicago by using `str_detect` and then save it to a .csv file. 
+Given zipcode data can only be sourced for the entire nation, after sourcing it, we can filter them for certain region,e.g. below we can filter for zipcodes in Chicago by using `str_detect`. If we had the geometry information, we could overlay the zipcode geometry with the desired shape boundary to easily filter the required region. We will illustrate that in the [Get Geometry](#CD-get-geometry) section.
 
 ```{r eval = TRUE}
 zipChicagoDf <- get_acs(geography = 'zcta', variables = c(perCapInc = "DP03_0088"),year = 2018, geometry = FALSE) %>%
                   select(GEOID, NAME, variable, estimate) %>% 
-                  filter(str_detect( GEOID,"^606")) %>%
+                  filter(str_detect( GEOID,"^606")) %>%  ## add a str filter
                   spread(variable, estimate) %>% 
                   select(GEOID, perCapInc)
+```
 
-write.csv(zipChicagoDf , file = "data/chizips_ACS.csv")
+### Save Data {}
+
+And now we can save the county and zipcode datasets in CSV file using the code below.
+
+```{r save csv data, message = FALSE, results='hide', eval = TRUE}
+write.csv(countyDf, "data/ilcounty_18_race.csv")
+write.csv(zipChicagoDf , file = "data/chizips_18_pci.csv")
 ```
 
 
@@ -221,15 +225,26 @@ The datasets downloaded so far did not have a spatial geometry feature attached 
 To download and use the Tiger Shapefiles shared by the [US Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) we will use the `tigris` package. Set `cb = TRUE` to get generalized files, these don't have high resolution details and hence are smaller in size. 
 
 ```{r download shapefiles, message = FALSE, results = 'hide', eval = TRUE}
-yeartoFetch <- 2018
+yearToFetch <- 2018
 
-stateShp <- states(year = yeartoFetch, cb = TRUE)
-countyShp <- counties(year = yeartoFetch, state = 'IL', cb = TRUE)
-tractShp <- tracts(state = 'IL',year = yeartoFetch, cb = TRUE) 
-zctaShp <- zctas(year = yeartoFetch, cb = TRUE) 
+stateShp <- states(year = yearToFetch, cb = TRUE)
+countyShp <- counties(year = yearToFetch, state = 'IL', cb = TRUE)
+tractShp <- tracts(state = 'IL',year = yearToFetch, cb = TRUE) 
+zctaShp <- zctas(year = yearToFetch, cb = TRUE) 
 ```
 
-Now we can merge these geometry files with the race data downloaded in previous section. 
+
+Sometimes the ACS FTP might be down for system maintenance or some other reason, and in such a scenario the code returns an error message like below. You can check the website status from [here](https://www2.census.gov/geo/tiger/TIGER2019/) to confirm. If the website is truly down, we recommend trying the download again in a few hours.
+
+```{r, echo=F, fig.align="center", fig.cap="R error message"}
+knitr::include_graphics('img/r_acs_error message.png')
+```
+
+```{r, echo=F, fig.align="center", fig.cap="ACS website outage message"}
+knitr::include_graphics('img/acs_website_down.png')
+```
+
+After we have successfully download the geometry files, we can now merge these shapes with the race data downloaded in previous section. 
 
 For states:
 ```{r merge with state Census Data, eval = TRUE}
@@ -241,27 +256,18 @@ head(stateShp)
 
 ```
 
-Similarly for counties, zctas & census tracts we can use the code below and save the shapefiles.
+Similarly for counties, zctas & census tracts we can use the code below.
 
 ```{r merge with Census shapefiles,  message = FALSE, eval = TRUE}
 countyShp <- merge(countyShp, countyDf, by.x  = 'GEOID', by.y = 'GEOID', all.x = TRUE) %>%
-                select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+                select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
 tractShp <- merge(tractShp, tractDf, by.x  = 'GEOID', by.y = 'GEOID', all.x = TRUE) %>%
-              select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+              select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
 zctaShp <- merge(zctaShp, zctaDf, by.x  = 'GEOID10', by.y = 'GEOID', all.x = TRUE)%>%
-              select(GEOID10,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+              select(GEOID10,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
-write_sf(countyShp, "data/Chicago_Zip_PCI_18.shp")
-```
-
-Now we can finally filter the zipcodes for Chicago. and save the census tract results with geometry in a shapefile using `write_sf`. 
-
-```{r eval = TRUE}
-zipChicagoShp <- merge(zctaShp %>% filter(str_detect(GEOID10,"^606")), 
-                       zipChicagoDf, by.x  = 'GEOID10', by.y = 'GEOID', all.x = TRUE) %>%
-                  select(GEOID10,totPop18,perCapInc)
 ```
 
 ### Using tidycensus {}
@@ -281,9 +287,9 @@ tractDf <- get_acs(geography = 'tract', variables = c(totPop18 = "B01001_001",
                    year = 2018, state  = 'IL', geometry = FALSE) %>%
             select(GEOID, NAME, variable, estimate) %>% 
             spread(variable, estimate) %>% 
-            mutate(hispPr18  = hispanic/totPop18, WhitePr18 = white/totPop18,
-                   AfrAmPr18 = afrAm/totPop18, AsianPr18 = asian/totPop18) %>%
-            select(GEOID,totPop18,hispPr18,WhitePr18,AfrAmPr18, AsianPr18)
+            mutate(hispPr18  = hispanic/totPop18, whitePr18 = white/totPop18,
+                   afrAmPr18 = afrAm/totPop18, asianPr18 = asian/totPop18) %>%
+            select(GEOID,totPop18,hispPr18,whitePr18,afrAmPr18, asianPr18)
 
 tractShp <- get_acs(geography = 'tract', variables = c(perCapitaIncome = "DP03_0088"),
                     year = 2018, state  = 'IL', geometry = TRUE) %>% 
@@ -295,26 +301,37 @@ tractsShp <- merge(tractShp, tractDf, by.x = 'GEOID', by.y = 'GEOID', all.x = TR
 head(tractShp)
 ```
 
-```{r zip level using tidycensus,  message = FALSE, eval = TRUE}
+To get zipcode level data for a specific region, we first need to download the required dataset for the entire country and then we can filter the relevant zipcodes by overlaying the downloaded dataset with the geometry feature of that region. For example, to get data only for Chicago, we can overlay the city boundaries over the zcta file(with geometry) using the `st_intersection` function as shown below.
 
-zipChicagoShp <- get_acs(geography = 'zcta', variables = c(totPop18 = "B01001_001",
+```{r zip level using tidycensus,  message = FALSE, eval = TRUE}
+zctaShp <- get_acs(geography = 'zcta', variables = c(totPop18 = "B01001_001",
                                                            perCapInc = "DP03_0088"), 
                          year = 2018, geometry = TRUE) %>%
                   select(GEOID, NAME, variable, estimate) %>% 
                   spread(variable, estimate) %>% 
                   rename(totPop18 = B01001_001, perCapitaInc = DP03_0088) %>%
-                  filter(str_detect(GEOID,"^606")) %>%
                   select(GEOID,totPop18,perCapitaInc)
+head(zctaShp)
+
+# read in the city boundary file
+chiCityBoundary <- st_read("data/boundaries_chicago.geojson") 
+
+# set same CRS for both shapefiles
+chiCityBoundary <- st_transform(chiCityBoundary, 4326) 
+zctaShp <- st_transform(zctaShp, 4326)
+
+#only keep those zipcodes that intersect the Chicago city boundary
+zipChicagoShp <- st_intersection(zctaShp,chiCityBoundary)
 head(zipChicagoShp)
 ```
 
+### Save Data {}
 
-## Save Data
-
-We previously saved our files as CSVs. Now let's save the final shapefile of ZCTA scale data for future use, using `write_sf`. 
+We previously saved our files without geometry information as CSVs. Now we can save the census tract race data and Chicago zipcode level per capita income with geometries as shapefiles using `write_sf`.
 
 ```{r eval = TRUE}
-write_sf(zipChicagoShp, "data/chizips_ACS.shp")
+write_sf(countyShp, "data/ilcounty_18_race.shp")
+write_sf(zipChicagoShp, "data/chizips_18_pci.shp")
 ```
 
 
@@ -330,27 +347,27 @@ Using `tidycensus` we can download datasets from various types of tables. The on
 We can explore all the variables for our year of interest by running the code below. Please note as the Profiles evolve, variable IDs might change from year to year. 
 
 ```{r check variables,  message = FALSE, eval = TRUE}
-sVarnames <- load_variables(2018, "acs5/subject", cache = TRUE)
-pVarnames <- load_variables(2018, "acs5/profile", cache = TRUE)
-otherVarnames <- load_variables(2018, "acs5", cache = TRUE)
+sVarNames <- load_variables(2018, "acs5/subject", cache = TRUE)
+pVarNames <- load_variables(2018, "acs5/profile", cache = TRUE)
+otherVarNames <- load_variables(2018, "acs5", cache = TRUE)
 
-head(pVarnames)
+head(pVarNames)
 ```
 
 A tibble with table & variable information has three columns : *name, label, concept*. 
 
 Name is a combination of table id and variable id within that table. Concept generally identifies the table name or grouping used to arrange variables. Label provides textual details about the variable.
 
-We can explore these tibbles to identify the correct variable ID `name` to use with the `get_acs()` function by using `View(sVarnames)` or other filters e.g. for age
+We can explore these tibbles to identify the correct variable ID `name` to use with the `get_acs()` function by using `View(sVarNames)` or other filters e.g. for age
 
 ```{r explore variables 1 ,  message = FALSE, eval = TRUE}
 
-sVarnames %>% filter(str_detect(concept, "AGE AND SEX")) %>%  # search for this concept
+sVarNames %>% filter(str_detect(concept, "AGE AND SEX")) %>%  # search for this concept
               filter(str_detect(label, "Under 5 years")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
               select(variableId = name, label) # drop unnecessary columns and rename
 
-sVarnames %>% filter(str_sub(name, 1, 5) == "S0101") %>%  # search for these tables
+sVarNames %>% filter(str_sub(name, 1, 5) == "S0101") %>%  # search for these tables
               filter(str_detect(label, "Under 5 years")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
               select(variableId = name, label) # drop unnecessary columns and rename
@@ -360,11 +377,11 @@ e.g per capita income, we can check on DP table variables.
 
 ```{r explore variables 2,  message = FALSE, eval = TRUE}
 
-pVarnames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
+pVarNames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
               select(variable = name, label) # drop unnecessary columns and rename
 
-pVarnames %>% filter(str_detect(label, "Under 5 years")) %>%  # search for variables
+pVarNames %>% filter(str_detect(label, "Under 5 years")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
               select(variable = name, label) # drop unnecessary columns and rename
 ```
@@ -373,7 +390,7 @@ The order and structure of profile tables can change from year to year, hence th
 
 ```{r explore variables 3, eval = TRUE}
 
-otherVarnames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
+otherVarNames %>% filter(str_detect(label, "Per capita")) %>%  # search for variables
               mutate(label = sub('^Estimate!!', '', label)) %>% # remove unnecessary text
               select(variable = name, label) # drop unnecessary columns and rename
 

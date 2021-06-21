@@ -152,10 +152,10 @@ Next, we plot our points as dots, and add the basemap.
 tm_shape(methadoneSf) + tm_dots() + tm_basemap("OpenStreetMap")
 ```
 
-### Convert to Shapefile
+### Save Data
 Finally, we save this spatial dataframe as a shapefile which can be used for further spatial analysis.
 ```{r write shp,eval= FALSE}
-write_sf(methadoneSf, "data/methadoneClinics.shp")
+write_sf(methadoneSf, "data/methadone_clinics.shp")
 ```
 
 
